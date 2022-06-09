@@ -1,5 +1,6 @@
 mod database;
 mod game;
+mod server;
 
 // use database::{psql::*, DBAccessor};
 
@@ -11,9 +12,5 @@ fn launch() -> _ {
         port: 8000,
         ..Default::default()
     };
-    rocket(config)
-}
-
-fn rocket(config: rocket::Config) -> rocket::Rocket<rocket::Build> {
-    rocket::custom(config).mount("/", rocket::routes![])
+    server::rocket(config)
 }
