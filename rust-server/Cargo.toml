@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 postgres = "0.19.3"
 rand = "0.8.5"
+num_enum = "0.5.7"

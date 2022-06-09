@@ -1,5 +1,6 @@
 /// Represents different states of a game
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, num_enum::TryFromPrimitive)]
+#[repr(u8)]
 pub enum GameState {
     /// Initial state of the game
     Lobby,
