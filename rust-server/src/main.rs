@@ -2,6 +2,9 @@ mod database;
 mod game;
 mod server;
 
+#[cfg(test)]
+mod tests;
+
 #[rocket::launch]
 async fn launch() -> _ {
     let config = rocket::Config {
