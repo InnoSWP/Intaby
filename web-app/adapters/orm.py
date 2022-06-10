@@ -1,19 +1,18 @@
 from sqlalchemy import Column, MetaData, Integer, String, ForeignKey, Text, Enum, Table, Boolean
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import registry
 from sqlalchemy.orm import mapper
 
-
-# from domain.model import QuestionTypes
+import model
 
 # Заглушка
 # To distinguish between question types
-class QuestionTypes:
-    pass
+# class QuestionTypes:
+#     pass
 
 
 # Base = declarative_base()
-
-metadata = MetaData()
+mapper_registry = registry()
+metadata = mapper_registry.metadata
 
 # relations between tables:
 #   - To find quizzes: search quizzes table by user_id
@@ -38,15 +37,25 @@ quiz_table = Table("quizzes", metadata,
 question_table = Table("questions", metadata,
                        Column('id', Integer, primary_key=True, autoincrement=True),
                        Column('quiz_id', Integer, ForeignKey('quiz.id')),
-                       Column('type', Enum(QuestionTypes)),
+                       Column('type', Enum(model.QuestionTypes)),
                        Column('description', Text))
 
 # Table for answers
-answer_table = Table("Answer", metadata,
+answer_table = Table("answers", metadata,
                      Column('id', Integer, primary_key=True, autoincrement=True),
                      Column('question_id', ForeignKey('question.id')),
-                     Column('correct_answer'), Boolean)
+                     Column('text', Text),
+                     Column('correct_answer', Boolean))
 
+
+def start_mappers():
+    user_mapper = mapper_registry.map_imperatively(model.User, user_table)
+    question_mapper = mapper_registry.map_imperatively(model.Question, question_table)
+    answer_mapper = mapper_registry.map_imperatively(model.Answer, answer_table)
+
+
+if __name__ == '__main__':
+    start_mappers()
 # Draft
 # class User(Base):
 #     __tablename__ = 'user'

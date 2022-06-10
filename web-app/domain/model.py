@@ -19,6 +19,12 @@ QuestionAnswer = NewType('QuestionAnswers', str)
 QuestionDescription = NewType('QuestionDescription', str)
 
 
+class Answer:
+    def __init__(self, text: QuestionAnswer, is_correct: bool):
+        self.text = text
+        self.is_correct = is_correct
+
+
 # Possible types of question in a quiz
 class QuestionTypes(enum.Enum):
     poll = "polls"
@@ -29,11 +35,10 @@ class QuestionTypes(enum.Enum):
 #   question type, description, possible answers, and correct answers
 class Question:
     def __init__(self, question_type: QuestionTypes, text: QuestionDescription,
-                 answers: List[QuestionAnswer], correct_answer: QuestionAnswer):
+                 answers: List[Answer]):
         self.question_type = question_type
         self.text = text
         self.answers = answers
-        self.correct_answer = correct_answer
 
     # [maybe deleted]
     # return next question
