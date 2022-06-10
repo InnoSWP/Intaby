@@ -30,6 +30,10 @@ pub struct Game {
     players: HashMap<PlayerName, Player>,
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(crate = "rocket::serde")]
+pub struct GameAnswer {}
+
 impl Games {
     pub fn new() -> Self {
         Self {

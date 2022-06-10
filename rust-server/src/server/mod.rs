@@ -1,6 +1,6 @@
 use std::sync::Mutex;
 
-use rocket::{get, post, State};
+use rocket::{get, post, put, serde::json::Json, State};
 
 use crate::database::{DBAccessor, DBError};
 
@@ -58,6 +58,12 @@ async fn get_game(code: GameCode, games: &State<GamesState>) -> SResult<GameCode
         Some(_game) => Ok(code),
         None => Err(Error::GameNotFound(code)),
     }
+}
+
+#[put("/games/<code>", data = "<answer>")]
+async fn game_answer(code: GameCode, answer: Json<GameAnswer>) -> SResult<()> {
+    // TODO: register answer
+    Ok(())
 }
 
 async fn create_game(
