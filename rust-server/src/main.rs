@@ -1,5 +1,4 @@
 mod database;
-mod game;
 mod server;
 
 #[cfg(test)]

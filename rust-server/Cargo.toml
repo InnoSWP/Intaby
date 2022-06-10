@@ -7,7 +7,6 @@ edition = "2021"
 
 [dependencies]
 rand = "0.8.5"
-num_enum = "0.5.7"
 rocket = { version = "=0.5.0-rc.2", features = ["json"] }
 async-trait = "0.1.56"
 
