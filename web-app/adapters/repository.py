@@ -26,6 +26,7 @@ class SqlAlchemyRepository:
 
     def add_user(self, user: model.Quiz):
         self.session.add(user)
+        self.session.commit()
 
     def get_user(self, user_id):
         return self.session.query(model.User).filter_by(id=user_id).one()
@@ -33,9 +34,19 @@ class SqlAlchemyRepository:
     # Working with quizzes
     def add_quiz(self, quiz: model.Quiz):
         self.session.add(quiz)
+        self.session.commit()
 
     def get_quiz(self, quiz_id):
         return self.session.query(model.Quiz).filter_by(id=quiz_id).one()
+
+    def put_quiz(self, quiz: model.Quiz):
+        # self.session.query(model.Quiz).f
+        raise NotImplemented
+
+    def delete_quiz(self, quiz_id):
+        self.session.query(model.Quiz).filter_by(id=quiz_id).delete(synchronize_session=False)
+        # TODO: deletion of questions and answers
+        self.session.commit()
 
     def list_quizzes(self, user_id):
         return self.session.query(model.User).filter_by(user_id=user_id).all()
@@ -43,6 +54,7 @@ class SqlAlchemyRepository:
     # Working with questions
     def add_question(self, question: model.Question):
         self.session.add(question)
+        self.session.commit()
 
     def get_question(self, question_id):
         return self.session.query(model.Question).filter_by(id=question_id).one()
@@ -53,6 +65,7 @@ class SqlAlchemyRepository:
     # Working with answers
     def add_answer(self, answer: model.Answer):
         self.session.add(answer)
+        self.session.commit()
 
     def get_answer(self, answer_id):
         return self.session.query(model.Answer).filter_by(id=answer_id)
@@ -61,7 +74,7 @@ class SqlAlchemyRepository:
         return self.session.query(model.Answer).filter_by(question_id=question_id)
 
 
-# Debug
+# Testing Repository
 class FakeRepository:
     def add_user(self, user: model.Quiz):
         print(f"Adding user {user}")
@@ -79,6 +92,12 @@ class FakeRepository:
     def list_quizzes(self, user_id):
         print(f"Getting list of quizzes of user {user_id}")
 
+    def put_quiz(self, quiz: model.Quiz):
+        print(f"Changing quiz using {quiz}")
+
+    def delete_quiz(self, quiz_id):
+        print(f"deletion of quiz {quiz_id}")
+
     # Working with questions
     def add_question(self, question: model.Question):
         print(f"Adding question {question}")
@@ -88,6 +107,12 @@ class FakeRepository:
 
     def list_questions(self, quiz_id):
         print(f"Getting list of question of quiz {quiz_id}")
+
+    def put_question(self, question: model.Question):
+        print(f"Changing quiz using {question}")
+
+    def delete_question(self, question_id):
+        print(f"deletion of question {question_id}")
 
     # Working with answers
     def add_answer(self, answer: model.Answer):
@@ -99,8 +124,14 @@ class FakeRepository:
     def list_answers(self, question_id):
         print(f"Getting list of answers of question {question_id}")
 
+    def put_answer(self, answer: model.Quiz):
+        print(f"Changing answer using {answer}")
 
-# Debug
+    def delete_answer(self, answer_id):
+        print(f"deletion of answer {answer_id}")
+
+
+# Testing
 __repo = FakeRepository()
 
 
