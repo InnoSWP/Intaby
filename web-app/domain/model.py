@@ -1,7 +1,5 @@
 import enum
-from dataclasses import dataclass
-from datetime import date
-from typing import Optional, List, Set, NewType
+from typing import List, NewType
 
 # Types declaration
 
