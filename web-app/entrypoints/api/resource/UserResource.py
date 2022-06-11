@@ -2,8 +2,8 @@ from flask import jsonify
 from flask_restful import reqparse, abort, Resource
 from adapters.repository import SqlAlchemyRepository, get_repo
 
-parser = reqparse.RequestParser()
-parser.add_argument()
+# parser = reqparse.RequestParser()
+# parser.add_argument()
 
 
 def abort_if_user_not_found(user_id):

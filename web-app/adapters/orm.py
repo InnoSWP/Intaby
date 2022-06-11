@@ -2,7 +2,7 @@ from sqlalchemy import Column, MetaData, Integer, String, ForeignKey, Text, Enum
 from sqlalchemy.orm import registry
 from sqlalchemy.orm import mapper
 
-import model
+from domain import model
 
 # Заглушка
 # To distinguish between question types

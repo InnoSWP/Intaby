@@ -18,7 +18,8 @@ QuestionDescription = NewType('QuestionDescription', str)
 
 
 class Answer:
-    def __init__(self, text: QuestionAnswer, is_correct: bool):
+    def __init__(self, answer_id: int, text: QuestionAnswer, is_correct: bool):
+        self.answer_id = answer_id
         self.text = text
         self.is_correct = is_correct
 
@@ -32,11 +33,11 @@ class QuestionTypes(enum.Enum):
 # Question class, to store information about question:
 #   question type, description, possible answers, and correct answers
 class Question:
-    def __init__(self, question_type: QuestionTypes, text: QuestionDescription,
-                 answers: List[Answer]):
+    def __init__(self, question_id: int, question_type: QuestionTypes, text: QuestionDescription, quiz_id: int):
+        self.question_id = question_id
         self.question_type = question_type
         self.text = text
-        self.answers = answers
+        self.quiz_id = quiz_id
 
     # [maybe deleted]
     # return next question
@@ -46,16 +47,16 @@ class Question:
 
 # Quiz class,
 class Quiz:
-    def __init__(self, quiz_id: QuizId, quiz_name: QuizName, questions: [Question]):
+    def __init__(self, quiz_id: QuizId, quiz_name: QuizName, user_id: int = 0):
         self.quiz_id = quiz_id
         self.quiz_name = quiz_name
-        self.questions = questions
+        self.user_id = user_id
 
 
 # User class, to manage stored in db information through nickname/email
 class User:
-    def __init__(self, nickname: NickName, email: Email, password: Password, quizzes: [Quiz]):
+    def __init__(self, user_id: int, nickname: NickName, email: Email, password: Password):
         self.nickname = nickname
         self.email = email
         self.password = password
-        self.quizzes = quizzes
+        self.user_id = user_id

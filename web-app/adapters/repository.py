@@ -1,6 +1,6 @@
 # from abc import ABC, abstractmethod
 
-import model
+from domain import model
 
 __repo = None
 

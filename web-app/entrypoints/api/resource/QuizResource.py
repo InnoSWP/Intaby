@@ -6,7 +6,7 @@ from domain.model import Quiz
 parser = reqparse.RequestParser()
 parser.add_argument('id', required=True, type=int)
 parser.add_argument('name', required=True)
-parser.add_argument('questions', required=True)
+parser.add_argument('questions', required=True, type=dict)
 
 
 class QuizResource(Resource):
@@ -17,18 +17,21 @@ class QuizResource(Resource):
 
 
 class QuizListResource(Resource):
-    def get(self):
+    def get(self, user_id):
         repo = get_repo()
-        quizzes = repo.list_quizzes()
+        quizzes = repo.list_quizzes(user_id)
         return quizzes
 
-    def post(self):
+    def post(self, user_id):
         args = parser.parse_args()
         repo = get_repo()
 
-        repo.add_quiz(Quiz(quiz_id=args['id'], quiz_name=args['name']))
+        repo.add_quiz(Quiz(quiz_id=args['id'], quiz_name=args['name'], user_id=user_id))
 
-    #       TODO: parse questions and answers to add them to SQL
-    #
-    def post(self):
+        #       TODO: parse questions and answers to add them to SQL
+        #
+
+        return jsonify({"success": "OK"})
+
+    def put(self):
         pass
