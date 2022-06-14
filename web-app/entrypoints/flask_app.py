@@ -6,18 +6,18 @@ import config
 from domain import model
 from adapters import orm, repository
 from service_layer import services
+from entrypoints.api import api_initialization
 
 orm.start_mappers()
 # get_session = sessionmaker(bind=create_engine(config.get_postgres_uri()))
+# initialize_repo(get_session())
 app = Flask(__name__)
+api = api_initialization.api_initialization(app)
 
-# @app.route("/api/quiz", methods=["POST", "GET", "PUT"])
-# def quiz_management():
-#     session = get_session()
-#     repo = repository.SqlAlchemyRepository(session)
-#
-#     if request.method == "GET":
-#         return repo.list_quizzes()
-#
-#     if request.method == "POST":
-#         repo.add_quiz
+
+def main():
+    app.run(port=8080, host='127.0.0.1')
+
+
+if __name__ == '__main__':
+    main()

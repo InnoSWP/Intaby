@@ -19,7 +19,7 @@ __repo = None
 # repository pattern to structure code
 # SqlAlchemy repository to access db
 # TODO: comments
-# TODO: command for put request
+# TODO: command for put, delete request
 class SqlAlchemyRepository:
     def __init__(self, session):
         self.session = session
