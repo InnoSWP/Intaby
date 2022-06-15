@@ -1,24 +1,47 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>page_of_answer</title>
-<script src="jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class = "TimeScale">
-TimeScale
-</div>
-<div class = "Task"> Task </div>
-<div class = "Answers">
-  <button class = "Answer1">Answer1</button>
-<button class = "Answer2">Answer2</button>
-<button class = "Answer3">Answer3</button>
-<button class = "Answer4">Answer4</button>
-</div>
-<div class = "Nav">
-  Navigation
-  </div>
+<html style="height: 100%;">
 
+<head>
+  <title>page_of_answer</title>
+  <script src="jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="/web-app/static/styles/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body style="background-color:#0D4278;">
+  <div class="Content_wrapper mx-auto d-flex flex-column justify-content-between">
+    <div class="d-flex mt-4 justify-content-center">
+      <div class="py-1 text-center rounded-pill bg-white
+      col-md-12 col-lg-10"></div>
+    </div>
+    <div class="Question_breakpoints d-flex justify-content-md-center align-items-center">
+      <div class="Question_wrapper col-8 p-5 text-center text-white rounded
+        col-md-12 col-lg-10">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus minima, eaque culpa alias, veritatis
+        itaque consequatur commodi porro, quos consectetur nemo fugiat eum! Veniam aliquid eaque ipsum perferendis
+        iure.
+        Adipisci?</div>
+    </div>
+    <div class="Answer_breakpoints d-flex flex-column">
+      <div class="Answer_content d-flex flex-wrap flex-lg-nowrap gap-4 justify-content-center">
+        <button class="Answer_button col-4 btn py-5 px-2 text-white
+        col-md-12 col-lg-5 gap-xl-2" type="button" style="background-color: #F83962;">Answer 1
+      </button>
+        <button class="Answer_button col-4 btn py-5 px-2 text-white
+        col-md-12 col-lg-5 gap-xl-2" type="button" style="background-color: #2EBFD5;">Answer
+          2</button>
+      </div>
+      <div class="Answer_content d-flex flex-wrap flex-lg-nowrap gap-4  mt-4 justify-content-center">
+        <button class="Answer_button col-4 btn py-5 px-2 text-white
+        col-md-12 col-lg-5 gap-xl-2" type="button" style="background-color: #FF943B;">Answer
+          3</button>
+        <button class="Answer_button col-4 btn py-5 px-2 text-white
+        col-md-12 col-lg-5 gap-xl-2" type="button" style="background-color: #9D3FE1;">Answer
+          4</button>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
