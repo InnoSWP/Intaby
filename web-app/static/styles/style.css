@@ -76,7 +76,9 @@ body {
     }
 }
 
-
+.Test_class{
+    max-height:200px;
+}
 
 .Editor {
     position: absolute;
