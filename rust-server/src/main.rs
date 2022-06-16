@@ -12,5 +12,5 @@ async fn launch() -> _ {
         port: 8000,
         ..Default::default()
     };
-    server::rocket(config, "postgresql://test:test@localhost:5432").await
+    server::rocket(config, "postgresql://test:test@postgres_db:5432/test").await
 }

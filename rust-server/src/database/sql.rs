@@ -10,9 +10,7 @@ pub struct SqlAccess {
 impl SqlAccess {
     /// Sets up access to the database and initializes all the neccessary tables
     pub async fn new(db_uri: &str) -> DBResult<Self> {
-        let pool = DBPool::connect(db_uri)
-            .await
-            .expect("Failed to connect to the database");
+        let pool = DBPool::connect(db_uri).await?;
         let sql = Self { pool }.init().await?;
         Ok(sql)
     }
