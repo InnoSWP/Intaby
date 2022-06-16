@@ -54,12 +54,12 @@ body {
     height: 90%;
 }
 
-/* On screens that are 992px or less, set the background color to blue */
 
 @media (min-width: 768px) {
     .Question_wrapper {
         font-size: large;
     }
+
     .Answer_button {
         font-size: medium;
     }
@@ -77,11 +77,6 @@ body {
 }
 
 
-@media (min-width: 992px) {}
-
-@media (min-width: 1200px) {
-    
-}
 
 .Editor {
     position: absolute;
@@ -327,12 +322,12 @@ input {
 
 }
 
-.logo {
+/* .logo {
     width: 10%;
     margin-left: 2%;
     margin-top: 1%;
     margin-bottom: 1%;
-}
+} */
 
 .right {
     width: 50%;
@@ -351,6 +346,7 @@ input {
 .Sign_up,
 .Back {
     background-color: #FFFFFF;
+    border-radius: 20px;
 }
 
 .Sign_up a,
@@ -367,8 +363,8 @@ input {
 }
 
 .Log_in {
-
     background-color: #0D4278;
+    border-radius: 20px;
 }
 
 .name2 {
@@ -376,6 +372,14 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: center
+}
+
+.Border_quiz {
+    border-width: 20px 10px 20px 10px;
+    border-style: solid;
+    width: 100%;
+    padding: 20px;
+    color: #FFFFFF;
 }
 
 .Intaby {
@@ -405,6 +409,7 @@ input {
         border-style: solid;
         width: 100%;
         padding: 20px;
+        color: white;
     }
 
     .join_quiz1 {
@@ -422,20 +427,17 @@ input {
         padding: 3%;
         background-color: #3D71A0;
         margin: 5%;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        flex-wrap: wrap;
+
     }
 
-    .Log_in,
+    /* .Log_in,
     .Sign_up,
     .Back {
         width: 20%;
         margin: 1%;
         height: 3em;
         border-radius: 20px;
-    }
+    } */
 
     .code {
         width: 94%;
@@ -464,6 +466,7 @@ input {
         border-style: solid;
         width: 100%;
         padding: 20px;
+        color: white;
     }
 
     .join_quiz1 {
@@ -484,6 +487,7 @@ input {
 
     }
 
+    /* 
     .Log_in,
     .Sign_up,
     .Back {
@@ -492,14 +496,14 @@ input {
         height: 2em;
         border-radius: 20px;
 
-    }
+    } */
 
-    .logo {
+    /* .logo {
         width: 20%;
         margin-left: 2%;
         margin-top: 1%;
         margin-bottom: 1%;
-    }
+    } */
 
     .code {
         width: 95%;
@@ -533,12 +537,12 @@ input {
         padding-top: 0%;
     }
 
-    .logo {
+    /* .logo {
         width: 50%;
         margin-left: 5%;
         margin-top: 3%;
         margin-bottom: 3%;
-    }
+    } */
 
     .img1 {
         margin-top: 3%;
@@ -551,9 +555,9 @@ input {
 }
 
 .connect {
-    width: 35%;
+    /* width: 35%;
     height: 3em;
-    margin-bottom: 2.5%;
+    margin-bottom: 2.5%; */
     background-color: #142036;
     border: 3px solid white;
     color: #FFFFFF;
@@ -588,10 +592,10 @@ input {
 
 
 .qr {
-    width: 35%;
+    /* width: 35%;
     height: 3em;
     margin-top: 2.5%;
-    margin-bottom: 2%;
+    margin-bottom: 2%; */
     background-color: #142036;
     border: 3px solid white;
     color: #FFFFFF;
@@ -749,4 +753,5 @@ legend {
     padding-right: 40px;
     /* Свои значения */
     font-size: xx-large;
+    float: none;
 }

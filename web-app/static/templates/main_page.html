@@ -1,55 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
 
 <head>
     <script src="jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="/web-app/static/styles/style.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/web-app/static/styles/style.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 
-<body style="background-color:#0D4278 ;">
-
-
+<body class="d-flex justify-content-start flex-column" style="background-color:#0D4278;">
     <header class="main_page">
-
-        <div class="name2">
-            <div class="left">
-                <img src="/web-app/static/images/logo.png" class="logo">
+        <div class="d-flex align-items-center">
+            <div class="me-auto">
+                <img src="/web-app/static/images/logo.png" class="logo col-md-3 col-ms-6 col-10">
             </div>
-            <div class="right">
-                <button class="Log_in"><a href="authorization_page.html">Log in</a> </button>
-
-                <button class="Sign_up"> <a href="registration_page.html">Sign up</a></button>
-            </div>
-
-
+            <button class="col-xl-1 col-md-2 col-3 Log_in  my-3 mx-1 mx-md-3 py-2"><a href="authorization_page.html">Log in</a> </button>
+            <button class="col-xl-1 col-md-2 col-3 Sign_up my-2 mx-1 mx-md-3 py-2"> <a href="registration_page.html">Sign up</a></button>
         </div>
-
     </header>
 
 
-    <div class="join_quiz">
-        <div class="join_quiz1">
+    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+        <div class="col-xl-4 col-lg-6 col-md-8 col-sm-11 col-11">
             <fieldset>
-                <legend class="mp_join">Join Quiz!</legend>
-                <input class="mp_name" type="text" placeholder="  Enter your name...">
-                <div class="join_quiz_2">
-                    <input class="code" type="text" placeholder="  Enter code...">
-                    <button class="connect">Connect</button>
+                <legend class="mp_join col-md-6 col-8">Join Quiz!</legend>
+                <input class="mp_name col-lg-6" type="text" placeholder="Enter your name...">
+                <div class="join_quiz_2 d-flex pt-3 align-items-center justify-content-center flex-column">
+                    <input class="code" type="text" placeholder="Enter code...">
+                    <button class="connect col-7 col-md-5 mb-3 py-2">Connect</button>
                     <h3 class="Or">OR</h3>
-                    <button class="qr">Scan QR</button>
+                    <button class="qr col-7 col-md-5 my-3 py-2">Scan QR</button>
                 </div>
             </fieldset>
-
-
         </div>
-
-
     </div>
-
     <script src="script.js"></script>
 </body>
 
