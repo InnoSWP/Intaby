@@ -56,33 +56,3 @@ def start_mappers():
 
 if __name__ == '__main__':
     start_mappers()
-# Draft
-# class User(Base):
-#     __tablename__ = 'user'
-#
-#     id = Column(Integer, primary_key=True, autoincrement=True)
-#     nickname = Column(Text, unique=True)
-#     email = Column(Text, unique=True)
-#     password = Column(Text)
-#
-#
-# class Quiz(Base):
-#     __tablename__ = 'quiz'
-#
-#     id = Column(Integer, primary_key=True, autoincrement=True)
-#     user_id = Column(Integer, ForeignKey('user.id'))
-#     quiz_name = Column(Text)
-#
-#
-# class Question(Base):
-#     __tablename__ = 'question'
-#
-#     id = Column(Integer, primary_key=True, autoincrement=True)
-#     quiz_id = Column(Integer, ForeignKey('quiz.id'))
-#     type = Column(Enum(QuestionTypes))
-#     description = Column(Text)
-#     possible_answers = ()
-#
-#
-# class Answers(Base):
-#     pass

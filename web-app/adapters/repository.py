@@ -24,7 +24,7 @@ class SqlAlchemyRepository:
     def __init__(self, session):
         self.session = session
 
-    def add_user(self, user: model.Quiz):
+    def add_user(self, user: model.User):
         self.session.add(user)
         self.session.commit()
 
