@@ -76,8 +76,8 @@ body {
     }
 }
 
-.Test_class {
-    max-height: 200px;
+.Test_class{
+    max-height:200px;
 }
 
 .Editor {
@@ -190,19 +190,21 @@ footer {
 
 .Registration_inner,
 .Authorization_inner {
-    padding: 3%;
+    width: 100%;
+    padding-bottom: 1%;
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: #3D71A0;
-    margin: 5%;
 }
 
 input {
     padding-left: 5%;
 }
+/*Authorization*/
 
-.reg_test {
-    color: white;
-    text-align: center;
-}
 
 .email {
     height: 3em;
@@ -256,17 +258,34 @@ input {
 }
 
 .enter {
-    height: 3em;
-    padding-left: 4em;
-    padding-right: 4em;
+    height: 2em;
+   width: 10em;
     margin: 0;
     background-color: #142036;
     border: #FFFFFF 2px solid;
+    color: #0D4278;
+    text-decoration: none;
+    font-size:x-large;
+font-family: 'Rubik';
+font-style: normal;
+font-weight: 500;
+display: flex;
+justify-content: center;
+align-items: center;
+
 }
 
 
 .reg_text {
     color: #FFFFFF;
+    text-decoration: none;
+    font-size:x-large;
+font-family: 'Rubik';
+font-style: normal;
+font-weight: 500;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 
@@ -318,14 +337,6 @@ input {
     height: max-content;
 
 }
-
-/* .logo {
-    width: 10%;
-    margin-left: 2%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-} */
-
 .right {
     width: 50%;
     height: 100%;
@@ -342,15 +353,23 @@ input {
 
 .Sign_up,
 .Back {
-    background-color: #FFFFFF;
-    border-radius: 20px;
+    background-color: #ffffff;
 }
 
 .Sign_up a,
-.Back a {
+.Back>a {
     color: #0D4278;
     text-decoration: none;
-    font-size: medium;
+    font-size:x-large;
+font-family: 'Rubik';
+font-style: normal;
+font-weight: 500;
+display: flex;
+justify-content: center;
+align-items: center;
+
+
+
 }
 
 .Log_in a {
@@ -361,92 +380,7 @@ input {
 
 .Log_in {
     background-color: #0D4278;
-    border-radius: 20px;
 }
-
-legend {
-
-    /* Свои значения */
-
-    /* Свои значения */
-    font-size: xx-large;
-    float: none;
-}
-
-.mp_name {
-    background-color: #DAE3ED;
-    width: 80%;
-    height: 3em;
-    margin-left: 10%;
-    margin-top: 2%;
-    font-size: xx-large;
-    margin-bottom: 2%;
-}
-
-@media (max-width: 1920px) {
-
-    .Main_breakpoints,
-    .Autho_breakpoints
-     {
-        height: 90%;
-    }
-    .Reg_breakpoints{
-        height: 95%;
-    }
-
-}
-
-@media (max-width: 1200px) {
-
-    .Main_breakpoints,
-    .Autho_breakpoints {
-        height: 80%;
-    }
-    .Reg_breakpoints{
-        height: 85%;
-    }
-
-}
-
-@media (max-width: 1100px) and (max-height:600px) {
-
-    .Main_breakpoints,
-    .Autho_breakpoints,
-    .Reg_breakpoints {
-        height: auto;
-        margin-top: 5%;
-    }
-}
-
-@media (max-width: 576px) {
-
-    .Main_breakpoints,
-    .Autho_breakpoints {
-        height: 80%;
-    }
-    .Reg_breakpoints{
-        height: 85%;
-    }
-
-
-    .mp_name {
-        font-size: medium;
-    }
-}
-
-@media (max-width: 300px) {
-    legend {
-        font-size: large;
-    }
-
-    .mp_name {
-        font-size: small;
-    }
-}
-
-
-
-
 
 .name2 {
     width: 100%;
@@ -473,7 +407,7 @@ legend {
 }
 
 
-/* .join_quiz,
+.join_quiz,
 .Registration_wrapper,
 .Authorization_wrapper {
     width: 100%;
@@ -482,7 +416,7 @@ legend {
     display: flex;
     align-items: center;
     justify-content: center;
-} */
+}
 
 @media (min-width:759px) {
     fieldset {
@@ -511,14 +445,16 @@ legend {
 
     }
 
-    /* .Log_in,
+    .Log_in,
     .Sign_up,
     .Back {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 20%;
         margin: 1%;
         height: 3em;
-        border-radius: 20px;
-    } */
+    }
 
     .code {
         width: 94%;
@@ -529,7 +465,31 @@ legend {
         margin-top: 2%;
     }
 
-
+    .mp_name {
+        background-color: #DAE3ED;
+        width: 80%;
+        height: 3em;
+        margin-left: 10%;
+        margin-top: 2%;
+        font-size: xx-large;
+        margin-bottom: 2%;
+    }
+    .reg_test {
+        color: white;
+        text-align: center;
+       font-family: 'Staatliches';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 300%;
+    line-height: 144px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+    color: #FFFFFF;
+    
+    
+    }
 
 }
 
@@ -560,18 +520,20 @@ legend {
 
     }
 
-    /* 
+    
     .Log_in,
     .Sign_up,
     .Back {
         width: 60%;
         margin: 1% 3% 1% 1%;
         height: 2em;
-        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    } */
-
-    /* .logo {
+    }
+/* 
+    .logo {
         width: 20%;
         margin-left: 2%;
         margin-top: 1%;
@@ -596,7 +558,7 @@ legend {
 
     /* Для registrtation_page */
 
-    /* .Registration {
+    .Registration {
         width: 80%;
         height: max-content;
         padding: 2%;
@@ -608,14 +570,33 @@ legend {
         height: max-content;
         padding: 2%;
         padding-top: 0%;
-    } */
+    }
+    .logo_intaby{
+        /* INTABY */
 
-    /* .logo {
-        width: 50%;
+
+width: 30%;
+
+
+font-family: 'Josefin Sans';
+font-style: normal;
+font-weight: 400;
+font-size: xx-large;
+margin: 3%;
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.115em;
+
+color: #FFFFFF;
+    }
+
+    .logo {
+        width: 10%;
         margin-left: 5%;
         margin-top: 3%;
         margin-bottom: 3%;
-    } */
+    }
 
     .img1 {
         margin-top: 3%;
@@ -697,6 +678,28 @@ legend {
     .wh_name {
         margin-right: 8.3%;
     }
+    .logo{
+        width: 20%;
+    }
+    .logo_intaby{
+        /* INTABY */
+
+
+width: 20%;
+font-family: 'Josefin Sans';
+font-style: normal;
+font-weight: 400;
+font-size: xx-large;
+margin: 2%;
+
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.115em;
+
+color: #FFFFFF;
+    }
+
 
 }
 
@@ -818,4 +821,45 @@ legend {
     animation-duration: 4s;
     /*и ее продолжительность в секундах*/
     animation-iteration-count: infinite;
+}
+
+legend {
+    padding-left: 40px;
+    /* Свои значения */
+    padding-right: 40px;
+    /* Свои значения */
+    font-size: xx-large;
+    float: none;
+}
+
+.Question_wrapper {
+    border: #FFFFFF 4px dashed;
+
+}
+
+.Content_wrapper {
+    width: 90%;
+    height: 90%;
+}
+
+
+@media (min-width: 768px) {
+    .Question_wrapper {
+        font-size: large;
+    }
+
+    .Answer_button {
+        font-size: medium;
+    }
+}
+
+
+@media (min-width: 576px) {
+    .Question_wrapper {
+        font-size: xx-large;
+    }
+
+    .Answer_button {
+        font-size: x-large;
+    }
 }
