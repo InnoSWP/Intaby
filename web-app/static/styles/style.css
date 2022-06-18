@@ -323,14 +323,6 @@ input {
     height: max-content;
 
 }
-
-/* .logo {
-    width: 10%;
-    margin-left: 2%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-} */
-
 .right {
     width: 50%;
     height: 100%;
@@ -432,14 +424,14 @@ input {
 
     }
 
-    /* .Log_in,
+    .Log_in,
     .Sign_up,
     .Back {
         width: 20%;
         margin: 1%;
         height: 3em;
         border-radius: 20px;
-    } */
+    }
 
     .code {
         width: 94%;
@@ -499,8 +491,8 @@ input {
         border-radius: 20px;
 
     } */
-
-    /* .logo {
+/* 
+    .logo {
         width: 20%;
         margin-left: 2%;
         margin-top: 1%;
@@ -539,12 +531,12 @@ input {
         padding-top: 0%;
     }
 
-    /* .logo {
-        width: 50%;
+    .logo {
+        width: 10%;
         margin-left: 5%;
         margin-top: 3%;
         margin-bottom: 3%;
-    } */
+    }
 
     .img1 {
         margin-top: 3%;
@@ -625,6 +617,9 @@ input {
 @media (min-width:768px) {
     .wh_name {
         margin-right: 8.3%;
+    }
+    .logo{
+        width: 20%;
     }
 
 }
