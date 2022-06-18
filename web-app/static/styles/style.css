@@ -76,8 +76,8 @@ body {
     }
 }
 
-.Test_class{
-    max-height:200px;
+.Test_class {
+    max-height: 200px;
 }
 
 .Editor {
@@ -190,14 +190,9 @@ footer {
 
 .Registration_inner,
 .Authorization_inner {
-    width: 100%;
-    padding-bottom: 1%;
-    padding-top: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    padding: 3%;
     background-color: #3D71A0;
+    margin: 5%;
 }
 
 input {
@@ -369,6 +364,90 @@ input {
     border-radius: 20px;
 }
 
+legend {
+
+    /* Свои значения */
+
+    /* Свои значения */
+    font-size: xx-large;
+    float: none;
+}
+
+.mp_name {
+    background-color: #DAE3ED;
+    width: 80%;
+    height: 3em;
+    margin-left: 10%;
+    margin-top: 2%;
+    font-size: xx-large;
+    margin-bottom: 2%;
+}
+
+@media (max-width: 1920px) {
+
+    .Main_breakpoints,
+    .Autho_breakpoints
+     {
+        height: 90%;
+    }
+    .Reg_breakpoints{
+        height: 95%;
+    }
+
+}
+
+@media (max-width: 1200px) {
+
+    .Main_breakpoints,
+    .Autho_breakpoints {
+        height: 80%;
+    }
+    .Reg_breakpoints{
+        height: 85%;
+    }
+
+}
+
+@media (max-width: 1100px) and (max-height:600px) {
+
+    .Main_breakpoints,
+    .Autho_breakpoints,
+    .Reg_breakpoints {
+        height: auto;
+        margin-top: 5%;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .Main_breakpoints,
+    .Autho_breakpoints {
+        height: 80%;
+    }
+    .Reg_breakpoints{
+        height: 85%;
+    }
+
+
+    .mp_name {
+        font-size: medium;
+    }
+}
+
+@media (max-width: 300px) {
+    legend {
+        font-size: large;
+    }
+
+    .mp_name {
+        font-size: small;
+    }
+}
+
+
+
+
+
 .name2 {
     width: 100%;
     display: flex;
@@ -394,7 +473,7 @@ input {
 }
 
 
-.join_quiz,
+/* .join_quiz,
 .Registration_wrapper,
 .Authorization_wrapper {
     width: 100%;
@@ -403,7 +482,7 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
 
 @media (min-width:759px) {
     fieldset {
@@ -450,15 +529,7 @@ input {
         margin-top: 2%;
     }
 
-    .mp_name {
-        background-color: #DAE3ED;
-        width: 80%;
-        height: 3em;
-        margin-left: 10%;
-        margin-top: 2%;
-        font-size: xx-large;
-        margin-bottom: 2%;
-    }
+
 
 }
 
@@ -525,7 +596,7 @@ input {
 
     /* Для registrtation_page */
 
-    .Registration {
+    /* .Registration {
         width: 80%;
         height: max-content;
         padding: 2%;
@@ -537,7 +608,7 @@ input {
         height: max-content;
         padding: 2%;
         padding-top: 0%;
-    }
+    } */
 
     /* .logo {
         width: 50%;
@@ -747,13 +818,4 @@ input {
     animation-duration: 4s;
     /*и ее продолжительность в секундах*/
     animation-iteration-count: infinite;
-}
-
-legend {
-    padding-left: 40px;
-    /* Свои значения */
-    padding-right: 40px;
-    /* Свои значения */
-    font-size: xx-large;
-    float: none;
 }

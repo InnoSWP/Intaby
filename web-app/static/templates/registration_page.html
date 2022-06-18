@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
 
 <head>
     <script src="jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="/web-app/static/styles/style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,25 +14,19 @@
 
 <body style="background-color:#0D4278 ;">
     <header class="main_page">
-
-        <div class="name2">
-            <div class="left">
-                <img src="/web-app/static/images/logo.png" class="logo">
+        <div class="d-flex align-items-center">
+            <div class="me-auto">
+                <img src="/web-app/static/images/logo.png" class="logo col-md-2 col-6">
             </div>
-            <div class="right">
-                <button class="Back"><a href="main_page.html">Back</a> </button>
-            </div>
+            <button class="Back col-xl-1 col-md-2 col-3 my-3 mx-1 mx-md-3 py-2"><a href="main_page.html">Back</a>
+            </button>
         </div>
-
     </header>
-    <div class="Registration_wrapper">
-        <div class="Registration">
-
+    <div class="Reg_breakpoints d-flex align-items-center justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-11 col-11">
             <fieldset>
-                <legend class="reg_test">Registration</legend>
-
-                <div class="Registration_inner">
-
+                <legend class="mp_join col-xxl-6 col-md-8 col-sm-10 col-12">Registration</legend>
+                <div class="Registration_inner d-flex pt-3 align-items-center justify-content-center flex-column">
                     <input class="email" type="email" placeholder="Email">
                     <div class="namesurname">
                         <input class="name" type="text" placeholder="Name">
@@ -39,7 +35,7 @@
                     <input type="password" class="password" placeholder="Password">
                     <input type="password" class="password" placeholder="Repeat password">
                     <div class="reg_button"><button class="reg"><span class="reg_text">Register</span></button></div>
-                    <h3 class="or_reg"> OR </h3>
+                    <h3 class="Or"> OR </h3>
                     <div class="img1">
                         <img class="UI" src="/web-app/static/images/inno_icon.png">
                         <img class="google" src="/web-app/static/images/Google_icon.png">
@@ -48,11 +44,6 @@
             </fieldset>
         </div>
     </div>
-
-    <!-- <footer>
-        <h1> FOOTER</h1>
-    </footer> -->
-
     <script src="script.js"></script>
 </body>
 
