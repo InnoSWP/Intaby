@@ -76,8 +76,8 @@ body {
     }
 }
 
-.Test_class{
-    max-height:200px;
+.Test_class {
+    max-height: 200px;
 }
 
 .Editor {
@@ -203,6 +203,7 @@ footer {
 input {
     padding-left: 5%;
 }
+
 /*Authorization*/
 
 
@@ -259,19 +260,19 @@ input {
 
 .enter {
     height: 2em;
-   width: 10em;
+    width: 10em;
     margin: 0;
     background-color: #142036;
     border: #FFFFFF 2px solid;
     color: #0D4278;
     text-decoration: none;
-    font-size:x-large;
-font-family: 'Rubik';
-font-style: normal;
-font-weight: 500;
-display: flex;
-justify-content: center;
-align-items: center;
+    font-size: x-large;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -279,13 +280,13 @@ align-items: center;
 .reg_text {
     color: #FFFFFF;
     text-decoration: none;
-    font-size:x-large;
-font-family: 'Rubik';
-font-style: normal;
-font-weight: 500;
-display: flex;
-justify-content: center;
-align-items: center;
+    font-size: x-large;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -337,6 +338,7 @@ align-items: center;
     height: max-content;
 
 }
+
 .right {
     width: 50%;
     height: 100%;
@@ -356,20 +358,34 @@ align-items: center;
     background-color: #ffffff;
 }
 
+
+.Log_Out{
+    background-color: #142036;
+    border: 2px solid white;
+}
+
+.Edit_profile{
+    background-color: #193050;
+    border: 2px solid white;
+}
+
 .Sign_up a,
-.Back>a {
+.Back a,
+.Log_Out a,
+.Edit_profile a {
     color: #0D4278;
     text-decoration: none;
-    font-size:x-large;
-font-family: 'Rubik';
-font-style: normal;
-font-weight: 500;
-display: flex;
-justify-content: center;
-align-items: center;
+    font-size: x-large;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-
-
+.Log_Out a, .Edit_profile a{
+    color: white;
 }
 
 .Log_in a {
@@ -474,21 +490,22 @@ align-items: center;
         font-size: xx-large;
         margin-bottom: 2%;
     }
+
     .reg_test {
         color: white;
         text-align: center;
-       font-family: 'Staatliches';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 300%;
-    line-height: 144px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    
-    color: #FFFFFF;
-    
-    
+        font-family: 'Staatliches';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 300%;
+        line-height: 144px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #FFFFFF;
+
+
     }
 
 }
@@ -520,7 +537,7 @@ align-items: center;
 
     }
 
-    
+
     .Log_in,
     .Sign_up,
     .Back {
@@ -532,7 +549,8 @@ align-items: center;
         align-items: center;
 
     }
-/* 
+
+    /* 
     .logo {
         width: 20%;
         margin-left: 2%;
@@ -571,24 +589,25 @@ align-items: center;
         padding: 2%;
         padding-top: 0%;
     }
-    .logo_intaby{
+
+    .logo_intaby {
         /* INTABY */
 
 
-width: 30%;
+        width: 30%;
 
 
-font-family: 'Josefin Sans';
-font-style: normal;
-font-weight: 400;
-font-size: xx-large;
-margin: 3%;
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: 0.115em;
+        font-family: 'Josefin Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: xx-large;
+        margin: 3%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.115em;
 
-color: #FFFFFF;
+        color: #FFFFFF;
     }
 
     .logo {
@@ -678,26 +697,28 @@ color: #FFFFFF;
     .wh_name {
         margin-right: 8.3%;
     }
-    .logo{
+
+    .logo {
         width: 20%;
     }
-    .logo_intaby{
+
+    .logo_intaby {
         /* INTABY */
 
 
-width: 20%;
-font-family: 'Josefin Sans';
-font-style: normal;
-font-weight: 400;
-font-size: xx-large;
-margin: 2%;
+        width: 20%;
+        font-family: 'Josefin Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: xx-large;
+        margin: 2%;
 
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: 0.115em;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.115em;
 
-color: #FFFFFF;
+        color: #FFFFFF;
     }
 
 
@@ -862,4 +883,50 @@ legend {
     .Answer_button {
         font-size: x-large;
     }
+}
+
+.user_wrapper{
+    background-color: #193050;
+}
+.quiz_storage{
+    background-color: #DBE4ED;
+}
+.add_quiz_button{
+    background-color: #193050;
+    border: 5px white solid;
+}
+
+.quiz_button{
+    background-color: #193050;
+}
+
+.add_quiz_header, .add_quiz_footer{
+    background-color: #3D71A0;
+}
+
+.add_quiz_text, .quiz_text {
+    font-size: x-large;
+    font-family: 'Rubik';
+    font-style: normal;
+}
+
+.title, .edit{
+    font-size: large;
+    font-family: 'Rubik';
+    font-style: normal;
+    color: #DBE4ED;
+}
+
+ .secondary_text, .description{
+    font-size: medium;
+    font-family: 'Rubik';
+    font-style: normal;
+    color: #DBE4ED;
+}
+
+.user_name{
+    font-size: x-large;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    color: #DBE4ED;
 }
