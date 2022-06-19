@@ -17,14 +17,14 @@ body {
     text-align: center;
 }
 
-.Name_of_quiz {
+/* .Name_of_quiz {
     width: 40%;
     background-color: gray;
     margin-left: 10%;
     margin-top: 2%;
     text-align: left;
     margin-bottom: 1%;
-}
+} */
 
 .Block1 {
     display: inline-block;
@@ -80,15 +80,6 @@ body {
     max-height: 200px;
 }
 
-.Editor {
-    position: absolute;
-    width: 80%;
-    height: 40%;
-    background-color: gray;
-    margin-left: 10%;
-    margin-top: 1%;
-    text-align: left;
-}
 
 .Question_text {
     margin-top: 3%;
@@ -359,12 +350,12 @@ input {
 }
 
 
-.Log_Out{
+.Log_Out {
     background-color: #142036;
     border: 2px solid white;
 }
 
-.Edit_profile{
+.Edit_profile {
     background-color: #193050;
     border: 2px solid white;
 }
@@ -384,7 +375,8 @@ input {
     align-items: center;
 }
 
-.Log_Out a, .Edit_profile a{
+.Log_Out a,
+.Edit_profile a {
     color: white;
 }
 
@@ -885,48 +877,130 @@ legend {
     }
 }
 
-.user_wrapper{
+.user_wrapper {
     background-color: #193050;
 }
-.quiz_storage{
+
+.quiz_storage {
     background-color: #DBE4ED;
 }
-.add_quiz_button{
+
+.add_quiz_button {
     background-color: #193050;
     border: 5px white solid;
 }
 
-.quiz_button{
+.quiz_button {
     background-color: #193050;
 }
 
-.add_quiz_header, .add_quiz_footer{
+.add_quiz_header,
+.add_quiz_footer {
     background-color: #3D71A0;
 }
 
-.add_quiz_text, .quiz_text {
+.add_quiz_text,
+.quiz_text {
     font-size: x-large;
     font-family: 'Rubik';
     font-style: normal;
 }
 
-.title, .edit{
+.title,
+.edit {
     font-size: large;
     font-family: 'Rubik';
     font-style: normal;
     color: #DBE4ED;
 }
 
- .secondary_text, .description{
+.secondary_text,
+.description {
     font-size: medium;
     font-family: 'Rubik';
     font-style: normal;
     color: #DBE4ED;
 }
 
-.user_name{
+.user_name {
     font-size: x-large;
     font-family: 'Josefin Sans';
     font-style: normal;
     color: #DBE4ED;
+}
+
+/* Page of create */
+
+.Enter_quiz_name {
+    border-bottom: 2px gray solid;
+}
+
+.Enter_quiz_name_text {
+    color: gray;
+    font-size: x-large;
+    background-color: #DAE3ED;
+    border-style: none;
+}
+
+.Editor {
+    /* position: absolute;
+    width: 80%;
+    height: 40%; */
+    background-color: #0D4278;
+    height: 60%;
+    /* margin-left: 10%;
+    margin-top: 1%;
+    text-align: left; */
+}
+
+.type_a_question {
+    resize: none;
+    height: max-content;
+    background-color: #0D4278;
+    color: white;
+    height: 80%;
+}
+
+.enter_header{
+    height: 40%;
+}
+
+.enter_question_wrapper {
+    height: 100%;
+    border: 2px white dashed;
+    border-radius: 15px;
+}
+
+.add_answer {
+    background-color: #142036;
+    border: #FFFFFF 2px solid;
+    font-size: x-large;
+    border-radius: none;
+}
+
+.enter_below{
+    height: 8%;
+}
+
+.timemode_wrapper {
+    height: 50%;
+}
+
+.timemode{
+    height: 100%;
+    background-color: #C5D3E1;
+    text-align: center;
+}
+
+.add_question_wrapper{
+    height: 100%;
+}
+
+.save_wrapper{
+    height: 100%;
+}
+
+.add_qustion_button{
+    height: 100%;
+    text-align: center;
 }
