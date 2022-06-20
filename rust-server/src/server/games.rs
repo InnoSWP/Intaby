@@ -47,7 +47,7 @@ impl Games {
             if !self.map.contains_key(&code) {
                 break code;
             }
-        };
+        }; // TODO: avoid infinite loop
         let game = Game::new();
         let res = self.map.insert(code.clone(), game);
         assert!(res.is_none());
@@ -86,4 +86,21 @@ pub fn game_code_generator() -> GameCode {
         code.push(symbol);
     }
     code
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_game_create() {
+        let mut games = Games::new();
+        const CODE_GENS: usize = 1000;
+        let mut codes = (0..CODE_GENS)
+            .map(|_| games.create_game())
+            .collect::<Vec<_>>();
+        codes.sort();
+        codes.dedup();
+        assert_eq!(CODE_GENS, codes.len())
+    }
 }
