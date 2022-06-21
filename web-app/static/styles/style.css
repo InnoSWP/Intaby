@@ -1461,6 +1461,7 @@ body::-webkit-scrollbar {
 }
 
 .person {
+
     font-size: x-large;
     color: white;
     font-family: "Josefin Sans";
@@ -1498,6 +1499,7 @@ body::-webkit-scrollbar {
 
 @media (min-width: 768px) {
     .person{
+    
         font-size: xx-large;
     }
 }
