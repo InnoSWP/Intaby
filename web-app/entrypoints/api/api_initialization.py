@@ -10,4 +10,6 @@ def api_initialization(app) -> Api:
     api.add_resource(QuizResource.QuizResource, '/api/user/<int:user_id>/quiz/<int:quiz_id>')
     api.add_resource(QuizResource.QuizListResource, '/api/user/<int:user_id>/quiz')
 
+    api.add_resource(QuestionResource.QuestionResource, '/api/quiz/<int:quiz_id>/question/<int:question_id>')
+
     return api
