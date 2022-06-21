@@ -431,7 +431,7 @@ input {
     background-color: #FFFFFF;
 
     /* Edition */
-    margin-right: 1rem!important;
+    margin-right: 1rem !important;
     box-sizing: border-box;
 
     display: flex;
@@ -445,8 +445,8 @@ input {
     flex-grow: 0;
     border: 2px solid #FFFFFF;
 
-    margin-top: 1rem!important;
-    margin-bottom: 1rem!important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
 }
 
 .Sign_up a,
@@ -711,6 +711,7 @@ a {
         font-size: 10vh;
         width: auto;
     }
+
     .line-1 {
         width: 100%;
         top: 188px;
@@ -1379,7 +1380,7 @@ a {
     height: 100%;
 }
 
-.save_button{
+.save_button {
     font-size: x-large;
     border: 4px white solid;
     background-color: #142036;
@@ -1392,13 +1393,117 @@ a {
     text-align: left;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
 body::-webkit-scrollbar-thumb {
     background-color: #142036;
 }
+
 body::-webkit-scrollbar {
     width: 1em;
 }
+
+/* waiting hall */
+
+.waiting_hall_content {
+    height: 90%;
+}
+
+.below_header {
+    background-color: #0D4278;
+}
+
+.quiz_code_wrapper {
+    background-color: #DAE3ED;
+    border-radius: 15px;
+    color: white;
+}
+
+.quiz_code {
+    font-size: large;
+    font-family: Roboto;
+}
+
+.quiz_code_number {
+    font-size: xx-large;
+    font-family: Roboto;
+}
+
+.timer {
+    background-color: #142036;
+}
+
+
+.timer_wrapper {
+    color: white;
+}
+
+.timer {
+    font-size: xx-large;
+    font-family: Roboto;
+}
+
+.starts_in {
+    font-size: x-large;
+    font-family: Roboto;
+}
+
+.seconds {
+    font-size: large;
+    font-family: Roboto;
+}
+
+.line_separator {
+    height: 2%;
+    background-color: white;
+}
+
+.person {
+    font-size: x-large;
+    color: white;
+    font-family: "Josefin Sans";
+}
+
+.participants_wrapper {}
+
+.participants_text {
+    font-size: xx-large;
+    color: white;
+    font-family: "Josefin Sans";
+}
+
+@media (max-width: 767px) {
+    .quiz_code {
+        font-size: medium;
+    }
+
+    .quiz_code_number {
+        font-size: x-large;
+    }
+
+    .starts_in {
+        font-size: large;
+    }
+
+    .timer {
+        font-size: x-large;
+    }
+
+    .seconds {
+        font-size: medium;
+    }
+}
+
+@media (min-width: 768px) {
+    .person{
+        font-size: xx-large;
+    }
+}
+
+/* @media (max-width: 1000px) and (max-height: 500px) {
+    .quiz_code_wrapper{
+        width: 25%;
+    }
+} */

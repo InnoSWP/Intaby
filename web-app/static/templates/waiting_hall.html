@@ -1,19 +1,54 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-   
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="/web-app/static/styles/style.css">
-  </head>
-  <body>
+<html lang="en" style="height:100%">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="/web-app/static/styles/style.css">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="/web-app/static/styles/style.css">
 </head>
 
-<body>
+<body style="background-color: #0D4278; height:100%">
+
+  <header class="main_page py-3 px-2">
+    <div class="d-flex">
+      <div class="ml-2">
+        <h1 class="logo_intaby">INTABY</h1>
+      </div>
+    </div>
+  </header>
+  <div class="waiting_hall_content d-flex flex-column justify-content-begin align-items-begin position-relative col-12">
+    <div class="below_header d-flex justify-content-between align-items-center col-12">
+      <div class="quiz_code_wrapper d-flex flex-column align-items-center quiz_code_wrapper text-center m-3 px-4 py-3
+      col-5 col-md-3">
+        <div class="quiz_code">
+          QUIZ CODE:
+        </div>
+        <div class="quiz_code_number">
+          666666
+        </div>
+      </div>
+      <div class="timer_wrapper d-flex flex-column justify-content-center align-items-center timer_wrapper m-4">
+        <div class="starts_in">Starts in</div>
+        <div class="timer px-4 py-1">15</div>
+        <div class="seconds">seconds</div>
+      </div>
+    </div>
+
+    <div class="line_separator"></div>
+
+    <div class="waiting_hall_wrapper d-flex justify-content-center text-center flex-wrap">
+      <div class="person  mt-3 col-md-2 col-4">Person 1</div>
+      <div class="person  mt-3 col-md-2 col-4">Person 2</div>
+      <div class="person  mt-3 col-md-2 col-4">Person 3</div>
+      <div class="person  mt-3 col-md-2 col-4">Person 4</div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center participants_wrapper position-absolute bottom-0 end-0 col-1 mb-4 me-4">
+      <img src="/web-app/static/images/User_icon.png" class="col-12 col-md-8 col-lg-6 col-lx-4">
+        <div class="participants_text col-12 col-md-8 col-lg-6 col-lx-4  me-3">15</div>
+    </div>
+  </div>
+</body>
