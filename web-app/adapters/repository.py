@@ -29,7 +29,7 @@ class SqlAlchemyRepository:
         self.session.commit()
 
     def get_user(self, user_id):
-        return self.session.query(model.User).filter_by(id=user_id).one()
+        return self.session.query(model.User).filter_by(id=user_id).one().__dict__()
 
     # Working with quizzes
     def add_quiz(self, quiz: model.Quiz):
@@ -72,6 +72,10 @@ class SqlAlchemyRepository:
 
     def list_answers(self, question_id):
         return self.session.query(model.Answer).filter_by(question_id=question_id)
+
+    # -- for test
+    def get_users(self):
+        return self.session.query(model.User).all()
 
 
 # Testing Repository

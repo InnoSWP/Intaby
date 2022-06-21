@@ -4,11 +4,6 @@ from sqlalchemy.orm import mapper
 
 from domain import model
 
-# Заглушка
-# To distinguish between question types
-# class QuestionTypes:
-#     pass
-
 
 # Base = declarative_base()
 mapper_registry = registry()
@@ -30,20 +25,21 @@ user_table = Table("users", metadata,
 
 # Table for quizzes
 quiz_table = Table("quizzes", metadata,
-                   Column('user_id', Integer, ForeignKey('user.id')),
+                   Column('id', Integer, primary_key=True, autoincrement=True),
+                   Column('user_id', Integer, ForeignKey('users.id')),
                    Column('name', Text))
 
 # Table for questions
 question_table = Table("questions", metadata,
                        Column('id', Integer, primary_key=True, autoincrement=True),
-                       Column('quiz_id', Integer, ForeignKey('quiz.id')),
+                       Column('quiz_id', Integer, ForeignKey('quizzes.id')),
                        Column('type', Enum(model.QuestionTypes)),
                        Column('description', Text))
 
 # Table for answers
 answer_table = Table("answers", metadata,
                      Column('id', Integer, primary_key=True, autoincrement=True),
-                     Column('question_id', ForeignKey('question.id')),
+                     Column('question_id', ForeignKey('questions.id')),
                      Column('text', Text),
                      Column('correct_answer', Boolean))
 
@@ -52,6 +48,11 @@ def start_mappers():
     user_mapper = mapper_registry.map_imperatively(model.User, user_table)
     question_mapper = mapper_registry.map_imperatively(model.Question, question_table)
     answer_mapper = mapper_registry.map_imperatively(model.Answer, answer_table)
+
+
+def create_all(engine):
+    metadata.bind = engine
+    metadata.create_all()
 
 
 if __name__ == '__main__':

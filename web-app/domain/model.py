@@ -18,9 +18,17 @@ QuestionDescription = NewType('QuestionDescription', str)
 
 
 class Answer:
-    def __init__(self, text: QuestionAnswer, is_correct: bool):
+    def __init__(self, question_id: int, text: QuestionAnswer, correct_answer: bool):
         self.text = text
-        self.is_correct = is_correct
+        self.correct_answer = correct_answer
+        self.question_id = question_id
+
+    def to_dict(self):
+        return {
+            "text": self.text,
+            "correct_answer": self.correct_answer,
+            "question_id": self.question_id
+        }
 
 
 # Possible types of question in a quiz
@@ -37,10 +45,12 @@ class Question:
         self.text = text
         self.quiz_id = quiz_id
 
-    # [maybe deleted]
-    # return next question
-    def next(self):
-        pass
+    def to_dict(self):
+        return {
+            "quiz_id": self.quiz_id,
+            "text": self.text,
+            "question_type": self.question_type
+        }
 
 
 # Quiz class,
@@ -49,6 +59,12 @@ class Quiz:
         self.quiz_name = quiz_name
         self.user_id = user_id
 
+    def to_dict(self):
+        return {
+            "user_id": self.user_id,
+            "quiz_name": self.quiz_name
+        }
+
 
 # User class, to manage stored in db information through nickname/email
 class User:
@@ -56,3 +72,10 @@ class User:
         self.nickname = nickname
         self.email = email
         self.password = password
+
+    def to_dict(self):
+        return {
+            "nickname": self.nickname,
+            "email": self.email,
+            "password": self.password
+        }
