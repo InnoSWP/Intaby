@@ -11,7 +11,7 @@
 
 
     <script src="jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="/web-app/static/styles/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@
                 <h1 class = "logo_intaby">INTABY</h1>
             </div>
             <div class="right">
-                <button class="Back"><a href="main_page_bootstrap_free.html">Back</a> </button>
+                <button class="Back"><a href="/">Back</a> </button>
             </div>
         </div>
     </header>
@@ -46,14 +46,14 @@
                     <input type="text" class="password" placeholder="Enter login">
                     <input type="password" class="password" placeholder="Enter password">
                     <div class="reg_button">
-                        <button onclick="window.location.href = 'page_of_user.html'" class="enter">
+                        <button onclick="window.location.href = '/user'" class="enter">
                             <span class="reg_text">Enter</span>
                         </button>
                     </div>
                     <h3 class="or_reg"> OR </h3>
                     <div class="img1">
-                        <img class="UI" src="/web-app/static/images/inno_icon.png">
-                        <img class="google" src="/web-app/static/images/Google_icon.png">
+                        <img class="UI" src="{{ url_for('static', filename='images/inno_icon.png') }}">
+                        <img class="google" src="{{ url_for('static', filename='images/Google_icon.png') }}">
                     </div>
                 </div>
             </fieldset>

@@ -11,7 +11,7 @@
   <script src="jquery-3.6.0.min.js"></script>
 
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="/web-app/static/styles/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
@@ -40,7 +40,7 @@
             <input type="text" class="mp_name" placeholder="Enter name">
             <div class="line-1"></div>
             <input type="text" class="code" placeholder="Enter code">
-            <button onclick="window.location.href = 'waiting_hall.html'" class="connect">Connect</button>
+            <button onclick="window.location.href = '/lobby'" class="connect">Connect</button>
             <h3 class="or_reg">OR</h3>
             <button class="qr">Scan QR</button>
           </div>
@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
 
 </body>
 

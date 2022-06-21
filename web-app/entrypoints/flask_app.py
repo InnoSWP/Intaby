@@ -16,7 +16,11 @@ get_session = sessionmaker(bind=engine)
 repository.initialize_repo(get_session())
 orm.start_mappers()
 orm.create_all(engine)
-app = Flask(__name__, template_folder='./../static/templates')
+app = Flask(
+    __name__,
+    template_folder='./../static/templates',
+    static_folder='./../static'
+)
 api = api_initialization.api_initialization(app)
 
 
@@ -33,6 +37,11 @@ def login_page():
 @app.route('/register')
 def registration_page():
     return render_template("registration_page.html")
+
+
+@app.route('/user')
+def user_page():
+    return render_template("page_of_user.html")
 
 
 # [will be deleted]
@@ -54,7 +63,7 @@ def test():
 
 
 @app.route('/tests/user_creation')
-def test_user_creation( ):
+def test_user_creation():
     repo = repository.get_repo()
 
     test_orm.test_add_user(repo)

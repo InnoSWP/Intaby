@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/web-app/static/styles/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -25,7 +25,7 @@
             <div class="me-auto">
                 <h1 class="logo_intaby">INTABY</h1>
             </div>
-            <button class="Log_Out col-xl-1 col-md-2 col-3 my-2 mx-1 mx-md-3 py-1"><a href="main_page.html">Log Out</a>
+            <button class="Log_Out col-xl-1 col-md-2 col-3 my-2 mx-1 mx-md-3 py-1"><a href="/">Log Out</a>
             </button>
         </div>
     </header>
@@ -33,7 +33,7 @@
         <img src="/web-app/static/images/User_icon.png" class="col-1">
         <div class="user_name justify-content-start align-self-start col-2" style="color: white;">User name</div>
         <div class="d-flex justify-content-end position-absolute bottom-0 end-0 col-6">
-            <button class="Edit_profile col-3 my-2 mx-1 mx-md-3 py-1"><a href="main_page.html">Edit profile
+            <button class="Edit_profile col-3 my-2 mx-1 mx-md-3 py-1"><a href="/">Edit profile
                 </a>
         </div>
     </div>
