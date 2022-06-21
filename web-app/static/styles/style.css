@@ -407,7 +407,7 @@ input {
 
 .main_page {
     height: max-content;
-    min-width: 576px;
+    /* min-width: 576px; */
 }
 
 .right {
