@@ -26,7 +26,7 @@ api = api_initialization.api_initialization(app)
 
 @app.route('/')
 def main_page():
-    return render_template("main_page.html")
+    return render_template("main_page_bootstrap_free.html")
 
 
 @app.route('/login')
