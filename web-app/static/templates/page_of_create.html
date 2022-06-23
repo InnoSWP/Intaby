@@ -10,10 +10,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-</head>
+
 </head>
 
-<body style=" background-color: #DBE4ED;">
+<body style="background-color: #DBE4ED;">
 
   <header class="main_page py-3 px-2">
     <div class="d-flex">
@@ -26,11 +26,12 @@
     <input type="text" class="Enter_quiz_name_text  col-12 py-2" placeholder="Enter quiz name" />
   </div>
 
-  <div class="Editor d-flex flex-column justify-content-between align-items-start offset-1 col-10 p-4" style="height: max-content">
+  <div class="Editor d-flex flex-column justify-content-between align-items-start offset-1 col-10 p-4"
+    style="height: max-content">
     <div class="enter_header d-flex justify-content-begin align-items-center col-12">
-      <div class="enter_question_wrapper d-flex justify-content-center align-items-center px-3 col-8">
-        <textarea placeholder="Enter question" class="type_a_question col-12 px-2 py-2"></textarea>
-      </div>
+
+      <textarea placeholder="Enter question" class="type_a_question col-8 px-2 py-2 rounded"></textarea>
+
 
       <div class="timemode_wrapper offset-1 col-3">
         <select class="timemode col-10">
@@ -45,19 +46,12 @@
 
     </div>
     <!-- <button class="time_mode">Time mode</button> -->
-    <div class="d-flex col-12 mt-5 flex-wrap  justify-content-center">
-
-        <button class="Answer_button col-12 col-lg-5 btn py-3 px-2 text-white mb-2 me-lg-4 mb-lg-4" type="button"
-          style="background-color: #F83962;">Answer 1
-        </button>
-        <button class="Answer_button col-12 col-lg-5 btn py-3 px-2 text-white mb-2 mb-lg-4" type="button"
-          style="background-color: #2EBFD5;">Answer 2
-        </button>
-
-        <button class="Answer_button col-12 col-lg-5 btn py-3 px-2 text-white  me-lg-4  mb-2 mb-lg-0" type="button"
-          style="background-color: #FF943B;">Answer 3
-        </button>
-        <button class=" add_answer col-12 col-lg-5 btn py-3 px-2 text-white" type="button">+ Add answer</button>
+    <div class="Answer_add_wrapper d-flex col-12 mt-5 flex-wrap justify-content-between">
+      <textarea placeholder="Answer 1" class="Answer_type col-12 text-white px-2 py-2 mb-2 mb-lg-4 rounded"
+        style="background-color: #F83962;"></textarea>
+      <textarea placeholder="Answer 2" class="Answer_type col-12 text-white px-2 py-2 mb-2 mb-lg-4 rounded"
+        style="background-color: #2EBFD5;"></textarea>
+      <button class="add_answer_quiz col-12 btn py-3 px-2 mb-2 mb-lg-4 text-white" type="button">+ Add answer</button>
     </div>
   </div>
 
@@ -69,7 +63,7 @@
       <button class="save_button col-6" style="height: max-content;">Save</button>
     </div>
   </div>
-
+  <script src="..\scripts\addAnswer.js"></script>
 </body>
 
 </html>
