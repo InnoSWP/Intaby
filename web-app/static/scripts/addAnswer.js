@@ -16,7 +16,7 @@ addButton[0].addEventListener('click', function addAnswer() {
             newAnswer.style.backgroundColor = "#9D3FE1";
         }
         if (clicks === 5) {
-            newAnswer.style.backgroundColor = "#68DC49";
+            newAnswer.style.backgroundColor = "#8AC600";
         }
         if (clicks === 6) {
             newAnswer.style.backgroundColor = "#FFE255";

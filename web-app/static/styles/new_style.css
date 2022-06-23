@@ -40,7 +40,6 @@ body::-webkit-scrollbar {
 
     /* Size */
     width: 100vw;
-    height: 85px;
 
     /* Display */
     display: flex;
@@ -120,7 +119,7 @@ body::-webkit-scrollbar {
 
     /* Font */
     font-family: 'Rubik', serif;
-    font-size: 1.5rem;
+    font-size: 24px;
     font-style: normal;
     font-weight: 500;
     text-decoration: none;
@@ -237,13 +236,13 @@ body::-webkit-scrollbar {
 
     /* Size */
     width: 80%;
-    height: 32px;
+    height: 55px;
 
     /* Font */
     font-family: 'Roboto', serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 32px;
     letter-spacing: 0.005em;
     color: rgba(0, 0, 0, 0.6);
 
@@ -260,7 +259,7 @@ body::-webkit-scrollbar {
 
     /* Others */
     margin: 2% 1%;
-    padding: 1.063rem;
+    padding: 17px;
 
     flex: none;
     order: 0;
@@ -294,14 +293,14 @@ body::-webkit-scrollbar {
 
     /* Others */
     margin: 0;
-    padding: 1.063rem;
+    padding: 17px;
 }
 .Authorization-inner_button-text{
     /* Font */
     font-family: 'Rubik', serif;
     font-style: normal;
     font-weight: 500;
-    font-size: x-large;
+    font-size: 32px;
     text-decoration: none;
 
     color: #FFFFFF;
@@ -334,7 +333,7 @@ body::-webkit-scrollbar {
 }
 .fieldset_img{
     /* Size */
-    width: 50%;
+    width: 256px;
 
     /* Display */
     display: flex;
@@ -347,8 +346,8 @@ body::-webkit-scrollbar {
 .fieldset_img-IU,
 .fieldset_img-google{
     /* Size */
-    height: auto;
-    width: auto;
+    height: 64px;
+    width: 64px;
 
     /* Others */
     padding: 0;
@@ -363,33 +362,50 @@ body::-webkit-scrollbar {
 
 @media (max-width: 576px) {
     /* Global variables */
-    .header-right_button{
-        padding: 0.5rem;
+    .header-right_button {
+        width: calc(78px + (112 - 78) * ((100vw - 240px) / (576 - 280)));
+        margin: calc(11.2px + (11.2 - 11.2) * ((100vw - 240px) / (576 - 280)))
+        calc(11.2px + (11.2 - 11.2) * ((100vw - 240px) / (576 - 280)))
+        calc(11.2px + (11.2 - 11.2) * ((100vw - 240px) / (576 - 280)))
+        0;
+        padding: calc(8px + (16 - 8) * ((100vw - 240px) / (576 - 280)));
     }
+    .header-right_button-link {
+        font-size: calc(16px + (24 - 16) * ((100vw - 240px) / (576 - 280)));
+     }
 
     /* Authorization Page */
     .fieldset {
         width: 80vw;
-        padding-left: calc(20px + (40 - 20) * ((100vw - 240px) / (576 - 280)));
-        padding-right: calc(20px + (40 - 20) * ((100vw - 240px) / (576 - 280)));
-        padding-bottom: calc(10px + (20 - 10) * ((100vw - 240px) / (576 - 280)));
-        border-width: calc(4px + (8 - 4) * ((100vw - 240px) / (576 - 280)));;
+        padding-left: calc(20px + (40 - 20) * ((100vw - 280px) / (576 - 280)));
+        padding-right: calc(20px + (40 - 20) * ((100vw - 280px) / (576 - 280)));
+        padding-bottom: calc(10px + (20 - 10) * ((100vw - 280px) / (576 - 280)));
+        border-width: calc(4px + (8 - 4) * ((100vw - 280px) / (576 - 280)));;
     }
     .fieldset_title {
-        font-size: calc(32px + (64 - 32) * ((100vw - 240px) / (576 - 280)));
+        font-size: calc(32px + (64 - 32) * ((100vw - 280px) / (576 - 280)));
     }
     .Authorization-inner_password {
-        height: calc(16px + (32 - 16) * ((100vw - 240px) / (576 - 280)));
-        font-size: calc(16px + (18 - 16) * ((100vw - 240px) / (576 - 280)));
+        height: calc(16px + (55 - 16) * ((100vw - 280px) / (576 - 280)));
+        font-size: calc(16px + (32 - 16) * ((100vw - 280px) / (576 - 280)));
+        padding: calc(14px + (17 - 14) * ((100vw - 280px) / (576 - 280)));
     }
     .Authorization-inner_button-text {
-        font-size: calc(16px + (18 - 16) * ((100vw - 240px) / (576 - 280)));
+        font-size: calc(16px + (32 - 16) * ((100vw - 280px) / (576 - 280)));
+    }
+    .Authorization-inner_button-box {
+        padding: calc(14px + (17 - 14) * ((100vw - 280px) / (576 - 280)));
     }
     .fieldset_or {
-        font-size: calc(18px + (24 - 18) * ((100vw - 240px) / (576 - 280)));;
+        font-size: calc(18px + (32 - 18) * ((100vw - 280px) / (576 - 280)));;
     }
     .fieldset_img {
-        justify-content: space-between;
+      width: calc(154px + (256 - 154) * ((100vw - 280px) / (576 - 280)));
+    }
+    .fieldset_img-IU,
+    .fieldset_img-google {
+        width: calc(45px + (64 - 45) * ((100vw - 280px) / (576 - 280)));
+        height: auto;
     }
 
     /* Registration Page */
@@ -399,40 +415,81 @@ body::-webkit-scrollbar {
 
 @media (min-width: 576px) and (max-width: 768px) {
     /* Global variables */
-    .body_{
-        height: auto;
-    }
-    .header-right_button{
-        padding: 0.5rem;
-    }
 
     /* Authorization Page */
+    .Authorization-inner_button-text {
+        font-size: calc(17px + (18 - 17) * ((100vw - 576px) / (768 - 576)));
+    }
+    .Authorization-inner_button-box {
+        padding: calc(15px + (17 - 15) * ((100vw - 576px) / (768 - 576)));
+    }
     .fieldset {
         width: 80vw;
-        padding: 0 1.25rem 1rem 1.25rem;
-    }
-    .fieldset_title {
-        font-size: 4.25em;
+        padding-left: calc(25px + (40 - 25) * ((100vw - 576px) / (768 - 576)));
+        padding-right: calc(25px + (40 - 25) * ((100vw - 576px) / (768 - 576)));
+        padding-bottom: calc(15px + (20 - 15) * ((100vw - 576px) / (768 - 576)));
+        border-width: calc(5px + (8 - 5) * ((100vw - 576px) / (768 - 576)));;
     }
     .Authorization-inner_password {
-        height: 2em;
-        font-size: x-large;
+        height: calc(48px + (55 - 48) * ((100vw - 576px) / (768 - 576)));
+        font-size: calc(24px + (32 - 24) * ((100vw - 576px) / (768 - 576)));
+        padding: calc(14px + (17 - 14) * ((100vw - 576px) / (768 - 576)));
     }
     .Authorization-inner_button-text {
-        font-size: x-large;
+        font-size: calc(24px + (32 - 24) * ((100vw - 576px) / (768 - 576)));
     }
-    .fieldset_or {
-        font-size: xx-large;
-    }
+
     /* Registration Page */
 
     /* Main Page */
 }
 
-@media (min-width: 768px) and (max-width: 992px) {  }
+@media (min-width: 768px) and (max-width: 992px) {
+    /* Global variables */
 
-@media (min-width: 992px) and (max-width: 1200px) {  }
+    /* Authorization Page */
+    .fieldset {
+        width: 70vw;
+        padding-left: calc(25px + (40 - 25) * ((100vw - 768px) / (992 - 768)));
+        padding-right: calc(25px + (40 - 25) * ((100vw - 768px) / (992 - 768)));
+        padding-bottom: calc(15px + (20 - 15) * ((100vw - 768px) / (992 - 768)));
+    }
 
-@media (min-width: 1200px) and (max-width: 1400px) {  }
+    /* Registration Page */
+
+    /* Main Page */
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    /* Global variables */
+
+    /* Authorization Page */
+    .fieldset {
+        width: 60vw;
+        padding-left: calc(25px + (40 - 25) * ((100vw - 992px) / (1200 - 992)));
+        padding-right: calc(25px + (40 - 25) * ((100vw - 992px) / (1200 - 992)));
+        padding-bottom: calc(15px + (20 - 15) * ((100vw - 992px) / (1200 - 992)));
+    }
+
+    /* Registration Page */
+
+    /* Main Page */
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+    /* Global variables */
+
+    /* Authorization Page */
+    .fieldset {
+        width: 50vw;
+        padding-left: calc(25px + (40 - 25) * ((100vw - 1200px) / (1400 - 1200)));
+        padding-right: calc(25px + (40 - 25) * ((100vw - 1200px) / (1400 - 1200)));
+        padding-bottom: calc(15px + (20 - 15) * ((100vw - 1200px) / (1400 - 1200)));
+    }
+
+    /* Registration Page */
+
+    /* Main Page */
+}
 
 @media (max-width: 1400px) {  }
