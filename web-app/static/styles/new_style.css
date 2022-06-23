@@ -12,7 +12,6 @@ body::-webkit-scrollbar {
 
     /* Size */
     width: 100vw;
-    height: 100vh;
 
     /* Display */
     display: flex;
@@ -157,6 +156,9 @@ body::-webkit-scrollbar {
     align-content: center;
     justify-content: flex-start;
     align-items: center;
+
+    /* Other */
+    margin-top: 1vh;
 }
 .Authorization{
     /* Size */
@@ -176,7 +178,7 @@ body::-webkit-scrollbar {
 }
 .fieldset{
     /* Size */
-    border-width: 0.5rem;
+    border-width: 8px;
     border-style: solid;
     width: 40vw;
 
@@ -189,7 +191,7 @@ body::-webkit-scrollbar {
     align-items: center;
 
     /* Others */
-    padding: 0 2.5rem 1.25rem 2.5rem;
+    padding: 0 40px 20px 40px;
 
     border-color: #CAD8E5;
 }
@@ -199,7 +201,7 @@ body::-webkit-scrollbar {
 
     /* Font */
     font-family: 'Staatliches', serif;
-    font-size: 4em;
+    font-size: 64px;
     font-weight: 400;
     font-style: normal;
 
@@ -235,13 +237,13 @@ body::-webkit-scrollbar {
 
     /* Size */
     width: 80%;
-    height: 2em;
+    height: 32px;
 
     /* Font */
     font-family: 'Roboto', serif;
     font-style: normal;
     font-weight: 400;
-    font-size: x-large;
+    font-size: 24px;
     letter-spacing: 0.005em;
     color: rgba(0, 0, 0, 0.6);
 
@@ -354,3 +356,83 @@ body::-webkit-scrollbar {
 }
 
 /* Registration Page */
+
+/* Main Page */
+
+/* Media */
+
+@media (max-width: 576px) {
+    /* Global variables */
+    .header-right_button{
+        padding: 0.5rem;
+    }
+
+    /* Authorization Page */
+    .fieldset {
+        width: 80vw;
+        padding-left: calc(20px + (40 - 20) * ((100vw - 240px) / (576 - 280)));
+        padding-right: calc(20px + (40 - 20) * ((100vw - 240px) / (576 - 280)));
+        padding-bottom: calc(10px + (20 - 10) * ((100vw - 240px) / (576 - 280)));
+        border-width: calc(4px + (8 - 4) * ((100vw - 240px) / (576 - 280)));;
+    }
+    .fieldset_title {
+        font-size: calc(32px + (64 - 32) * ((100vw - 240px) / (576 - 280)));
+    }
+    .Authorization-inner_password {
+        height: calc(16px + (32 - 16) * ((100vw - 240px) / (576 - 280)));
+        font-size: calc(16px + (18 - 16) * ((100vw - 240px) / (576 - 280)));
+    }
+    .Authorization-inner_button-text {
+        font-size: calc(16px + (18 - 16) * ((100vw - 240px) / (576 - 280)));
+    }
+    .fieldset_or {
+        font-size: calc(18px + (24 - 18) * ((100vw - 240px) / (576 - 280)));;
+    }
+    .fieldset_img {
+        justify-content: space-between;
+    }
+
+    /* Registration Page */
+
+    /* Main Page */
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    /* Global variables */
+    .body_{
+        height: auto;
+    }
+    .header-right_button{
+        padding: 0.5rem;
+    }
+
+    /* Authorization Page */
+    .fieldset {
+        width: 80vw;
+        padding: 0 1.25rem 1rem 1.25rem;
+    }
+    .fieldset_title {
+        font-size: 4.25em;
+    }
+    .Authorization-inner_password {
+        height: 2em;
+        font-size: x-large;
+    }
+    .Authorization-inner_button-text {
+        font-size: x-large;
+    }
+    .fieldset_or {
+        font-size: xx-large;
+    }
+    /* Registration Page */
+
+    /* Main Page */
+}
+
+@media (min-width: 768px) and (max-width: 992px) {  }
+
+@media (min-width: 992px) and (max-width: 1200px) {  }
+
+@media (min-width: 1200px) and (max-width: 1400px) {  }
+
+@media (max-width: 1400px) {  }
