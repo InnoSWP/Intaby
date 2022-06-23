@@ -4,7 +4,8 @@ from adapters.repository import SqlAlchemyRepository, get_repo
 from domain.model import User
 
 parser = reqparse.RequestParser()
-parser.add_argument('nickname', required=True)
+parser.add_argument('name', required=True)
+parser.add_argument('surname', required=True)
 parser.add_argument('email', required=True)
 parser.add_argument('password', required=True)
 

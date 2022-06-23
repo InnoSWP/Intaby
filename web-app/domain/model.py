@@ -4,7 +4,8 @@ from typing import List, NewType
 # Types declaration
 
 # For user
-NickName = NewType('NickName', str)
+Name = NewType('Name', str)
+Surname = NewType('Surname', str)
 Email = NewType('Email', str)
 Password = NewType('Password', str)
 
@@ -33,23 +34,25 @@ class Answer:
 
 # Possible types of question in a quiz
 class QuestionTypes(enum.Enum):
-    poll = "polls"
+    poll = "poll"
     quiz = "quiz"
 
 
 # Question class, to store information about question:
 #   question type, description, possible answers, and correct answers
 class Question:
-    def __init__(self, question_type: QuestionTypes, text: QuestionDescription, quiz_id: int):
+    def __init__(self, question_type: QuestionTypes, text: QuestionDescription, quiz_id: int, time_limit: int):
         self.question_type = question_type
         self.text = text
         self.quiz_id = quiz_id
+        self.time = time_limit
 
     def to_dict(self):
         return {
             "quiz_id": self.quiz_id,
             "text": self.text,
-            "question_type": self.question_type
+            "question_type": self.question_type,
+            "time": self.time
         }
 
 
@@ -62,20 +65,22 @@ class Quiz:
     def to_dict(self):
         return {
             "user_id": self.user_id,
-            "quiz_name": self.quiz_name
+            "name": self.quiz_name
         }
 
 
 # User class, to manage stored in db information through nickname/email
 class User:
-    def __init__(self, nickname: NickName, email: Email, password: Password):
-        self.nickname = nickname
+    def __init__(self, name: Name, surname: Surname, email: Email, password: Password):
+        self.name = name
+        self.surname = surname
         self.email = email
         self.password = password
 
     def to_dict(self):
         return {
-            "nickname": self.nickname,
+            "name": self.name,
+            "surname": self.surname,
             "email": self.email,
             "password": self.password
         }
