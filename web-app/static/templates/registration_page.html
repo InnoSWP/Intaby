@@ -19,7 +19,7 @@
     <script src="jquery-3.6.0.min.js"></script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/web-app/static/styles/style.css">
+    <link rel="stylesheet" href="/web-app/static/styles/new_style.css">
 
     <!-- Meta -->
     <meta charset="UTF-8">
@@ -28,55 +28,52 @@
 
     <!-- Title -->
     <title> Document </title>
-
 </head>
 
-<body class="v377_12">
-
-    <header>
-        <div class="name2">
-            <div class="left">
-                <h1 class = "logo_intaby">INTABY</h1>
-            </div>
-            <div class="right">
-                <button class="Back"><a href="main_page_bootstrap_free.html">Back</a> </button>
-            </div>
+<body class="body_">
+    <header class="header">
+        <div class="header-left">
+            <h1 class="header-left_logo">INTABY</h1>
+        </div>
+        <div class="header-right">
+            <button class="header-right_button">
+                <a class="header-right_button-link" href="main_page.html">Back</a>
+            </button>
         </div>
     </header>
 
-    <div class="Registration_wrapper">
+    <div class="Registration-wrapper">
         <div class="Registration">
 
-            <fieldset>
-                <legend class="reg_test">Registration</legend>
+            <fieldset class="Registration_fieldset">
+                <legend class="Registration_fieldset-title">Registration</legend>
 
-                <div class="Registration_inner">
+                <div class="Registration-inner">
 
-                    <input class="email" type="email" placeholder="Email">
-                    <div class="namesurname">
-                        <input class="name" type="text" placeholder="Name">
-                        <input class="surname" type="text" placeholder="Surname">
+                    <input class="Registration-inner_email" type="email" placeholder="Email">
+                    <div class="Registration-inner_namesurname">
+                        <input class="Registration-inner_namesurname-name" type="text" placeholder="Name">
+                        <input class="Registration-inner_namesurname-surname" type="text" placeholder="Surname">
                     </div>
-                    <input type="password" class="password" placeholder="Password">
-                    <input type="password" class="password" placeholder="Repeat password">
-                    <div class="reg_button">
-                        <button onclick="window.location.href = 'page_of_user.html'" class="reg"><span class="reg_text">Register</span></button>
+                    <input class="Registration-inner_password" type="password" placeholder="Password">
+                    <input class="Registration-inner_password" type="password" placeholder="Repeat password">
+                    <div class="Registration-inner_button">
+                        <button onclick="window.location.href = 'page_of_user.html'" class="Registration-inner_button-box">
+                            <span class="Registration-inner_button-text">Register</span>
+                        </button>
                     </div>
-                    <h3 class="or_reg"> OR </h3>
-                    <div class="img1">
-                        <img class="UI" src="/web-app/static/images/inno_icon.png">
-                        <img class="google" src="/web-app/static/images/Google_icon.png">
+                    <h3 class="Registration-inner_or"> OR </h3>
+                    <div class="Registration-inner_img">
+                        <img class="Registration-inner_img-IU" src="/web-app/static/images/inno_icon.png">
+                        <img class="Registration-inner_img-google" src="/web-app/static/images/Google_icon.png">
                     </div>
                 </div>
             </fieldset>
         </div>
     </div>
 
-    <!-- <footer>
-        <h1> FOOTER</h1>
-    </footer> -->
-
     <script src="script.js"></script>
+
 </body>
 
 </html>
