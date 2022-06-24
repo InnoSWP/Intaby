@@ -2,69 +2,80 @@
 <html lang="en">
 
 <head>
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
 
+<<<<<<< HEAD
     <link rel="stylesheet" href="/web-app/static/styles/style.css">
+=======
+    <!-- Scripts -->
+    <script src="jquery-3.6.0.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/web-app/static/styles/new_style.css">
+
+    <!-- Meta -->
+>>>>>>> 80d9190ab5cc9e11d92e8844e57b0c68e7b0cf34
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+
+    <!-- Title -->
+    <title> Document </title>
 </head>
 
-<body class="v377_12">
-    <header>
-
-        <div class="name2">
-            <div class="left">
-                <h1 class = "logo_intaby">INTABY</h1>
-            </div>
-            <div class="right">
-                <button class="Back"><a href="main_page_bootstrap_free.html">Back</a> </button>
-            </div>
+<body class="body_">
+    <header class="header">
+        <div class="header-left">
+            <h1 class="header-left_logo">INTABY</h1>
         </div>
-
+        <div class="header-right">
+            <button class="header-right_button">
+                <a class="header-right_button-link" href="main_page.html">Back</a>
+            </button>
+        </div>
     </header>
-    <div class="Registration_wrapper">
+
+    <div class="Registration-wrapper">
         <div class="Registration">
 
-            <fieldset>
-                <legend class="reg_test">Registration</legend>
+            <fieldset class="Registration_fieldset">
+                <legend class="Registration_fieldset-title">Registration</legend>
 
-                <div class="Registration_inner">
+                <div class="Registration-inner">
 
-                    <input class="email" type="email" placeholder="Email" id="signup_email" required>
-                    <div class="namesurname">
-                        <input class="name" type="text" placeholder="Name" id="signup_name" required>
-                        <input class="surname" type="text" placeholder="Surname" id="signup_surname" required>
+                    <input class="Registration-inner_email" type="email" placeholder="Email" id="signup_email">
+                    <div class="Registration-inner_namesurname">
+                        <input class="Registration-inner_namesurname-name" type="text" placeholder="Name" id="signup_name">
+                        <input class="Registration-inner_namesurname-surname" type="text" placeholder="Surname" id="signup_surname">
                     </div>
-                    <input type="password" class="password" placeholder="Password" id="signup_pass" required>
-                    <input type="password" class="password" placeholder="Repeat password" id="signup_pass2" required>
-                    <div class="reg_button">
-                        <button id="btn_reg" class="reg"><span class="reg_text">Register</span></button>
+                    <input class="Registration-inner_password" type="password" placeholder="Password" id="signup_pass">
+                    <input class="Registration-inner_password" type="password" placeholder="Repeat password" id="signup_pass2">
+                    <div class="Registration-inner_button">
+                        <button onclick="window.location.href = 'page_of_user.html'" class="Registration-inner_button-box">
+                            <span class="Registration-inner_button-text">Register</span>
+                        </button>
                     </div>
-                    <h3 class="or_reg"> OR </h3>
-                    <div class="img1">
-                        <img class="UI" src="/web-app/static/images/inno_icon.png">
-                        <img class="google" src="/web-app/static/images/Google_icon.png">
+                    <h3 class="Registration-inner_or"> OR </h3>
+                    <div class="Registration-inner_img">
+                        <img class="Registration-inner_img-IU" src="/web-app/static/images/inno_icon.png">
+                        <img class="Registration-inner_img-google" src="/web-app/static/images/Google_icon.png">
                     </div>
                 </div>
             </fieldset>
         </div>
     </div>
 
-    <!-- <footer>
-        <h1> FOOTER</h1>
-    </footer> -->
 
     <script src="../scripts/registration_script.js"></script>
     <script src="../scripts/ajax.js"></script>
