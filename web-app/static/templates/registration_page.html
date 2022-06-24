@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet"/>
 
-    <script src="jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/web-app/static/styles/style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,15 +42,15 @@
 
                 <div class="Registration_inner">
 
-                    <input class="email" type="email" placeholder="Email">
+                    <input class="email" type="email" placeholder="Email" id="signup_email" required>
                     <div class="namesurname">
-                        <input class="name" type="text" placeholder="Name">
-                        <input class="surname" type="text" placeholder="Surname">
+                        <input class="name" type="text" placeholder="Name" id="signup_name" required>
+                        <input class="surname" type="text" placeholder="Surname" id="signup_surname" required>
                     </div>
-                    <input type="password" class="password" placeholder="Password">
-                    <input type="password" class="password" placeholder="Repeat password">
+                    <input type="password" class="password" placeholder="Password" id="signup_pass" required>
+                    <input type="password" class="password" placeholder="Repeat password" id="signup_pass2" required>
                     <div class="reg_button">
-                        <button onclick="window.location.href = 'page_of_user.html'" class="reg"><span class="reg_text">Register</span></button>
+                        <button id="btn_reg" class="reg"><span class="reg_text">Register</span></button>
                     </div>
                     <h3 class="or_reg"> OR </h3>
                     <div class="img1">
@@ -67,7 +66,8 @@
         <h1> FOOTER</h1>
     </footer> -->
 
-    <script src="script.js"></script>
+    <script src="../scripts/registration_script.js"></script>
+    <script src="../scripts/ajax.js"></script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 <html lang="en" style="height: 100%">
 
 <head>
-    <script src="jquery-3.6.0.min.js"></script>
+    <script src="../scripts/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <meta charset="UTF-8">
@@ -31,7 +31,7 @@
     </header>
     <div class="user_wrapper d-flex align-items-center justify-content-start  position-relative">
         <img src="/web-app/static/images/User_icon.png" class="col-1">
-        <div class="user_name justify-content-start align-self-start col-2" style="color: white;">User name</div>
+        <div class="user_name justify-content-start align-self-start col-2" id="username" style="color: white;">User name</div>
         <div class="d-flex justify-content-end position-absolute bottom-0 end-0 col-6">
             <button class="Edit_profile col-3 my-2 mx-1 mx-md-3 py-1"><a href="main_page.html">Edit profile
                 </a>
@@ -58,5 +58,10 @@
         </div>
     </div>
 </body>
+<script type="module" src="../scripts/page_of_user_script.js"></script>
+<!-- <script type="module" src="../scripts/page_of_user2.js"></script> -->
+
+
+
 
 </html>
