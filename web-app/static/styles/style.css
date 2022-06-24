@@ -1530,8 +1530,9 @@ a {
     height: max-content;
     background-color: #0D4278;
     color: white;
-    height: 80%;
-    font-size: large;
+    min-height: 5em;
+    font-size: x-large;
+    border: 3px dashed white;
 }
 
 .enter_header {
@@ -1547,10 +1548,17 @@ a {
 textarea::-webkit-input-placeholder {
     color: white;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 textarea::-moz-placeholder {
     color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -1573,21 +1581,27 @@ textarea::-moz-placeholder {
     border: #FFFFFF 2px solid;
     font-size: x-large;
     border-radius: none;
+    height: 3.7em;
+}
+
+@media(max-width: 768px){
+    .add_answer_quiz{
+        height: 5em;
+    }
 }
 
 .enter_below {
     height: 8%;
 }
 
-.timemode_wrapper {
-    height: 50%;
-}
 
 .timemode {
     height: 100%;
     background-color: #C5D3E1;
     text-align: center;
     font-size: x-large;
+    height: 2em;
+    align-self: flex-start;
 }
 
 .add_question_wrapper {
