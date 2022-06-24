@@ -412,7 +412,7 @@ input {
 }
 
 .buttons {
-    display: flexbox;
+    /*display: flexbox;*/
 
     right: 0;
     width: 50%;
@@ -1572,7 +1572,7 @@ textarea::-moz-placeholder {
     background-color: #142036;
     border: #FFFFFF 2px solid;
     font-size: x-large;
-    border-radius: none;
+    border-radius: 0;
 }
 
 .enter_below {
@@ -1739,12 +1739,7 @@ body::-webkit-scrollbar {
 }
 
 @media (min-width: 768px) {
-<<<<<<< HEAD
-    .person{
-    
-=======
     .person {
->>>>>>> 80d9190ab5cc9e11d92e8844e57b0c68e7b0cf34
         font-size: xx-large;
     }
 }
