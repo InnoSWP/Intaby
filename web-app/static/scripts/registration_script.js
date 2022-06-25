@@ -18,13 +18,13 @@ document.querySelector("#btn_reg").onclick = function(event){
             "name": name,
             "surname":surname,
             "email":email,
-            "pass": pass,
+            "password": pass,
 
         }
         if (name&&surname&&pass&&email&&pass2){
-            ajax("https://jsonplaceholder.typicode.com/users", "POST", response_reg, data);
+            ajax("https://268b-178-205-186-218.ngrok.io/api/user", "POST", response_reg, JSON.stringify(data));
             function response_reg(dataArr){
-                window.location.href="../templates/authorization_page.html"
+                // window.location.href="../templates/authorization_page.html"
             }
         
         }

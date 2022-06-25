@@ -2,7 +2,7 @@
 <html style="height: 100%">
 
 <head>
-  <script src="jquery-3.6.0.min.js"></script>
+  <script src="../scripts/jquery-3.6.0.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <meta charset="UTF-8">
@@ -22,20 +22,15 @@
       </div>
     </div>
   </header>
-<<<<<<< HEAD
-  <div class="Enter_quiz_name d-flex offset-1 col-3 mt-3 mb-4 pb-3">
-    <input id="quiz_name" type="text" class="Enter_quiz_name_text  col-12 py-2" placeholder="Enter quiz name" />
-=======
   <div class="Enter_quiz_name d-flex offset-1 col-md-3 col-6 mt-3 mb-4 pb-3">
-    <input type="text" class="Enter_quiz_name_text  col-12 py-2" placeholder="Enter quiz name" />
->>>>>>> 80d9190ab5cc9e11d92e8844e57b0c68e7b0cf34
+    <input type="text" id="quiz_name" class="Enter_quiz_name_text  col-12 py-2" placeholder="Enter quiz name" />
   </div>
 
   <div class="Editor d-flex flex-column justify-content-between align-items-start offset-1 col-10 p-4"
     style="height: max-content">
     <div class="enter_header d-flex justify-content-begin align-items-center col-12">
 
-      <textarea placeholder="Enter question" class="type_a_question col-8 px-2 py-2 rounded"></textarea>
+      <textarea id="question" placeholder="Enter question" class="type_a_question col-8 px-2 py-2 rounded"></textarea>
 
 
       <div class="timemode_wrapper offset-1 col-3">
@@ -62,13 +57,16 @@
 
   <div class="enter_below d-flex col-10 mt-3 offset-1 justify-content-between  align-items-center">
     <div class="d-flex add_question_wrapper col-7 col-md-3 justify-content-start">
-      <button class="add_qustion_button col-12">+ Add question</button>
+      <button id="btn_create" class="add_qustion_button col-12">+ Add question</button>
     </div>
     <div class="save_wrapper col-5 col-md-3 d-flex justify-content-end align-items-center">
-      <button id="btn_create" class="save_button col-6" style="height: max-content;">Save</button>
+      <button id="btn_save" class="save_button col-6" style="height: max-content;">Save</button>
     </div>
   </div>
+  <script src="../scripts/create_quiz.js"></script>
+
   <script src="..\scripts\addAnswer.js"></script>
+  <script src="../scripts/ajax.js"></script>
 </body>
 
 </html>
