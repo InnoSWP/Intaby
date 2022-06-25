@@ -170,5 +170,8 @@ function clearSelectedAnswers() {
         if (item.parentNode.lastChild.classList.contains('bg-dark')) {
             item.parentNode.lastChild.classList.toggle('bg-dark')
         }
+        if (item.parentNode.classList.contains('selected')){
+            item.parentNode.classList.remove('selected')
+        }
     }
 }
