@@ -49,8 +49,12 @@ def test_quiz_put_request():
 
 
 def test_user_get_request():
-    url = "http://127.0.0.1:8888/api/user/1"
-    return get(url).text
+    url = "http://127.0.0.1:8888/api/user"
+
+    body = {"email": "vikochka_kruk@mail.ru",
+            "password": "123"}
+
+    return get(url, json=json.dumps(body)).text
 
 
 def test_user_post_request():

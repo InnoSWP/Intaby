@@ -4,7 +4,6 @@ from sqlalchemy.orm import mapper
 
 from domain import model
 
-
 # Base = declarative_base()
 mapper_registry = registry()
 metadata = mapper_registry.metadata
@@ -19,7 +18,8 @@ metadata = mapper_registry.metadata
 # Table for users
 user_table = Table("users", metadata,
                    Column('id', Integer, primary_key=True, autoincrement=True),
-                   Column('nickname', Text, unique=True),
+                   Column('name', Text),
+                   Column('surname', Text),
                    Column('email', Text, unique=True),
                    Column('password', Text))
 
@@ -34,7 +34,8 @@ question_table = Table("questions", metadata,
                        Column('id', Integer, primary_key=True, autoincrement=True),
                        Column('quiz_id', Integer, ForeignKey('quizzes.id')),
                        Column('type', Enum(model.QuestionTypes)),
-                       Column('description', Text))
+                       Column('description', Text),
+                       Column('time', Integer))
 
 # Table for answers
 answer_table = Table("answers", metadata,
@@ -53,6 +54,10 @@ def start_mappers():
 def create_all(engine):
     metadata.bind = engine
     metadata.create_all()
+
+
+def delete_all(engine):
+    metadata.drop_all(engine)
 
 
 if __name__ == '__main__':

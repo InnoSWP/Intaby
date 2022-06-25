@@ -1,6 +1,7 @@
 import json
 
 from flask import Flask, request, render_template
+from flask_cors import CORS
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -15,9 +16,14 @@ engine = create_engine(config.get_postgres_uri())
 get_session = sessionmaker(bind=engine)
 repository.initialize_repo(get_session())
 orm.start_mappers()
+
+# To delete all tables
+# orm.delete_all(engine)
+
 orm.create_all(engine)
 app = Flask(__name__, template_folder='./../static/templates')
 api = api_initialization.api_initialization(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 @app.route('/')
@@ -42,7 +48,7 @@ def lobby_page():
 
 
 # For tests through docker
-@app.route('/tests')
+@app.route('/tests/users')
 def test():
     repo = repository.get_repo()
 
@@ -54,9 +60,28 @@ def test():
 
 
 @app.route('/tests/user_creation')
-def test_user_creation( ):
+def test_user_creation():
     repo = repository.get_repo()
 
     test_orm.test_add_user(repo)
 
     return "<p>OK</p>"
+
+
+@app.route('/tests/quizzes')
+def test_quizzes_list():
+    repo = repository.get_repo()
+
+    new_items = list()
+    for item in repo.get_quizzes():
+        new_items.append(item.to_dict())
+
+    return json.dumps({"items": new_items})
+
+
+@app.route('/tests/get_user_by_email/<email>')
+def test_user_by_email(email):
+    repo = repository.get_repo()
+
+    user = repo.get_user_by_email(email)
+    return json.dumps({"user": user.to_dict()})
