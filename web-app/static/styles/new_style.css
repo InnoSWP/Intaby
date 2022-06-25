@@ -340,9 +340,9 @@ body::-webkit-scrollbar {
 
     /* Box */
     background-clip: padding-box;
-    box-shadow: inset 0 -0.25rem 0 #0D4278;
     border-radius: 8px 8px 0 0;
     border: 0;
+    border-bottom: 5px #0D4278 solid;
 
     /* Others */
     margin: 2% 1%;
@@ -553,10 +553,11 @@ body::-webkit-scrollbar {
     align-items: center;
 
     /* Box */
+    /* Box */
     background-clip: padding-box;
-    box-shadow: inset 0 -0.25rem 0 #0D4278;
     border-radius: 8px 8px 0 0;
     border: 0;
+    border-bottom: 5px #0D4278 solid;
 
     /* Others */
     margin: 2% 1%;
@@ -604,9 +605,9 @@ body::-webkit-scrollbar {
 
     /* Box */
     background-clip: padding-box;
-    box-shadow: inset 0 -0.25rem 0 #0D4278;
     border-radius: 8px 8px 0 0;
     border: 0;
+    border-bottom: 5px #0D4278 solid;
 
     /* Others */
     padding: 17px;
@@ -638,9 +639,9 @@ body::-webkit-scrollbar {
 
     /* Box */
     background-clip: padding-box;
-    box-shadow: inset 0 -0.25rem 0 #0D4278;
     border-radius: 8px 8px 0 0;
     border: 0;
+    border-bottom: 5px #0D4278 solid;
 
     /* Others */
     margin: 2% 1%;
@@ -852,9 +853,9 @@ body::-webkit-scrollbar {
 
     /* Box */
     background-clip: padding-box;
-    box-shadow: inset 0 -0.25rem 0 #0D4278;
     border-radius: 8px 8px 0 0;
     border: 0;
+    border-bottom: 5px #0D4278 solid;
 
     /* Others */
     margin: 1% 1% 0 1%;
@@ -895,9 +896,9 @@ body::-webkit-scrollbar {
 
     /* Box */
     background-clip: padding-box;
-    box-shadow: inset 0 -0.25rem 0 #0D4278;
     border-radius: 8px 8px 0 0;
     border: 0;
+    border-bottom: 5px rgba(255, 255, 255, 0.8) solid;
 
     /* Others */
     margin-bottom: 4%;
@@ -1034,6 +1035,7 @@ body::-webkit-scrollbar {
         height: calc(16px + (42 - 16) * ((100vw - 280px) / (576 - 280)));
         font-size: calc(16px + (24 - 16) * ((100vw - 280px) / (576 - 280)));
         padding: calc(14px + (17 - 14) * ((100vw - 280px) / (576 - 280)));
+        border-bottom: calc(3px + (5 - 3) * ((100vw - 280px) / (576 - 280))) #0D4278 solid;
     }
     .Authorization-inner_button-text {
         font-size: calc(16px + (24 - 16) * ((100vw - 280px) / (576 - 280)));
@@ -1074,6 +1076,7 @@ body::-webkit-scrollbar {
         height: calc(16px + (42 - 16) * ((100vw - 280px) / (576 - 280)));
         font-size: calc(16px + (24 - 16) * ((100vw - 280px) / (576 - 280)));
         padding: calc(14px + (17 - 14) * ((100vw - 280px) / (576 - 280)));
+        border-bottom: calc(3px + (5 - 3) * ((100vw - 280px) / (576 - 280))) #0D4278 solid;
     }
     .Registration-inner_button {
         width: calc(80% + 2 * (14px + (17 - 14) * ((100vw - 280px) / (576 - 280))));
@@ -1111,6 +1114,7 @@ body::-webkit-scrollbar {
         height: calc(16px + (42 - 16) * ((100vw - 280px) / (576 - 280)));
         font-size: calc(16px + (24 - 16) * ((100vw - 280px) / (576 - 280)));
         padding: calc(14px + (17 - 14) * ((100vw - 280px) / (576 - 280)));
+        border-bottom: calc(3px + (5 - 3) * ((100vw - 280px) / (576 - 280))) #0D4278 solid;
     }
     .Lobby-inner_entercode::placeholder {
         font-size: calc(16px + (24 - 16) * ((100vw - 280px) / (576 - 280)));
@@ -1119,6 +1123,7 @@ body::-webkit-scrollbar {
         height: calc(16px + (42 - 16) * ((100vw - 280px) / (576 - 280)));
         font-size: calc(24px + (48 - 24) * ((100vw - 280px) / (576 - 280)));
         padding: calc(14px + (17 - 14) * ((100vw - 280px) / (576 - 280)));
+        border-bottom: calc(3px + (5 - 3) * ((100vw - 280px) / (576 - 280))) rgba(255, 255, 255, 0.8) solid;
     }
     .Lobby-inner_button {
         width: calc(40% + 2 * (14px + (17 - 14) * ((100vw - 280px) / (576 - 280))));
