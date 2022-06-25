@@ -32,27 +32,16 @@
       <div class="editor_header d-flex col-12 justify-content-between">
         <textarea id="question" placeholder="Enter question" class="type_a_question col-8 px-2 py-2 rounded"></textarea>
         <div class="modes d-flex flex-column justify-content-between col-2">
-<<<<<<< HEAD
-          <select  id="select_time" class="timemode">
-=======
-          <select class="mode">
->>>>>>> b24b8d3de1ab358ae2899eaeb1403741721bc8bb
+          <select id="select_time" class="mode">
             <option disabled selected>Time mode</option>
             <option>30sec</option>
             <option>1min</option>
             <option>2min</option>
           </select>
-<<<<<<< HEAD
-          <select id="select_type" class="timemode">
-            <option selected="selected">Single answer</option>
-            <option>Multiple answer</option>
-            <option>Survey</option>
-=======
           <select class="mode" id="answerType">
             <option value="1" id="singleAnswer">Single answer</option>
             <option value="2" id="multipleAnswer">Multiple answer</option>
             <option value="3" id="interview" selected>Interview</option>
->>>>>>> b24b8d3de1ab358ae2899eaeb1403741721bc8bb
           </select>
         </div>
       </div>
@@ -81,9 +70,10 @@
       <button id="btn_save" class="save_button col-6" style="height: max-content;">Save</button>
     </div>
   </div>
+  <script src="../scripts/addAnswer.js"></script>
   <script src="../scripts/create_quiz.js"></script>
 
-  <script src="..\scripts\addAnswer.js"></script>
+  
   <!-- <script src="../scripts/ajax.js"></script> -->
 </body>
 

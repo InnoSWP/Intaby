@@ -13,12 +13,17 @@ document.querySelector("#btn_create").onclick = function(event){
     time_mode = $("#select_time");
     console.log( $('#select_type').val())
     console.log( $('#select_time').val())
+    var answerButtons = document.getElementsByClassName('answer_wrapper')
+    console.log(answerButtons[0].lastChild)
+
+    console.log(document.getElementsByClassName("Badge"))
 
 
    
     
  
     $(".Answer_type").each(function(){
+        // console.log(this)
 
         answer_json={
             "text":this.value,

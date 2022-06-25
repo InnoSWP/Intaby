@@ -1,5 +1,5 @@
 // Add answer
-
+var answerDropList = document.getElementById("answerType")
 var addButton = document.getElementById("add_button")
 var clicks = 2
 var wrapper = document.getElementsByClassName("Answer_add_wrapper")
@@ -70,12 +70,12 @@ deleteButton[0].addEventListener('click', function DeleteAnswer() {
 
 // Select type of answer
 
-var answerDropList = document.getElementById("answerType")
 var singleQuestion = document.getElementById("singleAnswer")
 
 answerDropList.addEventListener('change', function ReceiveType() {
     var answerType = answerDropList.options[answerDropList.selectedIndex].text
     var answerButtons = document.getElementsByClassName('answer_wrapper')
+    console.log(answerButtons)
     switch (answerType) {
         case 'Multiple answer':
             clearSelectedAnswers()
