@@ -412,7 +412,7 @@ input {
 }
 
 .buttons {
-    display: flexbox;
+    /*display: flexbox;*/
 
     right: 0;
     width: 50%;
@@ -1530,8 +1530,9 @@ a {
     height: max-content;
     background-color: #0D4278;
     color: white;
-    height: 80%;
-    font-size: large;
+    min-height: 5em;
+    font-size: x-large;
+    border: 3px dashed white;
 }
 
 .enter_header {
@@ -1547,10 +1548,17 @@ a {
 textarea::-webkit-input-placeholder {
     color: white;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 textarea::-moz-placeholder {
     color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -1572,22 +1580,21 @@ textarea::-moz-placeholder {
     background-color: #142036;
     border: #FFFFFF 2px solid;
     font-size: x-large;
-    border-radius: none;
+    border-radius: 0;
 }
 
 .enter_below {
     height: 8%;
 }
 
-.timemode_wrapper {
-    height: 50%;
-}
 
 .timemode {
     height: 100%;
     background-color: #C5D3E1;
     text-align: center;
     font-size: x-large;
+    height: 2em;
+    align-self: flex-start;
 }
 
 .add_question_wrapper {
@@ -1633,6 +1640,10 @@ body::-webkit-scrollbar {
 
 .Answer_add_wrapper{
     height: max-content;
+}
+
+.delete_answer{
+    font-size: x-large;
 }
 
 @media (max-width: 768px) {
@@ -1739,12 +1750,7 @@ body::-webkit-scrollbar {
 }
 
 @media (min-width: 768px) {
-<<<<<<< HEAD
-    .person{
-    
-=======
     .person {
->>>>>>> 80d9190ab5cc9e11d92e8844e57b0c68e7b0cf34
         font-size: xx-large;
     }
 }
