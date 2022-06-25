@@ -2,7 +2,7 @@
 <html style="height: 100%">
 
 <head>
-  <script src="jquery-3.6.0.min.js"></script>
+  <script src="../scripts/jquery-3.6.0.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <meta charset="UTF-8">
@@ -22,53 +22,59 @@
       </div>
     </div>
   </header>
-<<<<<<< HEAD
-  <div class="Enter_quiz_name d-flex offset-1 col-3 mt-3 mb-4 pb-3">
-    <input id="quiz_name" type="text" class="Enter_quiz_name_text  col-12 py-2" placeholder="Enter quiz name" />
-=======
   <div class="Enter_quiz_name d-flex offset-1 col-md-3 col-6 mt-3 mb-4 pb-3">
-    <input type="text" class="Enter_quiz_name_text  col-12 py-2" placeholder="Enter quiz name" />
->>>>>>> 80d9190ab5cc9e11d92e8844e57b0c68e7b0cf34
+    <input type="text" id="quiz_name" class="Enter_quiz_name_text  col-12 py-2" placeholder="Enter quiz name" />
   </div>
 
   <div class="Editor d-flex flex-column justify-content-between align-items-start offset-1 col-10 p-4"
     style="height: max-content">
     <div class="enter_header d-flex justify-content-begin align-items-center col-12">
-
-      <textarea placeholder="Enter question" class="type_a_question col-8 px-2 py-2 rounded"></textarea>
-
-
-      <div class="timemode_wrapper offset-1 col-3">
-        <select class="timemode col-10">
-          <optgroup>
-            <option disabled selected style="font-size: x-large;">Time mode</option>
+      <div class="editor_header d-flex col-12 justify-content-between">
+        <textarea id="question" placeholder="Enter question" class="type_a_question col-8 px-2 py-2 rounded"></textarea>
+        <div class="modes d-flex flex-column justify-content-between col-2">
+          <select id="select_time" class="mode">
+            <option disabled selected>Time mode</option>
             <option>30sec</option>
             <option>1min</option>
             <option>2min</option>
-          </optgroup>
-        </select>
+          </select>
+          <select class="mode" id="answerType">
+            <option value="1" id="singleAnswer">Single answer</option>
+            <option value="2" id="multipleAnswer">Multiple answer</option>
+            <option value="3" id="interview" selected>Interview</option>
+          </select>
+        </div>
       </div>
-
     </div>
     <!-- <button class="time_mode">Time mode</button> -->
     <div class="Answer_add_wrapper d-flex col-12 mt-5 flex-wrap justify-content-between">
-      <textarea placeholder="Answer 1" class="Answer_type col-12 text-white px-2 py-2 mb-2 mb-lg-4 rounded"
-        style="background-color: #F83962;"></textarea>
-      <textarea placeholder="Answer 2" class="Answer_type col-12 text-white px-2 py-2 mb-2 mb-lg-4 rounded"
-        style="background-color: #2EBFD5;"></textarea>
-      <button class="add_answer_quiz col-12 btn py-3 px-2 mb-2 mb-lg-4 text-white" type="button">+ Add answer</button>
+      <div class="answer_wrapper d-flex col-12 position-relative">
+        <textarea placeholder="Answer 1" class="Answer_type text-white py-2 mb-2 pe-5 ps-2 mb-lg-4 col-12 rounded"
+          style="background-color: #F83962;"></textarea>
+      </div>
+      <div class="answer_wrapper d-flex col-12 position-relative">
+        <textarea placeholder="Answer 2" class="Answer_type text-white py-2 mb-2 pe-5 ps-2 mb-lg-4 col-12 rounded"
+          style="background-color: #2EBFD5;"></textarea>
+      </div>
+      <button class="add_answer_quiz col-12 btn py-3 px-2 mb-2 mb-lg-4 text-white" id="add_button" type="button">+ Add
+        answer</button>
     </div>
+    <button class="delete_answer btn py-3 px-4 text-white text-start">- Delete answers</button>
   </div>
 
   <div class="enter_below d-flex col-10 mt-3 offset-1 justify-content-between  align-items-center">
     <div class="d-flex add_question_wrapper col-7 col-md-3 justify-content-start">
-      <button class="add_qustion_button col-12">+ Add question</button>
+      <button id="btn_create" class="add_qustion_button col-12">+ Add question</button>
     </div>
     <div class="save_wrapper col-5 col-md-3 d-flex justify-content-end align-items-center">
-      <button id="btn_create" class="save_button col-6" style="height: max-content;">Save</button>
+      <button id="btn_save" class="save_button col-6" style="height: max-content;">Save</button>
     </div>
   </div>
-  <script src="..\scripts\addAnswer.js"></script>
+  <script src="../scripts/addAnswer.js"></script>
+  <script src="../scripts/create_quiz.js"></script>
+
+  
+  <!-- <script src="../scripts/ajax.js"></script> -->
 </body>
 
 </html>
