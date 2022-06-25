@@ -1649,6 +1649,10 @@ body::-webkit-scrollbar {
     height: max-content;
 }
 
+.delete_answer{
+    font-size: x-large;
+}
+
 @media (max-width: 768px) {
     .add_answer_quiz {
         font-size: large;
@@ -1716,6 +1720,7 @@ body::-webkit-scrollbar {
 }
 
 .person {
+
     font-size: x-large;
     color: white;
     font-family: "Josefin Sans";
@@ -1752,7 +1757,12 @@ body::-webkit-scrollbar {
 }
 
 @media (min-width: 768px) {
+<<<<<<< HEAD
+    .person{
+    
+=======
     .person {
+>>>>>>> 80d9190ab5cc9e11d92e8844e57b0c68e7b0cf34
         font-size: xx-large;
     }
 }

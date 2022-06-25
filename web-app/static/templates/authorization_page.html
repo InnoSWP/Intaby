@@ -37,7 +37,7 @@
         </div>
         <div class="header-right">
             <button class="header-right_button">
-                <a class="header-right_button-link" href="main_page_bootstrap_free.html">Back</a>
+                <a class="header-right_button-link" href="main_page.html">Back</a>
             </button>
         </div>
     </header>
@@ -45,27 +45,29 @@
     <div class="Authorization-wrapper">
         <div class="Authorization">
 
-            <fieldset class="fieldset">
-                <legend class="fieldset_title">AUTHORIZATION</legend>
-
+            <fieldset class="Authorization_fieldset">
+                <legend class="Authorization_fieldset-title">AUTHORIZATION</legend>
                 <div class="Authorization-inner">
-                    <input type="text" class="Authorization-inner_password" placeholder="Enter login">
-                    <input type="password" class="Authorization-inner_password" placeholder="Enter password">
+                    <input type="text" class="Authorization-inner_password" id="login" placeholder="Enter login">
+                    <input type="password" class="Authorization-inner_password"  id="pass" placeholder="Enter password">
                     <div class="Authorization-inner_button">
-                        <button onclick="window.location.href = 'page_of_user.html'" class="Authorization-inner_button-box">
+                        <button  id="btn_log" class="Authorization-inner_button-box">
                             <span class="Authorization-inner_button-text">Enter</span>
                         </button>
                     </div>
-                    <h3 class="fieldset_or"> OR </h3>
-                    <div class="fieldset_img">
-                        <img class="fieldset_img-IU" src="/web-app/static/images/inno_icon.png">
-                        <img class="fieldset_img-google" src="/web-app/static/images/Google_icon.png">
+                    <h3 class="Authorization-inner_or"> OR </h3>
+                    <div class="Authorization-inner_img">
+                        <img class="Authorization-inner_img-IU" src="/web-app/static/images/inno_icon.png">
+                        <img class="Authorization-inner_img-google" src="/web-app/static/images/Google_icon.png">
                     </div>
                 </div>
             </fieldset>
         </div>
     </div>
+   </body>
    
-   
-</body>
+
+   <!-- <script type="module" src="../scripts/page_of_user_script.js"></script> -->
+    <script type="module" src="../scripts/authorization_script.js"></script>
+    
 </html>
