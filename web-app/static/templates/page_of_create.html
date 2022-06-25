@@ -32,7 +32,7 @@
       <div class="editor_header d-flex col-12 justify-content-between">
         <textarea id="question" placeholder="Enter question" class="type_a_question col-8 px-2 py-2 rounded"></textarea>
         <div class="modes d-flex flex-column justify-content-between col-2">
-          <select class="mode">
+          <select id="select_time" class="mode">
             <option disabled selected>Time mode</option>
             <option>30sec</option>
             <option>1min</option>
@@ -70,10 +70,11 @@
       <button id="btn_save" class="save_button col-6" style="height: max-content;">Save</button>
     </div>
   </div>
+  <script src="../scripts/addAnswer.js"></script>
   <script src="../scripts/create_quiz.js"></script>
 
-  <script src="..\scripts\addAnswer.js"></script>
-  <script src="../scripts/ajax.js"></script>
+  
+  <!-- <script src="../scripts/ajax.js"></script> -->
 </body>
 
 </html>

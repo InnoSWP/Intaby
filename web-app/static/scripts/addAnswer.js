@@ -1,5 +1,5 @@
 // Add answer
-
+var answerDropList = document.getElementById("answerType")
 var addButton = document.getElementById("add_button")
 var clicks = 2
 var wrapper = document.getElementsByClassName("Answer_add_wrapper")
@@ -70,12 +70,12 @@ deleteButton[0].addEventListener('click', function DeleteAnswer() {
 
 // Select type of answer
 
-var SSц = document.getElementById("answerType")
 var singleQuestion = document.getElementById("singleAnswer")
 
 answerDropList.addEventListener('change', function ReceiveType() {
     var answerType = answerDropList.options[answerDropList.selectedIndex].text
     var answerButtons = document.getElementsByClassName('answer_wrapper')
+    console.log(answerButtons)
     switch (answerType) {
         case 'Multiple answer':
             clearSelectedAnswers()
@@ -144,19 +144,16 @@ function addEvents() {
                 if (answerDropList.options[answerDropList.selectedIndex].text === "Multiple answer") {
                     item.parentNode.lastChild.classList.toggle('bg-dark')
                     item.parentNode.classList.toggle('selected')
-                    console.log(item.parentNode.classList)
                 }
                 if (answerDropList.options[answerDropList.selectedIndex].text === "Single answer") {
                     if (ifSelected === true) {
                         selectedAnswer.parentNode.lastChild.classList.toggle('bg-dark')
                         item.parentNode.lastChild.classList.toggle('bg-dark')
                         item.parentNode.classList.toggle('selected')
-                        console.log(item.parentNode.classList)
                     }
                     else {
                         item.parentNode.lastChild.classList.toggle('bg-dark')
                         item.parentNode.classList.toggle('selected')
-                        console.log(item.parentNode.classList)
                     }
                     selectedAnswer = item
                     ifSelected = true
