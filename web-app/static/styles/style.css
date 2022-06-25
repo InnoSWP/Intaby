@@ -1542,7 +1542,7 @@ a {
 .Answer_type {
     color: white;
     font-size: x-large;
-    height: 80%;
+    /* height: 80%; */
 }
 
 textarea::-webkit-input-placeholder {
@@ -1564,7 +1564,7 @@ textarea::-moz-placeholder {
 
 
 @media(min-width: 992px){
-    .Answer_type, .add_answer_quiz{
+    .add_answer_quiz, .answer_wrapper{
         width: 47%;
     }
 }
@@ -1581,6 +1581,7 @@ textarea::-moz-placeholder {
     border: #FFFFFF 2px solid;
     font-size: x-large;
     border-radius: 0;
+    height: 3.7em;
 }
 
 .enter_below {
@@ -1588,13 +1589,11 @@ textarea::-moz-placeholder {
 }
 
 
-.timemode {
-    height: 100%;
+.mode {
     background-color: #C5D3E1;
     text-align: center;
     font-size: x-large;
     height: 2em;
-    align-self: flex-start;
 }
 
 .add_question_wrapper {

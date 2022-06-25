@@ -32,26 +32,41 @@
       <div class="editor_header d-flex col-12 justify-content-between">
         <textarea id="question" placeholder="Enter question" class="type_a_question col-8 px-2 py-2 rounded"></textarea>
         <div class="modes d-flex flex-column justify-content-between col-2">
+<<<<<<< HEAD
           <select  id="select_time" class="timemode">
+=======
+          <select class="mode">
+>>>>>>> b24b8d3de1ab358ae2899eaeb1403741721bc8bb
             <option disabled selected>Time mode</option>
             <option>30sec</option>
             <option>1min</option>
             <option>2min</option>
           </select>
+<<<<<<< HEAD
           <select id="select_type" class="timemode">
             <option selected="selected">Single answer</option>
             <option>Multiple answer</option>
             <option>Survey</option>
+=======
+          <select class="mode" id="answerType">
+            <option value="1" id="singleAnswer">Single answer</option>
+            <option value="2" id="multipleAnswer">Multiple answer</option>
+            <option value="3" id="interview" selected>Interview</option>
+>>>>>>> b24b8d3de1ab358ae2899eaeb1403741721bc8bb
           </select>
         </div>
       </div>
     </div>
     <!-- <button class="time_mode">Time mode</button> -->
     <div class="Answer_add_wrapper d-flex col-12 mt-5 flex-wrap justify-content-between">
-      <textarea placeholder="Answer 2" class="Answer_type col-12 text-white  py-2 mb-2 mb-lg-4 rounded"
-        style="background-color: #F83962;"></textarea>
-      <textarea placeholder="Answer 2" class="Answer_type col-12 text-white  py-2 mb-2 mb-lg-4 rounded"
-        style="background-color: #2EBFD5;"></textarea>
+      <div class="answer_wrapper d-flex col-12 position-relative">
+        <textarea placeholder="Answer 1" class="Answer_type text-white py-2 mb-2 pe-5 ps-2 mb-lg-4 col-12 rounded"
+          style="background-color: #F83962;"></textarea>
+      </div>
+      <div class="answer_wrapper d-flex col-12 position-relative">
+        <textarea placeholder="Answer 2" class="Answer_type text-white py-2 mb-2 pe-5 ps-2 mb-lg-4 col-12 rounded"
+          style="background-color: #2EBFD5;"></textarea>
+      </div>
       <button class="add_answer_quiz col-12 btn py-3 px-2 mb-2 mb-lg-4 text-white" id="add_button" type="button">+ Add
         answer</button>
     </div>
