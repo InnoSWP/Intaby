@@ -10,18 +10,21 @@ addButton.addEventListener('click', function addAnswer() {
         var newAnswer = document.createElement('div')
         newAnswer.classList.add('answer_wrapper', 'd-flex', 'col-12', 'position-relative')
         var textField = document.createElement('textarea')
-        textField.classList.add('Answer_type', 'text-white', 'py-2', 'mb-2', 'pe-5', 'ps-2', 'mb-lg-4', 'col-12', 'rounded')
+        textField.classList.add('Answer_type', 'text-white', 'py-2', 'mb-2', 'px-5', 'mb-lg-4', 'col-12', 'rounded')
         textField.placeholder = "Answer " + clicks
+        var deleteButton = document.createElement('button')
+        deleteButton.classList.add('Delete_button', 'position-absolute', 'top-0', 'end-0', 'mt-2', 'p-2')
         newAnswer.append(textField)
+        newAnswer.append(deleteButton)
         if (answerDropList.options[answerDropList.selectedIndex].text === "Multiple answer") {
             let badge = document.createElement('button')
-            badge.classList.add('Badge', 'position-absolute', 'top-0', 'end-0', 'p-2', 'mt-2', 'me-2', 'border', 'border-light', 'rounded-2', 'border-5')
+            badge.classList.add('Badge', 'position-absolute', 'top-50', 'end-0', 'translate-middle-y', 'p-2', 'mt-2', 'me-2', 'border', 'border-light', 'rounded-2', 'border-5')
             badge.style.color = 'white'
             newAnswer.append(badge)
         }
         if (answerDropList.options[answerDropList.selectedIndex].text === "Single answer") {
             let badge = document.createElement('button')
-            badge.classList.add('Badge', 'position-absolute', 'top-0', 'end-0', 'p-2', 'mt-2', 'me-2', 'border', 'border-light', 'rounded-circle', 'border-5')
+            badge.classList.add('Badge', 'position-absolute', 'top-50', 'end-0', 'translate-middle-y', 'p-2', 'mt-2', 'me-2', 'border', 'border-light', 'rounded-circle', 'border-5')
             badge.style.color = 'white'
             newAnswer.append(badge)
         }
@@ -46,27 +49,28 @@ addButton.addEventListener('click', function addAnswer() {
             addButton.parentNode.removeChild(addButton)
         }
     }
-    addEvents()
+    addEventSelect()
+    addEventDelete()
 })
 
 // Delete answer
 
-var deleteButton = document.getElementsByClassName("delete_answer")
+// var deleteButton = document.getElementsByClassName("delete_answer")
 
-deleteButton[0].addEventListener('click', function DeleteAnswer() {
-    if (clicks === 6) {
-        wrapper[0].removeChild(wrapper[0].lastElementChild)
-        wrapper[0].append(addButton)
-        clicks -= 1
-    }
-    else if (clicks > 2) {
-        var storage = wrapper[0].lastElementChild
-        addButton.parentNode.removeChild(addButton)
-        wrapper[0].removeChild(wrapper[0].lastElementChild)
-        wrapper[0].append(storage)
-        clicks -= 1
-    }
-})
+// deleteButton[0].addEventListener('click', function DeleteAnswer() {
+//     if (clicks === 6) {
+//         wrapper[0].removeChild(wrapper[0].lastElementChild)
+//         wrapper[0].append(addButton)
+//         clicks -= 1
+//     }
+//     else if (clicks > 2) {
+//         var storage = wrapper[0].lastElementChild
+//         addButton.parentNode.removeChild(addButton)
+//         wrapper[0].removeChild(wrapper[0].lastElementChild)
+//         wrapper[0].append(storage)
+//         clicks -= 1
+//     }
+// })
 
 // Select type of answer
 
@@ -75,7 +79,7 @@ var singleQuestion = document.getElementById("singleAnswer")
 answerDropList.addEventListener('change', function ReceiveType() {
     var answerType = answerDropList.options[answerDropList.selectedIndex].text
     var answerButtons = document.getElementsByClassName('answer_wrapper')
-    console.log(answerButtons)
+    //console.log(answerButtons)
     switch (answerType) {
         case 'Multiple answer':
             clearSelectedAnswers()
@@ -85,7 +89,7 @@ answerDropList.addEventListener('change', function ReceiveType() {
             if (document.getElementsByClassName('Badge')[0] === undefined) {
                 for (let item of answerButtons) {
                     let badge = document.createElement('button')
-                    badge.classList.add('Badge', 'position-absolute', 'top-0', 'end-0', 'p-2', 'mt-2', 'me-2', 'border', 'border-light', 'rounded-2', 'border-5')
+                    badge.classList.add('Badge', 'position-absolute', 'top-50', 'end-0', 'translate-middle-y', 'p-2', 'mt-2', 'me-2', 'border', 'border-light', 'rounded-2', 'border-5')
                     badge.style.color = 'white'
                     item.append(badge)
                 }
@@ -104,7 +108,7 @@ answerDropList.addEventListener('change', function ReceiveType() {
             if (document.getElementsByClassName('Badge')[0] === undefined) {
                 for (let item of answerButtons) {
                     let badge = document.createElement('button')
-                    badge.classList.add('Badge', 'position-absolute', 'top-0', 'end-0', 'p-2', 'mt-2', 'me-2', 'border', 'border-light', 'rounded-circle', 'border-5')
+                    badge.classList.add('Badge', 'position-absolute', 'top-50', 'end-0', 'translate-middle-y', 'p-2', 'mt-2', 'me-2', 'border', 'border-light', 'rounded-circle', 'border-5')
                     badge.style.color = 'white'
                     item.append(badge)
                 }
@@ -127,7 +131,7 @@ answerDropList.addEventListener('change', function ReceiveType() {
             }
             break
     }
-    addEvents()
+    addEventSelect()
 })
 
 // Select answer 
@@ -135,11 +139,12 @@ var badgesButtons
 var ifSelected = false
 var selectedAnswer
 
-function addEvents() {
+function addEventSelect() {
     badgesButtons = document.getElementsByClassName('Badge')
+
     for (let item of badgesButtons) {
         if (item.getAttribute('listener') !== 'true') {
-            item.setAttribute('listener', 'true');
+            item.setAttribute('listener', 'true')
             item.addEventListener('click', () => {
                 if (answerDropList.options[answerDropList.selectedIndex].text === "Multiple answer") {
                     item.parentNode.lastChild.classList.toggle('bg-dark')
@@ -163,6 +168,62 @@ function addEvents() {
     }
 }
 
+var answers
+
+function addEventDelete() {
+    answers = document.getElementsByClassName('answer_wrapper')
+    for (let item of answers) {
+        if (item.getAttribute('listener') !== 'true') {
+            item.setAttribute('listener', 'true')
+            let deleteButton = item.getElementsByClassName('Delete_button')
+            deleteButton[0].addEventListener('click', () => {
+                if (clicks === 6) {
+                    wrapper[0].append(addButton)
+                    deleteButton[0].parentNode.remove()
+                    clicks -= 1
+                    update()
+                }
+                else if (clicks > 2) {
+                    deletedN = Number((deleteButton[0].parentNode.firstChild.placeholder)[7])
+                    deleteButton[0].parentNode.remove()
+                    clicks -= 1
+                    update()
+                }
+            })
+        }
+    }
+}
+
+function update() {
+    answers = document.getElementsByClassName('answer_wrapper')
+    console.log(answers)
+    counter = 1
+    for (let item of answers) {
+        item.firstChild.placeholder = "Answer " + counter
+        if (counter === 1) {
+            item.firstChild.style.backgroundColor = "#F83962";
+        }
+        if (counter === 2) {
+            item.firstChild.style.backgroundColor = "#2EBFD5";
+        }
+        if (counter === 3) {
+            item.firstChild.style.backgroundColor = "#FF943B";
+        }
+        if (counter === 4) {
+            item.firstChild.style.backgroundColor = "#467CD3";
+        }
+        if (counter === 5) {
+            item.firstChild.style.backgroundColor = "#8AC600";
+        }
+        if (counter === 6) {
+            item.firstChild.style.backgroundColor = "#9D3FE1";
+        }
+        counter += 1
+    }
+
+}
+
+
 function clearSelectedAnswers() {
     badgesButtons = document.getElementsByClassName('Badge')
     ifSelected = false
@@ -170,7 +231,7 @@ function clearSelectedAnswers() {
         if (item.parentNode.lastChild.classList.contains('bg-dark')) {
             item.parentNode.lastChild.classList.toggle('bg-dark')
         }
-        if (item.parentNode.classList.contains('selected')){
+        if (item.parentNode.classList.contains('selected')) {
             item.parentNode.classList.remove('selected')
         }
     }

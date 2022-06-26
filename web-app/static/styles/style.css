@@ -1563,8 +1563,10 @@ textarea::-moz-placeholder {
 
 
 
-@media(min-width: 992px){
-    .add_answer_quiz, .answer_wrapper{
+@media(min-width: 992px) {
+
+    .add_answer_quiz,
+    .answer_wrapper {
         width: 47%;
     }
 }
@@ -1618,6 +1620,15 @@ textarea::-moz-placeholder {
     color: white;
 }
 
+.Delete_button {
+    margin-bottom: 6%;
+    margin-right: 2%;
+    background-image: url("../images/Cross_icon.png");
+    background-color: rgba(28,28,28,0);
+    border-style: none;
+}
+
+
 
 .add_qustion_button {
     height: 100%;
@@ -1637,11 +1648,11 @@ body::-webkit-scrollbar {
     width: 1em;
 }
 
-.Answer_add_wrapper{
+.Answer_add_wrapper {
     height: max-content;
 }
 
-.delete_answer{
+.delete_answer {
     font-size: x-large;
 }
 

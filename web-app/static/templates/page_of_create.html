@@ -48,18 +48,16 @@
     </div>
     <!-- <button class="time_mode">Time mode</button> -->
     <div class="Answer_add_wrapper d-flex col-12 mt-5 flex-wrap justify-content-between">
-      <div class="answer_wrapper d-flex col-12 position-relative">
-        <textarea placeholder="Answer 1" class="Answer_type text-white py-2 mb-2 pe-5 ps-2 mb-lg-4 col-12 rounded"
-          style="background-color: #F83962;"></textarea>
-      </div>
-      <div class="answer_wrapper d-flex col-12 position-relative">
-        <textarea placeholder="Answer 2" class="Answer_type text-white py-2 mb-2 pe-5 ps-2 mb-lg-4 col-12 rounded"
-          style="background-color: #2EBFD5;"></textarea>
-      </div>
+      <div class="answer_wrapper d-flex col-12 position-relative"><textarea placeholder="Answer 1" class="Answer_type text-white py-2 mb-2 px-5 mb-lg-4 col-12 rounded"
+          style="background-color: #F83962;"></textarea><button
+          class="Delete_button position-absolute top-0 end-0 mt-2 p-2"></button></div>
+      <div class="answer_wrapper d-flex col-12 position-relative"><textarea placeholder="Answer 2" class="Answer_type text-white py-2 mb-2 px-5 mb-lg-4 col-12 rounded"
+          style="background-color: #2EBFD5;"></textarea><button
+          class="Delete_button position-absolute top-0 end-0 mt-2 p-2"></button></div>
       <button class="add_answer_quiz col-12 btn py-3 px-2 mb-2 mb-lg-4 text-white" id="add_button" type="button">+ Add
         answer</button>
     </div>
-    <button class="delete_answer btn py-3 px-4 text-white text-start">- Delete answers</button>
+    <!-- <button class="delete_answer btn py-3 px-4 text-white text-start">- Delete answers</button> -->
   </div>
 
   <div class="enter_below d-flex col-10 mt-3 offset-1 justify-content-between  align-items-center">
@@ -73,7 +71,7 @@
   <script src="../scripts/addAnswer.js"></script>
   <script src="../scripts/create_quiz.js"></script>
 
-  
+
   <!-- <script src="../scripts/ajax.js"></script> -->
 </body>
 
