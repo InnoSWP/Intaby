@@ -196,7 +196,7 @@ function addEventDelete() {
 
 function update() {
     answers = document.getElementsByClassName('answer_wrapper')
-    console.log(answers)
+    // console.log(answers)
     counter = 1
     for (let item of answers) {
         item.firstChild.placeholder = "Answer " + counter
