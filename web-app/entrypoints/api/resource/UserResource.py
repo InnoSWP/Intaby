@@ -5,18 +5,18 @@ from adapters.repository import SqlAlchemyRepository, get_repo
 from domain.model import User
 from service_layer import services
 
+login_parser = reqparse.RequestParser()
+login_parser.add_argument('email', required=True)
+login_parser.add_argument('password', required=True)
+
 registration_parser = reqparse.RequestParser()
 registration_parser.add_argument('name', required=True)
 registration_parser.add_argument('surname', required=True)
 registration_parser.add_argument('email', required=True)
 registration_parser.add_argument('password', required=True)
 
-login_parser = reqparse.RequestParser()
-login_parser.add_argument('email', required=True)
-login_parser.add_argument('password', required=True)
 
-
-def check_for_credentials(args: dict):
+def check_for_credentials(args: dict) -> int:
     email, password = services.email_and_pass_from(args)
 
     repo = get_repo()
@@ -28,6 +28,8 @@ def check_for_credentials(args: dict):
     if not user.password == password:
         abort(404, message="Unauthorized")
 
+    return user.id
+
 
 def abort_if_user_not_found(user_id: int, args: dict):
     email, password = services.email_and_pass_from(args)
@@ -38,22 +40,16 @@ def abort_if_user_not_found(user_id: int, args: dict):
         abort(404, message="Unauthorized")
 
 
-class UserResource(Resource):
-    def get(self, user_id):
+class UserLoginResource(Resource):
+    def post(self):
         args = login_parser.parse_args()
-        abort_if_user_not_found(user_id, args)
-        user = get_repo().get_user_by_id(user_id)
-        return make_response("User exists", 200)
+
+        user_id = check_for_credentials(args)
+
+        return {"user_id": user_id}
 
 
 class UserRegistrationResource(Resource):
-    def get(self):
-        args = login_parser.parse_args()
-
-        check_for_credentials(args)
-
-        return make_response("User exists", 200)
-
     def post(self):
         args = registration_parser.parse_args()
         repo = get_repo()

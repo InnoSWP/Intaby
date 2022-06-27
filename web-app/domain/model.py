@@ -41,7 +41,7 @@ class QuestionTypes(enum.Enum):
 # Question class, to store information about question:
 #   question type, description, possible answers, and correct answers
 class Question:
-    def __init__(self, question_type: QuestionTypes, text: QuestionDescription, quiz_id: int, time_limit: int):
+    def __init__(self, question_type: str, text: QuestionDescription, quiz_id: int, time_limit: int):
         self.question_type = question_type
         self.text = text
         self.quiz_id = quiz_id
@@ -59,13 +59,13 @@ class Question:
 # Quiz class,
 class Quiz:
     def __init__(self, quiz_name: QuizName, user_id: int = 0):
-        self.quiz_name = quiz_name
+        self.name = quiz_name
         self.user_id = user_id
 
     def to_dict(self):
         return {
             "user_id": self.user_id,
-            "name": self.quiz_name
+            "name": self.name
         }
 
 

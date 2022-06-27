@@ -6,9 +6,7 @@ from service_layer import services
 
 quiz_creation_parser = reqparse.RequestParser()
 quiz_creation_parser.add_argument('name', required=True)
-quiz_creation_parser.add_argument('questions', required=True)
-quiz_creation_parser.add_argument('email', required=True)
-quiz_creation_parser.add_argument('password', required=True)
+quiz_creation_parser.add_argument('questions', type=dict, action="append", required=True)
 
 quiz_get_parser = reqparse.RequestParser()
 quiz_get_parser.add_argument('email', required=True)
@@ -28,12 +26,10 @@ def check_for_credentials(args: dict):
         abort(404, message="Unauthorized")
 
 
-def abort_if_user_not_found(user_id: int, args: dict):
-    email, password = services.email_and_pass_from(args)
-
+def abort_if_user_not_found(user_id: int):
     repo = get_repo()
     user = repo.get_user_by_id(user_id)
-    if not user or user.email != email or user.password != password:
+    if not user:
         abort(404, message="Unauthorized")
 
 
@@ -83,7 +79,7 @@ class QuizListResource(Resource):
     def get(self, user_id):
         args = quiz_get_parser.parse_args()
 
-        abort_if_user_not_found(user_id, args)
+        abort_if_user_not_found(user_id)
 
         repo = get_repo()
         quizzes = repo.list_quizzes(user_id)
@@ -91,8 +87,8 @@ class QuizListResource(Resource):
 
     def post(self, user_id):
         args = quiz_creation_parser.parse_args()
-
-        abort_if_user_not_found(user_id, args)
+        # return make_response(str(args), 404)
+        abort_if_user_not_found(user_id)
 
         repo = get_repo()
 
@@ -100,6 +96,7 @@ class QuizListResource(Resource):
         quiz_id = repo.add_quiz(quiz)
 
         questions_and_answers = services.questions_of_quiz_creation_from(args, quiz_id)
+        # return make_response(str(questions_and_answers), 404)
 
         for (question, answers_args) in questions_and_answers:
             question_id = repo.add_question(question)

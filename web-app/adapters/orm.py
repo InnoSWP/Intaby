@@ -33,7 +33,7 @@ quiz_table = Table("quizzes", metadata,
 question_table = Table("questions", metadata,
                        Column('id', Integer, primary_key=True, autoincrement=True),
                        Column('quiz_id', Integer, ForeignKey('quizzes.id')),
-                       Column('type', Enum(model.QuestionTypes)),
+                       Column('type', Text),
                        Column('description', Text),
                        Column('time', Integer))
 
@@ -49,6 +49,7 @@ def start_mappers():
     user_mapper = mapper_registry.map_imperatively(model.User, user_table)
     question_mapper = mapper_registry.map_imperatively(model.Question, question_table)
     answer_mapper = mapper_registry.map_imperatively(model.Answer, answer_table)
+    quiz_mapper = mapper_registry.map_imperatively(model.Quiz, quiz_table)
 
 
 def create_all(engine):

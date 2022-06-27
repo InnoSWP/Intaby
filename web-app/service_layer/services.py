@@ -39,6 +39,14 @@ def questions_of_quiz_creation_from(quiz_args: dict, quiz_id: int) -> [(model.Qu
         ), question_args["answers"])
         for question_args in quiz_args["questions"]
     ]
+    # return quiz_args["questions"]
+    # for question_args in quiz_args["questions"]:
+    #     questions.append((model.Question(
+    #         question_type=question_args["question_type"],
+    #         text=question_args["text"],
+    #         time_limit=question_args["time"],
+    #         quiz_id=quiz_id),
+    #                       question_args["answers"]))
 
     return questions
 

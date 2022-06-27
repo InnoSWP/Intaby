@@ -4,14 +4,37 @@ from requests import get, post, delete
 
 
 def test_quizzes_post_request():
+    answers1 = [
+        {"text": "Hello", "correct_answer": True},
+        {"text": "World", "correct_answer": False}
+    ]
+    question1 = {"question_type": "poll",
+                 "text": "questions1",
+                 "time": 60,
+                 "answers": answers1}
+
+    answers2 = [
+        {"text": "Hello", "correct_answer": True},
+        {"text": "World", "correct_answer": False}
+    ]
+
+    question2 = {
+        "question_type": "quiz",
+        "text": "questions2",
+        "time": 15,
+        "answers": answers2
+    }
+
     quiz_post_request_body = {
-        "questions": {"question1": {"Hello": True, "World": True}, "question2": {"Hello": True, "World": True}},
+        "questions": [question1, question2],
         "name": "Quiz name"
     }
 
+    # print(type(quiz_post_request_body["questions"]))
+
     url = "http://127.0.0.1:8888/api/user/1/quiz"
-    assert post(url, data=json.dumps(quiz_post_request_body),
-                headers={"Content-Type": "application/json"}).status_code == 200
+    return post(url, json=quiz_post_request_body,
+                headers={"Content-Type": "application/json"}).text
 
 
 def test_quiz_get_request():
@@ -48,13 +71,13 @@ def test_quiz_put_request():
     return post(url, json=json.dumps(quiz_put_request_body), headers={"Content-Type": "application/json"}).text
 
 
-def test_user_get_request():
-    url = "http://127.0.0.1:8888/api/user"
+def test_user_login_request():
+    url = "http://127.0.0.1:8888/api/user/login"
 
     body = {"email": "vikochka_kruk@mail.ru",
             "password": "123"}
 
-    return get(url, json=json.dumps(body)).text
+    return post(url, json=body).text
 
 
 def test_user_post_request():
@@ -65,7 +88,7 @@ def test_user_post_request():
         'email': 'il@k.r',
         'password': 'strong_pass'
     }
-    return post(url, data=json.dumps(user_post_request_body), headers={"Content-Type": "application/json"}).text
+    return post(url, data=user_post_request_body, headers={"Content-Type": "application/json"}).text
 
 
 def test_question_get_request():
@@ -80,8 +103,10 @@ def test_question_post_request():
     return post(url, data=json.dumps(question_post_request_body), headers={"Content-Type": "application/json"}).text
 
 
-# print(test_quiz_post_request())
+print(test_quizzes_post_request())
 # print(test_quiz_get_request())
-# print(test_user_post_request())
+# print(test_user_login_request())
 # print(test_question_get_request())
-print(test_user_get_request())
+# print(test_user_get_request())
+
+# print(str([{"Hello": True, "World": False}]))
