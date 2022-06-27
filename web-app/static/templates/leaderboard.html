@@ -51,73 +51,45 @@
                 <!--Оглавление блока-->
                 <legend class="leaderboard_title">Leaderboard</legend>
                 <!--Scroll-block со всеми участниками-->
-                <fieldset style="width: 100%; margin: 0; padding: 0; border:0;">
-                    <!--Далее - перечесление всех типов участников-->
-                    <!--Вот отсюда и начинается работа с базой данных-->
-                    <!--Каждый участник имеет собственный блок leaderboard_user-result,
-                    а его содержание - зависит от типа участника-->
-                    <div class="leaderboard_user-result">
-                        <div class="leaderboard_user-result-left">
-                            <div class="leaderboard_user-place-box">
-                                <p class="leaderboard_user-place-text">1</p>
-                            </div>
-                            <img class="leaderboard_1st-place-icon" src="/web-app/static/images/leaderboard_1st-place.svg"/>
-                            <p class="leaderboard_user-name">nickname</p>
-                        </div>
-                        <div class="leaderboard_user-result-right">
-                            <p class="leaderboard_user-score">score</p>
-                        </div>
-                    </div>
-                    <div class="leaderboard_user-result">
-                        <div class="leaderboard_user-result-left">
-                            <div class="leaderboard_user-place-box">
-                                <p class="leaderboard_user-place-text">2</p>
-                            </div>
-                            <img class="leaderboard_2nd-place-icon" src="/web-app/static/images/leaderboard_2nd-place.svg"/>
-                            <p class="leaderboard_user-name">nickname</p>
-                        </div>
-                        <div class="leaderboard_user-result-right">
-                            <p class="leaderboard_user-score">score</p>
-                        </div>
-                    </div>
-                    <div class="leaderboard_user-result">
-                        <div class="leaderboard_user-result-left">
-                            <div class="leaderboard_user-place-box">
-                                <p class="leaderboard_user-place-text">3</p>
-                            </div>
-                            <img class="leaderboard_3rd-place-icon" src="/web-app/static/images/leaderboard_3rd-place.svg"/>
-                            <p class="leaderboard_user-name">nickname</p>
-                        </div>
-                        <div class="leaderboard_user-result-right">
-                            <p class="leaderboard_user-score">score</p>
-                        </div>
-                    </div>
-                    <div class="leaderboard_user-result-me">
-                        <div class="leaderboard_user-result-left">
-                            <div class="leaderboard_user-place-box">
-                                <p class="leaderboard_user-place-text-me">###</p>
-                            </div>
-                            <img class="leaderboard_user-icon" src="/web-app/static/images/leaderboard_user.svg"/>
-                            <p class="leaderboard_user-name-me">nickname</p>
-                        </div>
-                        <div class="leaderboard_user-result-right">
-                            <p class="leaderboard_user-score-me">score</p>
-                        </div>
-                    </div>
-                    <div class="leaderboard_user-result">
-                        <div class="leaderboard_user-result-left">
-                            <div class="leaderboard_user-place-box">
-                                <p class="leaderboard_user-place-text">###</p>
-                            </div>
-                            <img class="leaderboard_student-icon" src="/web-app/static/images/leaderboard_student.svg"/>
-                            <p class="leaderboard_user-name">nickname</p>
-                        </div>
-                        <div class="leaderboard_user-result-right">
-                            <p class="leaderboard_user-score">score</p>
-                        </div>
-                    </div>
-                </fieldset>
-                <img class="leaderboard_scroll-down" src="/web-app/static/images/leaderboard_scroll-down.svg"/>
+                <table class="leaderboard_table">
+                    <tr>
+                        <th class="leaderboard_table-header-place"></th>
+                        <th class="leaderboard_table-header-icon"></th>
+                        <th class="leaderboard_table-header-name"></th>
+                        <th class="leaderboard_table-header-score"></th>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">1</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_1st-place-icon" src="/web-app/static/images/leaderboard_1st-place.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">2</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_2nd-place-icon" src="/web-app/static/images/leaderboard_2nd-place.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">3</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_3rd-place-icon" src="/web-app/static/images/leaderboard_3rd-place.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
+                    </tr>
+                    <tr class="leaderboard_table-me">
+                        <td class="leaderboard_table-me-place">##</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_me-icon" src="/web-app/static/images/leaderboard_user.svg"/></td>
+                        <td class="leaderboard_table-me-name">nickname</td>
+                        <td class="leaderboard_table-me-score">score</td>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">##</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_student-icon" src="/web-app/static/images/leaderboard_student.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
+                    </tr>
+                </table>
+                <!--<img class="leaderboard_scroll-down" src="/web-app/static/images/leaderboard_scroll-down.svg"/>-->
             </div>
         </div>
 
