@@ -1,39 +1,51 @@
-
 let questions_array=[]
+
+document.querySelector("#btn_create").onclick = function(event){
+    
+
 let answer_array=[]
 let  question_type;
 let time_mode;
-
-document.querySelector("#btn_create").onclick = function(event){
     event.preventDefault();
 
     let quiz_name = $("#quiz_name");  
     let question = $("#question");
-    question_type = $('#select_type').val();
+    question_type = $('#answerType').val();
     time_mode = $("#select_time");
-    console.log( $('#select_type').val())
-    console.log( $('#select_time').val())
+    // console.log( $('#answerType').val())
+    // console.log( $('#select_time').val())
     var answerButtons = document.getElementsByClassName('answer_wrapper')
-    console.log(answerButtons[0].lastChild)
 
-    console.log(document.getElementsByClassName("Badge"))
 
 
    
     
- 
+    let i = 0;
     $(".Answer_type").each(function(){
         // console.log(this)
-
+        // console.log(answerButtons[i].classList.contains("selected"))
+       
+        // console.log(i)
+        // let cor_answ = answerButtons[i].classList.contains("selected")
         answer_json={
             "text":this.value,
-            "correct_answer": 1,
+            "correct_answer": answerButtons[i].classList.contains("selected"),
         }
+        i+=1;
      
         //push answers to array
         answer_array.push(answer_json)
         this.value =""
     })
+    if (question_type==1){
+        question_type = "Single answer"
+    }
+    else if (question_type == 2){
+        question_type = "Multiple answer"
+    }
+    else if (question_type == 3){
+        question_type = "Interview"
+    }
     question_json = {
         "question_type":question_type,
         "text":question.val(),
@@ -49,17 +61,18 @@ document.querySelector("#btn_create").onclick = function(event){
 
 document.querySelector("#btn_save").onclick = function(event){
     
+    
     questions_array.push(question_json)
     //data to request
     data = {
         "name":quiz_name.val(),
         "questions":questions_array,
     }
-    // ajax("https://268b-178-205-186-218.ngrok.io/api/user", "POST", response_reg, JSON.stringify(data));
-    // function response_reg(dataArr){
-       
-    // }
-    console.log(questions_array)
+    ajax("https://268b-178-205-186-218.ngrok.io/api/user", "POST", response_reg, JSON.stringify(data));
+    function response_reg(dataArr){
+       window.location.href = "../templates/page_of_user"
+    }
+    // console.log(questions_array)
     console.log(data)
 
 }

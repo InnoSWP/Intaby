@@ -75,7 +75,6 @@ var singleQuestion = document.getElementById("singleAnswer")
 answerDropList.addEventListener('change', function ReceiveType() {
     var answerType = answerDropList.options[answerDropList.selectedIndex].text
     var answerButtons = document.getElementsByClassName('answer_wrapper')
-    console.log(answerButtons)
     switch (answerType) {
         case 'Multiple answer':
             clearSelectedAnswers()
