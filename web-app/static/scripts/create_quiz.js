@@ -50,7 +50,7 @@ let time_mode;
         "question_type":question_type,
         "text":question.val(),
         "time":time_mode.val(),
-        "anwers": answer_array
+        "answers": answer_array
     }
     question.val("");
     // time_mode.querySelector('[selected]').selected = true
@@ -65,12 +65,23 @@ document.querySelector("#btn_save").onclick = function(event){
     questions_array.push(question_json)
     //data to request
     data = {
+
         "name":quiz_name.val(),
         "questions":questions_array,
     }
-    ajax("https://268b-178-205-186-218.ngrok.io/api/user", "POST", response_reg, JSON.stringify(data));
+    let user_id_data = (JSON.parse(JSON.parse(localStorage.getItem("user_data")))).user_id
+    // console.log(user_id_data)
+    let request_url = `https://9c9d-188-130-155-167.ngrok.io/api/user/${user_id_data}/quiz`
+    // console.log(request_url)
+    ajax(request_url, "POST", response_reg, JSON.stringify(data));
     function response_reg(dataArr){
-       window.location.href = "../templates/page_of_user"
+        if (this.readyState == 4 && this.status==201){
+            window.location.href = "../templates/page_of_user.html"
+        }
+        else if (this.status < 500){
+            alert("Try again")
+        }
+      
     }
     // console.log(questions_array)
     console.log(data)
