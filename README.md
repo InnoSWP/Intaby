@@ -1,3 +1,5 @@
+[![MIT](https://img.shields.io/badge/License-MIT-red.svg)](./LICENSE.md)
+
 # Intaby
 
 Intaby is a web application for quizzes. It was designed as an alternative to [Kahoot](https://kahoot.it). 
