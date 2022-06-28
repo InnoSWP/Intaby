@@ -1,15 +1,18 @@
+pub use rocket::serde;
+pub use rocket::serde::json::serde_json;
 use rocket::serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+
+pub type UserId = u64;
+pub type QuizId = u64;
+pub type QuestionId = u64;
+pub type Time = f64;
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
 pub struct Games {
     map: HashMap<GameCode, Game>,
 }
-
-pub type QuizId = u64;
-pub type QuestionId = u64;
-pub type Time = f64;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(crate = "rocket::serde", deny_unknown_fields)]

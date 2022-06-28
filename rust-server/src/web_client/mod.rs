@@ -1,4 +1,4 @@
-use super::*;
+use crate::model::*;
 
 #[derive(Debug)]
 pub enum Error {

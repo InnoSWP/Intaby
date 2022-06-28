@@ -1,20 +1,12 @@
 use std::sync::Mutex;
-
-use rocket::serde;
-use rocket::serde::json::serde_json;
 use rocket::{get, post, put, serde::json::Json, State};
 
 use crate::database::{DBAccessor, DBError};
-
-pub mod games;
-mod python_server;
-
-use games::*;
+use crate::model::*;
 
 type Database = Box<dyn DBAccessor>;
 type SResult<T> = Result<T, Error>;
 type GamesState = Mutex<Games>;
-type UserId = u64;
 
 #[derive(Debug)]
 enum Error {
@@ -50,7 +42,7 @@ async fn create_game(
     games: &State<GamesState>,
 ) -> SResult<GameCode> {
     let user_id = user_id.0;
-    let quiz_config = python_server::get_quiz(user_id, id).await?;
+    let quiz_config = crate::web_client::get_quiz(user_id, id).await?;
     let code = games.lock().unwrap().create_game(quiz_config);
     Ok(code)
 }
@@ -125,11 +117,11 @@ impl From<DBError> for Error {
     }
 }
 
-impl From<python_server::Error> for Error {
-    fn from(error: python_server::Error) -> Self {
+impl From<crate::web_client::Error> for Error {
+    fn from(error: crate::web_client::Error) -> Self {
         match error {
-            python_server::Error::Reqwest(error) => Self::Reqwest(error),
-            python_server::Error::Parse(error) => Self::Internal(Box::new(error)),
+            crate::web_client::Error::Reqwest(error) => Self::Reqwest(error),
+            crate::web_client::Error::Parse(error) => Self::Internal(Box::new(error)),
         }
     }
 }

@@ -1,5 +1,7 @@
 mod database;
 mod server;
+mod model;
+mod web_client;
 
 #[cfg(test)]
 mod tests;
