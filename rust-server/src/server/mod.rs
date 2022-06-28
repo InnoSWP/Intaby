@@ -1,22 +1,28 @@
 use std::sync::Mutex;
 
 use rocket::{get, post, put, serde::json::Json, State};
+use rocket::serde;
+use rocket::serde::json::serde_json;
 
 use crate::database::{DBAccessor, DBError};
 
-mod games;
+pub mod games;
+mod python_server;
 
 use games::*;
 
 type Database = Box<dyn DBAccessor>;
 type SResult<T> = Result<T, Error>;
 type GamesState = Mutex<Games>;
+type UserId = u64;
 
 #[derive(Debug)]
 enum Error {
     Database(DBError),
     GameNotFound(GameCode),
+    Reqwest(reqwest::Error),
     BadRequest,
+    Internal(Box<dyn std::error::Error>),
 }
 
 pub async fn rocket(config: rocket::Config, db_uri: &str) -> rocket::Rocket<rocket::Build> {
@@ -26,7 +32,7 @@ pub async fn rocket(config: rocket::Config, db_uri: &str) -> rocket::Rocket<rock
     rocket::custom(config)
         .manage(Box::new(database) as Database)
         .manage(Mutex::new(Games::new()))
-        .mount("/", rocket::routes![index, create_or_join_game, get_game])
+        .mount("/", rocket::routes![index, create_or_join_game, get_game, game_answer])
 }
 
 #[get("/")]
@@ -41,10 +47,9 @@ async fn create_or_join_game(
     id: GameCode,
     name: Option<PlayerName>,
     games: &State<GamesState>,
-    database: &State<Database>,
 ) -> Result<String, Error> {
     match id.parse::<u64>() {
-        Ok(quiz_id) => create_game(quiz_id, games, database).await,
+        Ok(quiz_id) => create_game(quiz_id, games).await,
         Err(_) => match name {
             Some(name) => join_game(id, name, games).await.map(|()| format!("")),
             None => Err(Error::BadRequest),
@@ -67,12 +72,11 @@ async fn game_answer(code: GameCode, answer: Json<GameAnswer>) -> SResult<()> {
 }
 
 async fn create_game(
-    _quiz_id: u64,
+    quiz_id: QuizId,
     games: &State<GamesState>,
-    _database: &State<Database>,
 ) -> SResult<GameCode> {
-    // TODO: query quiz information from the database
-    let code = games.lock().unwrap().create_game();
+    let quiz_config = python_server::get_quiz(todo!(), quiz_id).await?;
+    let code = games.lock().unwrap().create_game(quiz_config);
     Ok(code)
 }
 
@@ -97,6 +101,8 @@ impl Error {
             Self::Database(error) => error.status(),
             Self::GameNotFound(_) => Status::NotFound,
             Self::BadRequest => Status::BadRequest,
+            Self::Reqwest(_) => Status::InternalServerError,
+            Self::Internal(_) => Status::InternalServerError,
         }
     }
 }
@@ -120,6 +126,8 @@ impl std::fmt::Display for Error {
                 write!(f, "A game with the code \'{msg}\' could not be found")
             }
             Self::BadRequest => write!(f, "Bad request"),
+            Self::Reqwest(error) => error.fmt(f),
+            Self::Internal(error) => error.fmt(f),
         }
     }
 }
@@ -129,6 +137,15 @@ impl std::error::Error for Error {}
 impl From<DBError> for Error {
     fn from(error: DBError) -> Self {
         Self::Database(error)
+    }
+}
+
+impl From<python_server::Error> for Error {
+    fn from(error: python_server::Error) -> Self {
+        match error {
+            python_server::Error::Reqwest(error) => Self::Reqwest(error),
+            python_server::Error::Parse(error) => Self::Internal(Box::new(error)),
+        }
     }
 }
 
