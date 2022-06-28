@@ -26,13 +26,13 @@ user_table = Table("users", metadata,
 # Table for quizzes
 quiz_table = Table("quizzes", metadata,
                    Column('id', Integer, primary_key=True, autoincrement=True),
-                   Column('user_id', Integer, ForeignKey('users.id')),
+                   Column('user_id', Integer, ForeignKey('users.id', ondelete="CASCADE")),
                    Column('name', Text))
 
 # Table for questions
 question_table = Table("questions", metadata,
                        Column('id', Integer, primary_key=True, autoincrement=True),
-                       Column('quiz_id', Integer, ForeignKey('quizzes.id')),
+                       Column('quiz_id', Integer, ForeignKey('quizzes.id', ondelete="CASCADE")),
                        Column('question_type', Text),
                        Column('text', Text),
                        Column('time', Integer))
@@ -40,30 +40,16 @@ question_table = Table("questions", metadata,
 # Table for answers
 answer_table = Table("answers", metadata,
                      Column('id', Integer, primary_key=True, autoincrement=True),
-                     Column('question_id', Integer, ForeignKey('questions.id')),
+                     Column('question_id', Integer, ForeignKey('questions.id', ondelete="CASCADE")),
                      Column('text', Text),
                      Column('correct_answer', Boolean))
 
 
 def start_mappers():
-    user_mapper = mapper_registry.map_imperatively(model.User, user_table,
-                                                   properties={
-                                                       'user_id': relationship(model.Quiz,
-                                                                               cascade="all,delete")
-                                                   })
-    question_mapper = mapper_registry.map_imperatively(model.Question, question_table,
-                                                       properties={
-                                                           'question_id': relationship(model.Answer,
-                                                                                       cascade="all,delete")
-                                                       })
+    question_mapper = mapper_registry.map_imperatively(model.Question, question_table)
+    user_mapper = mapper_registry.map_imperatively(model.User, user_table)
     answer_mapper = mapper_registry.map_imperatively(model.Answer, answer_table)
-
-    quiz_mapper = mapper_registry.map_imperatively(model.Quiz, quiz_table,
-                                                   properties={
-                                                       'quiz_id': relationship(model.Question,
-                                                                               cascade="all,delete")
-                                                   }
-                                                   )
+    quiz_mapper = mapper_registry.map_imperatively(model.Quiz, quiz_table)
 
 
 def create_all(engine):
