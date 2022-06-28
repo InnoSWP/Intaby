@@ -1,8 +1,8 @@
 use std::sync::Mutex;
 
-use rocket::{get, post, put, serde::json::Json, State};
 use rocket::serde;
 use rocket::serde::json::serde_json;
+use rocket::{get, post, put, serde::json::Json, State};
 
 use crate::database::{DBAccessor, DBError};
 
@@ -32,7 +32,10 @@ pub async fn rocket(config: rocket::Config, db_uri: &str) -> rocket::Rocket<rock
     rocket::custom(config)
         .manage(Box::new(database) as Database)
         .manage(Mutex::new(Games::new()))
-        .mount("/", rocket::routes![index, create_or_join_game, get_game, game_answer])
+        .mount(
+            "/",
+            rocket::routes![index, create_game, join_game, get_game, game_answer],
+        )
 }
 
 #[get("/")]
@@ -41,19 +44,27 @@ fn index() -> &'static str {
 }
 
 /// Create a new game from the quiz id
-/// or join an existing game with the specified code
-#[post("/games/<id>", data = "<name>")]
-async fn create_or_join_game(
-    id: GameCode,
-    name: Option<PlayerName>,
+#[post("/games/<id>", data = "<user_id>")]
+async fn create_game(
+    id: QuizId,
+    user_id: Json<UserId>,
     games: &State<GamesState>,
-) -> Result<String, Error> {
-    match id.parse::<u64>() {
-        Ok(quiz_id) => create_game(quiz_id, games).await,
-        Err(_) => match name {
-            Some(name) => join_game(id, name, games).await.map(|()| format!("")),
-            None => Err(Error::BadRequest),
-        },
+) -> SResult<GameCode> {
+    let user_id = user_id.0;
+    let quiz_config = python_server::get_quiz(user_id, id).await?;
+    let code = games.lock().unwrap().create_game(quiz_config);
+    Ok(code)
+}
+
+/// Join an existing game with the specified code
+#[post("/games/<code>", data = "<name>", rank = 2)]
+async fn join_game(code: GameCode, name: PlayerName, games: &State<GamesState>) -> SResult<()> {
+    match games.lock().unwrap().get_game_mut(&code) {
+        None => Err(Error::GameNotFound(code)),
+        Some(game) => {
+            game.player_join(name);
+            Ok(())
+        }
     }
 }
 
@@ -69,29 +80,6 @@ async fn get_game(code: GameCode, games: &State<GamesState>) -> SResult<GameCode
 async fn game_answer(code: GameCode, answer: Json<GameAnswer>) -> SResult<()> {
     // TODO: register answer
     Ok(())
-}
-
-async fn create_game(
-    quiz_id: QuizId,
-    games: &State<GamesState>,
-) -> SResult<GameCode> {
-    let quiz_config = python_server::get_quiz(todo!(), quiz_id).await?;
-    let code = games.lock().unwrap().create_game(quiz_config);
-    Ok(code)
-}
-
-async fn join_game(
-    game_code: GameCode,
-    player_name: PlayerName,
-    games: &State<GamesState>,
-) -> SResult<()> {
-    match games.lock().unwrap().get_game_mut(&game_code) {
-        None => Err(Error::GameNotFound(game_code)),
-        Some(game) => {
-            game.player_join(player_name);
-            Ok(())
-        }
-    }
 }
 
 impl Error {
