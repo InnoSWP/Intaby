@@ -55,13 +55,7 @@ body::-webkit-scrollbar {
     top: 0;
     z-index: 4;
 }
-<<<<<<< HEAD
-
-.header-left {
-
-=======
 .header-left{
->>>>>>> 6a6556322012ee1c3f62336c97f21f7c6368a7e1
     /* Size */
     width: 50%;
     height: 100%;
