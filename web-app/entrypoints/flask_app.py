@@ -18,7 +18,7 @@ repository.initialize_repo(get_session())
 orm.start_mappers()
 
 # To delete all tables
-# orm.delete_all(engine)
+orm.delete_all(engine)
 
 orm.create_all(engine)
 app = Flask(__name__, template_folder='./../static/templates')
@@ -85,3 +85,13 @@ def test_user_by_email(email):
 
     user = repo.get_user_by_email(email)
     return json.dumps({"user": user.to_dict()})
+
+
+@app.route('/tests/answers')
+def test_answers_list():
+    repo = repository.get_repo()
+
+    dict_items = []
+    for item in repo.get_answers():
+        dict_items.append(item.to_dict())
+    return json.dumps({"answers": dict_items})

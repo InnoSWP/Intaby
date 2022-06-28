@@ -81,14 +81,15 @@ def test_user_login_request():
 
 
 def test_user_post_request():
-    url = "http://127.0.0.1:8888/api/user"
+    url = "http://127.0.0.1:8888/api/user/register"
 
     user_post_request_body = {
-        'nickname': 'Il',
+        'name': 'Il',
+        'surname': 'hello',
         'email': 'il@k.r',
         'password': 'strong_pass'
     }
-    return post(url, data=user_post_request_body, headers={"Content-Type": "application/json"}).text
+    return post(url, json=user_post_request_body, headers={"Content-Type": "application/json"}).text
 
 
 def test_question_get_request():
@@ -100,10 +101,18 @@ def test_question_post_request():
     url = "http://127.0.0.1:8888/api/quiz/1/question/2"
 
     question_post_request_body = {"answers": ["Incorrect answer", "Correct answer"]}
-    return post(url, data=json.dumps(question_post_request_body), headers={"Content-Type": "application/json"}).text
+    return post(url, json=question_post_request_body, headers={"Content-Type": "application/json"}).text
 
 
-print(test_quizzes_post_request())
+def test_quiz_delete_request():
+    url = "http://127.0.0.1:8888/api/user/1/quiz/2"
+
+    return delete(url).text
+
+
+# print(test_user_post_request())
+print(test_quiz_delete_request())
+# print(test_quizzes_post_request())
 # print(test_quiz_get_request())
 # print(test_user_login_request())
 # print(test_question_get_request())

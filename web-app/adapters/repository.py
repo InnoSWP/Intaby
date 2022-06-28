@@ -48,9 +48,8 @@ class SqlAlchemyRepository:
         # self.session.query(model.Quiz).f
         raise NotImplemented
 
-    def delete_quiz(self, quiz_id):
-        self.session.query(model.Quiz).filter_by(id=quiz_id).delete(synchronize_session=False)
-        # TODO: deletion of questions and answers
+    def delete_quiz(self, quiz: model.Quiz):
+        self.session.delete(quiz)
         self.session.commit()
 
     def list_quizzes(self, user_id):
@@ -66,6 +65,10 @@ class SqlAlchemyRepository:
     def get_question(self, question_id):
         return self.session.query(model.Question).filter_by(id=question_id).one()
 
+    def delete_question(self, question: model.Question):
+        self.session.delete(question)
+        self.session.commit()
+
     def list_questions(self, quiz_id):
         return self.session.query(model.Question).filter_by(quiz_id=quiz_id).all()
 
@@ -77,10 +80,14 @@ class SqlAlchemyRepository:
         return answer.id
 
     def get_answer(self, answer_id):
-        return self.session.query(model.Answer).filter_by(id=answer_id)
+        return self.session.query(model.Answer).filter_by(id=answer_id).one()
+
+    def delete_answer(self, answer: model.Answer):
+        self.session.delete(answer)
+        self.session.commit()
 
     def list_answers(self, question_id):
-        return self.session.query(model.Answer).filter_by(question_id=question_id)
+        return self.session.query(model.Answer).filter_by(question_id=question_id).all()
 
     # -- for test
     def get_users(self):
@@ -88,6 +95,12 @@ class SqlAlchemyRepository:
 
     def get_quizzes(self):
         return self.session.query(model.Quiz).all()
+
+    def get_answers(self):
+        return self.session.query(model.Answer).all()
+
+    def get_questions(self):
+        return self.session.query(model.Question).all()
 
 
 # Testing Repository
