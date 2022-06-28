@@ -13,7 +13,9 @@ async fn test() {
         port: 8000,
         ..Default::default()
     };
-    let rocket = crate::server::rocket(config, "postgresql://test:test@localhost:5432").await;
+    let web_client = Box::new(crate::web_client::reqwest_client::ReqwestClient::new());
+    let rocket =
+        crate::server::rocket(config, "postgresql://test:test@localhost:5432", web_client).await;
     let client = Client::tracked(rocket).await.unwrap();
 
     let response = request(client.get("/")).await;

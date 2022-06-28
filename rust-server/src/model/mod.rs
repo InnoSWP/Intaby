@@ -6,7 +6,7 @@ use std::collections::HashMap;
 pub type UserId = u64;
 pub type QuizId = u64;
 pub type QuestionId = u64;
-pub type Time = f64;
+pub type Time = u64;
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(crate = "rocket::serde", deny_unknown_fields)]

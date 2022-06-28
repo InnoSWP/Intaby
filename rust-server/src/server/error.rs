@@ -4,8 +4,8 @@ use super::*;
 pub enum Error {
     Database(DBError),
     GameNotFound(GameCode),
-    Reqwest(reqwest::Error),
     Internal(Box<dyn std::error::Error>),
+    Other(Box<dyn std::error::Error>),
 }
 
 impl Error {
@@ -14,8 +14,8 @@ impl Error {
         match self {
             Self::Database(error) => error.status(),
             Self::GameNotFound(_) => Status::NotFound,
-            Self::Reqwest(_) => Status::InternalServerError,
             Self::Internal(_) => Status::InternalServerError,
+            Self::Other(_) => Status::InternalServerError,
         }
     }
 }
@@ -38,8 +38,8 @@ impl std::fmt::Display for Error {
             Self::GameNotFound(msg) => {
                 write!(f, "A game with the code \'{msg}\' could not be found")
             }
-            Self::Reqwest(error) => error.fmt(f),
             Self::Internal(error) => error.fmt(f),
+            Self::Other(error) => error.fmt(f),
         }
     }
 }
@@ -55,8 +55,8 @@ impl From<DBError> for Error {
 impl From<crate::web_client::Error> for Error {
     fn from(error: crate::web_client::Error) -> Self {
         match error {
-            crate::web_client::Error::Reqwest(error) => Self::Reqwest(error),
             crate::web_client::Error::Parse(error) => Self::Internal(Box::new(error)),
+            crate::web_client::Error::Other(error) => Self::Other(error),
         }
     }
 }

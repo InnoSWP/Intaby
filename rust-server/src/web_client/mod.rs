@@ -1,26 +1,22 @@
 use crate::model::*;
+use async_trait::async_trait;
+
+pub mod reqwest_client;
 
 #[derive(Debug)]
 pub enum Error {
-    Reqwest(reqwest::Error),
+    /// Web client failed to parse an incoming message
     Parse(serde_json::Error),
+    /// Some other error, typically related to connection
+    Other(Box<dyn std::error::Error>),
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
 
-pub async fn get_quiz(user_id: UserId, quiz_id: QuizId) -> Result<QuizConfig> {
-    let body = reqwest::get(format!("localhost:8888/api/user/{user_id}/quiz/{quiz_id}"))
-        .await?
-        .text()
-        .await?;
-    let config = serde::json::from_str(&body)?;
-    Ok(config)
-}
-
-impl From<reqwest::Error> for Error {
-    fn from(error: reqwest::Error) -> Self {
-        Self::Reqwest(error)
-    }
+/// Trait representing a handler for the database
+#[async_trait]
+pub trait WebClient: Send + Sync {
+    async fn get_quiz(&self, user_id: UserId, quiz_id: QuizId) -> Result<QuizConfig>;
 }
 
 impl From<serde_json::Error> for Error {
@@ -32,7 +28,7 @@ impl From<serde_json::Error> for Error {
 impl std::fmt::Display for Error {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Error::Reqwest(error) => error.fmt(f),
+            Error::Other(error) => error.fmt(f),
             Error::Parse(error) => error.fmt(f),
         }
     }

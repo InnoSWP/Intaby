@@ -14,5 +14,11 @@ async fn launch() -> _ {
         port: 8080,
         ..Default::default()
     };
-    server::rocket(config, "postgresql://test:test@postgres_db:5432/test").await
+    let web_client = Box::new(web_client::reqwest_client::ReqwestClient::new());
+    server::rocket(
+        config,
+        "postgresql://test:test@postgres_db:5432/test",
+        web_client,
+    )
+    .await
 }

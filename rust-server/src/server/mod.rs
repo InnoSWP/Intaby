@@ -9,15 +9,21 @@ mod error;
 use error::*;
 
 type Database = Box<dyn DBAccessor>;
+type WebClient = Box<dyn crate::web_client::WebClient>;
 type SResult<T> = Result<T, Error>;
 type GamesState = Mutex<Games>;
 
-pub async fn rocket(config: rocket::Config, db_uri: &str) -> rocket::Rocket<rocket::Build> {
+pub async fn rocket(
+    config: rocket::Config,
+    db_uri: &str,
+    web_client: WebClient,
+) -> rocket::Rocket<rocket::Build> {
     let database = crate::database::sql::SqlAccess::new(db_uri)
         .await
         .expect("Failed to access the database");
     rocket::custom(config)
         .manage(Box::new(database) as Database)
+        .manage(web_client)
         .manage(Mutex::new(Games::new()))
         .mount(
             "/",
@@ -36,9 +42,10 @@ async fn create_game(
     id: QuizId,
     user_id: Json<UserId>,
     games: &State<GamesState>,
+    web_client: &State<WebClient>,
 ) -> SResult<GameCode> {
     let user_id = user_id.0;
-    let quiz_config = crate::web_client::get_quiz(user_id, id).await?;
+    let quiz_config = web_client.get_quiz(user_id, id).await?;
     let code = games.lock().unwrap().create_game(quiz_config);
     Ok(code)
 }
