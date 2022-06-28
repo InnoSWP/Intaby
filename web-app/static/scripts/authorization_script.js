@@ -1,69 +1,88 @@
-let dataArr;
-document.querySelector("#btn_log").onclick = function(event){
-    event.preventDefault();
-   
-    let login = document.querySelector("#login").value;
-    let pass = document.querySelector("#pass").value;
-    const requestURL = 'https://268b-178-205-186-218.ngrok.io/api/user/';
-    async function sendRequest(method, url,body = null){
-        const headers = {
-            //  'Content-Type':'application/json',
-            "Origin":"https://javascript.info/"
-        }
-        const response = await fetch(url, {
-            method: method,
-            //  body: JSON.stringify(body),
-            headers: headers
-        });
-        // console.log(response.json())
-        // console.log(body)
-        if (response.status == 200) {
-            console.log("Успешный вход");
-            console.log(response);
-            dataArr = response.json();
-            localStorage.setItem("user_data", JSON.stringify(dataArr));
-            console.log(localStorage.getItem("user_data"));
-        }
-        else {
-            console.log(response.status);
-        }
-}
 
-const data = {
-"email": login,
-"password":pass
-}
-console.log(JSON.stringify(data))
-
-sendRequest("GET", requestURL, JSON.stringify(data))
-
-}
-
-
+// let dataArr;
+// const requestURL = 'https://d904-188-130-155-167.ngrok.io/api/user/login';
+// // const data1 = {
+// //     "email": "cringe",
+// //     "password":"123"
+// //     }
 // document.querySelector("#btn_log").onclick = function(event){
 //     event.preventDefault();
-    
+   
 //     let login = document.querySelector("#login").value;
 //     let pass = document.querySelector("#pass").value;
+//     async function sendRequest(method, url,body = null){
+//         const headers = {
+//              'Content-Type':'application/json',
+//             "Origin":"https://javascript.info/"
+//         }
+//         const response = await fetch(url, {
+//             method: method,
+//             body: JSON.stringify(body),
+//             headers: headers
+//         });
+//         // console.log(response.json())
+//         // console.log(body)
+//         if (response.status == 200) {
+//             console.log("Успешный вход");
+//             console.log(response.json());
+//             // dataArr = response;
+
+//             localStorage.setItem("user_data",JSON.stringify(dataArr));
+//             // window.location.href = "../templates/page_of_user.html"
+
+
+
+//         }
+//         else {
+//             console.log(response.status);
+//         }
+// }
+// const data = {
+//     "email": login,
+//     "password":pass
+//     }
+
+// console.log(data)
+
+// sendRequest("POST", requestURL, data)
+
+// }
+
+
+document.querySelector("#btn_log").onclick = function(event){
+    event.preventDefault();
+    
+    let login = document.querySelector("#login").value;
+    let pass = document.querySelector("#pass").value;
    
 
        
-//         console.log(login)
+        console.log(login)
 
-//         let data = {
+        let data = {
             
-//             "email":login,
-//             "password": pass,
+            "email":login,
+            "password": pass,
 
-//         }
+        }
       
-//             ajax("https://268b-178-205-186-218.ngrok.io/api/user", "GET", response_reg, data);
-//             function response_reg(dataArr){
-//                 // window.location.href="../templates/authorization_page.html"
-//             }
+            ajax("https://9c9d-188-130-155-167.ngrok.io/api/user/login", "POST", response_reg, JSON.stringify(data));
+            function response_reg(dataArr){
+                if (this.readyState == 4 && this.status==200){
+                   
+                    localStorage.setItem("user_data",JSON.stringify(dataArr));
+                    window.location.href="../templates/page_of_user.html"
+                }
+                else if (this.status < 500){
+                    alert("Try again")
+                }
+                // console.log(dataArr);
+            // dataArr = response;
+
+            }
         
         
     
     
-// }
+}
 

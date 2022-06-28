@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="jquery-3.6.0.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/web-app/static/styles/new_style.css">
+
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title> Document </title>
+</head>
+
+<body class="body_">
+    <!--Блок всей страницы-->
+    <div class="Board">
+        <!--Левый блок страницы-->
+        <div class="Board-left">
+            <!--Блок текста-->
+            <div class="user-result">
+                <!--nickname - имя пользователя-->
+                <h3 class="user-result_title">Congratulations, nickname!</h3>
+                <h3 class="user-result_title">Your score is:</h3>
+                <!--#### - сколько очков получил пользователь-->
+                <h1 class="user-result_points">#### points!</h1>
+            </div>
+        </div>
+        <!--Правый блок страницы-->
+        <div class="Board-right">
+            <!--Лидерборд-->
+            <div class="leaderboard">
+                <!--Оглавление блока-->
+                <legend class="leaderboard_title">Leaderboard</legend>
+                <!--Scroll-block со всеми участниками-->
+                <table class="leaderboard_table">
+                    <tr>
+                        <th class="leaderboard_table-header-place"></th>
+                        <th class="leaderboard_table-header-icon"></th>
+                        <th class="leaderboard_table-header-name"></th>
+                        <th class="leaderboard_table-header-score"></th>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">1</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_1st-place-icon" src="/web-app/static/images/leaderboard_1st-place.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">2</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_2nd-place-icon" src="/web-app/static/images/leaderboard_2nd-place.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">3</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_3rd-place-icon" src="/web-app/static/images/leaderboard_3rd-place.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
+                    </tr>
+                    <tr class="leaderboard_table-me">
+                        <td class="leaderboard_table-me-place">##</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_me-icon" src="/web-app/static/images/leaderboard_user.svg"/></td>
+                        <td class="leaderboard_table-me-name">nickname</td>
+                        <td class="leaderboard_table-me-score">score</td>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">##</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_student-icon" src="/web-app/static/images/leaderboard_student.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
+                    </tr>
+                </table>
+                <!--<img class="leaderboard_scroll-down" src="/web-app/static/images/leaderboard_scroll-down.svg"/>-->
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

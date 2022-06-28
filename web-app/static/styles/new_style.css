@@ -55,9 +55,13 @@ body::-webkit-scrollbar {
     top: 0;
     z-index: 4;
 }
+<<<<<<< HEAD
 
 .header-left {
 
+=======
+.header-left{
+>>>>>>> 6a6556322012ee1c3f62336c97f21f7c6368a7e1
     /* Size */
     width: 50%;
     height: 100%;
@@ -1034,6 +1038,244 @@ body::-webkit-scrollbar {
     z-index: 2;
 }
 
+/* Leaderboard */
+.Board {
+    /* Size */
+    width: 100vw;
+
+    /* Display */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+
+}
+.Board-left {
+    background: #0D4278;
+
+    /* Size */
+    width: 50vw;
+    height: 100vh;
+
+    /* Display */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.user-result {
+    /* Size */
+    min-width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+
+    /* Display */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+}
+.user-result_title {
+    color: #FFFFFF;
+
+    min-width: 50vw;
+    max-width: 50vw;
+    /* Font */
+    font-family: "Josefin Sans", serif;
+    font-size: 64px;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+
+    /* Others */
+    margin-bottom: 0;
+}
+.user-result_points {
+    color: #FFFFFF;
+
+    min-width: 50vw;
+    max-width: 50vw;
+    /* Font */
+    font-family: "Josefin Sans", serif;
+    font-size: 96px;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+
+    /* Others */
+    margin-top: 0;
+}
+.Board-right {
+    background: #DBE4ED;
+    /* Size */
+    width: 50vw;
+    height: 100vh;
+
+    /* Display */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+td {
+    /*border: solid 1px #000;*/
+    padding: 10px;
+}
+.leaderboard {
+    /* Size */
+    width: 95%;
+    height: 100vh;
+
+    /* Display */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+}
+.leaderboard_title {
+    /* Size */
+    width: auto;
+
+    /* Font */
+    font-family: 'Staatliches', serif;
+    font-size: 64px;
+    font-weight: 400;
+    font-style: normal;
+
+    color: #0D4278;
+
+    /* Display */
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* Other */
+    margin: 24px 0 0 0;
+}
+.leaderboard_table {
+    /* Size */
+
+    /* Others */
+    border-spacing: 0;
+    border-collapse: separate;
+    overflow-y: scroll;
+}
+.leaderboard_table-header-place,
+.leaderboard_table-header-icon,
+.leaderboard_table-header-name,
+.leaderboard_table-header-score {
+    color: #0D4278;
+
+    /* Font */
+    font-family: 'Roboto', serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+
+    /* Others */
+    padding-bottom: 5%;
+}
+.leaderboard_table-header-score,
+.leaderboard_table-header-place{
+    min-width: 78px;
+    text-align: center;
+}
+.leaderboard_table-header-name {
+    width: 100%;
+    padding-left: 3%;
+}
+.leaderboard_table-user-place,
+.leaderboard_table-user-name,
+.leaderboard_table-user-score {
+    color: #0D4278;
+
+    /* Size */
+    min-width: 50px;
+
+    /* Font */
+    font-family: 'Roboto', serif;
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+
+    /* Others */
+
+}
+.leaderboard_table-user-name{
+    text-align: left;
+    padding-left: 3%;
+}
+.leaderboard_table-user-score{
+    text-align: center;
+}
+.leaderboard_table-user-icon {
+    padding-top: 1%;
+}
+.leaderboard_table-me {
+    background-color: #0D4278;
+
+    border-radius: 10px;
+}
+.leaderboard_table-me-place,
+.leaderboard_table-me-name,
+.leaderboard_table-me-score {
+    color: #C5D3E1;
+
+    /* Size */
+    min-width: 50px;
+
+    /* Font */
+    font-family: 'Roboto', serif;
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+
+    /* Others */
+}
+.leaderboard_table-me-score {
+    text-align: center;
+}
+.leaderboard_table-me-name{
+    text-align: left;
+    padding-left: 3%;
+}
+
+.leaderboard_1st-place-icon,
+.leaderboard_2nd-place-icon,
+.leaderboard_3rd-place-icon,
+.leaderboard_me-icon,
+.leaderboard_student-icon {
+    /* Size */
+    width: 65px;
+    height: 65px;
+
+    /* Others */
+
+}
+
+.leaderboard_scroll-up {
+    /* Size */
+    height: 28px;
+    width: 55px;
+
+    display: flow;
+    float: top;
+}
+.leaderboard_scroll-down {
+    /* Size */
+    height: 28px;
+    width: 55px;
+
+    display: flow;
+    float: bottom;
+}
 /* Media */
 
 @media (max-width: 576px) {
@@ -1219,6 +1461,79 @@ body::-webkit-scrollbar {
     .Lobby-inner_or {
         font-size: calc(18px + (32 - 18) * ((100vw - 280px) / (576 - 280)));
     }
+
+    /* Leaderboard */
+    .Board {
+        /* Display */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+    }
+    .Board-right,
+    .Board-left {
+        width: 100vw;
+        height: 100vh;
+    }
+    .user-result {
+        /* Size */
+        /* Здесть мы говорим "не меняй разметку, тварь" */
+        min-width: 100vw;
+        max-width: 100vw;
+        min-height: 100vh;
+        max-height: 100vh;
+    }
+    .user-result_title {
+        min-width: 100vw;
+        max-width: 100vw;
+        font-size: calc(32px + (64 - 32) * ((100vw - 280px) / (576 - 280)));
+    }
+    .user-result_points {
+        min-width: 100vw;
+        max-width: 100vw;
+        font-size: calc(64px + (96 - 64) * ((100vw - 280px) / (576 - 280)));
+    }
+    .leaderboard {
+        min-height: 100vh;
+        width: 100vw;
+    }
+    .leaderboard_title {
+        font-size: calc(32px + (64 - 32) * ((100vw - 280px) / (576 - 280)));
+    }
+    .leaderboard_1st-place-icon,
+    .leaderboard_2nd-place-icon,
+    .leaderboard_3rd-place-icon,
+    .leaderboard_me-icon,
+    .leaderboard_student-icon {
+        width: calc(32.5px + (65 - 32.5) * ((100vw - 280px) / (576 - 280)));
+        height: calc(32.5px + (65 - 32.5) * ((100vw - 280px) / (576 - 280)));
+    }
+    .leaderboard_table-user-place,
+    .leaderboard_table-user-name,
+    .leaderboard_table-user-score,
+    .leaderboard_table-me-place,
+    .leaderboard_table-me-name,
+    .leaderboard_table-me-score {
+        min-width: 0;
+        font-size: calc(16px + (24 - 16) * ((100vw - 280px) / (576 - 280)));
+    }
+    .leaderboard_table-me-score,
+    .leaderboard_table-user-score {
+      min-width: 78px;
+    }
+    .leaderboard_table-header-score {
+        min-width: calc(32px + (78 - 32) * ((100vw - 280px) / (576 - 280)));;
+    }
+    .leaderboard_table-header-place {
+        min-width: calc(32px + (78 - 32) * ((100vw - 280px) / (576 - 280)));;
+    }
+    td {
+        /*border: solid 1px #000;*/
+        padding: calc(5px + (10 - 5) * ((100vw - 280px) / (576 - 280)));;;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
@@ -1238,6 +1553,54 @@ body::-webkit-scrollbar {
     .Lobby_fieldset {
         width: 80vw;
     }
+
+    /* Leaderboard */
+    /* Leaderboard */
+    .Board {
+        /* Display */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+    }
+    .Board-right,
+    .Board-left {
+        width: 100vw;
+        height: 100vh;
+    }
+    .user-result {
+        /* Size */
+        /* Здесть мы говорим "не меняй разметку, тварь" */
+        min-width: 100vw;
+        max-width: 100vw;
+        min-height: 100vh;
+        max-height: 100vh;
+    }
+    .user-result_title,
+    .user-result_points {
+        min-width: 100vw;
+        max-width: 100vw;
+    }
+    .leaderboard {
+        min-height: 100vh;
+        width: 100vw;
+    }
+    .leaderboard_table {
+        max-width: 100vw;
+    }
+    .leaderboard_table-header-score{
+        min-width: 100px;
+    }
+    .leaderboard_table-user-score,
+    .leaderboard_table-me-score {
+        text-align: left;
+    }
+    .leaderboard_table-header-place {
+        min-width: 0;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
@@ -1256,6 +1619,29 @@ body::-webkit-scrollbar {
     /* Main Page */
     .Lobby_fieldset {
         width: 70vw;
+    }
+
+    /* Leaderboard */
+    .Board {
+        /* Display */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+    }
+    .Board-right,
+    .Board-left {
+        width: 100vw;
+        height: 100vh;
+    }
+    .user-result_title {
+        font-size: calc(32px + (64 - 32) * ((100vw - 768px) / (992 - 768)));
+    }
+    .user-result_points {
+        font-size: calc(64px + (96 - 64) * ((100vw - 768px) / (992 - 768)));
     }
 }
 
