@@ -21,7 +21,6 @@ enum Error {
     Database(DBError),
     GameNotFound(GameCode),
     Reqwest(reqwest::Error),
-    BadRequest,
     Internal(Box<dyn std::error::Error>),
 }
 
@@ -88,7 +87,6 @@ impl Error {
         match self {
             Self::Database(error) => error.status(),
             Self::GameNotFound(_) => Status::NotFound,
-            Self::BadRequest => Status::BadRequest,
             Self::Reqwest(_) => Status::InternalServerError,
             Self::Internal(_) => Status::InternalServerError,
         }
@@ -113,7 +111,6 @@ impl std::fmt::Display for Error {
             Self::GameNotFound(msg) => {
                 write!(f, "A game with the code \'{msg}\' could not be found")
             }
-            Self::BadRequest => write!(f, "Bad request"),
             Self::Reqwest(error) => error.fmt(f),
             Self::Internal(error) => error.fmt(f),
         }
