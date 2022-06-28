@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <!-- Fonts -->
@@ -43,9 +43,18 @@
                 <!--#### - сколько очков получил пользователь-->
                 <h1 class="user-result_points">#### points!</h1>
             </div>
+            <!--Button-->
+            <!--<a class="ellipse">
+                <button href="#table" class="button-scroll"></button>
+            </a>-->
+            <div class="ellipse">
+                <button class="button-scroll" type="button" onClick="document.getElementById('table').scrollIntoView();">
+                <img class="button-image" src="/web-app/static/images/leaderboard_scroll-down.svg"/>
+                </button>
+            </div>
         </div>
         <!--Правый блок страницы-->
-        <div class="Board-right">
+        <div class="Board-right" id="table">
             <!--Лидерборд-->
             <div class="leaderboard">
                 <!--Оглавление блока-->
@@ -81,6 +90,36 @@
                         <td class="leaderboard_table-user-icon"><img class="leaderboard_me-icon" src="/web-app/static/images/leaderboard_user.svg"/></td>
                         <td class="leaderboard_table-me-name">nickname</td>
                         <td class="leaderboard_table-me-score">score</td>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">##</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_student-icon" src="/web-app/static/images/leaderboard_student.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">##</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_student-icon" src="/web-app/static/images/leaderboard_student.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">##</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_student-icon" src="/web-app/static/images/leaderboard_student.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">##</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_student-icon" src="/web-app/static/images/leaderboard_student.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
+                    </tr>
+                    <tr>
+                        <td class="leaderboard_table-user-place">##</td>
+                        <td class="leaderboard_table-user-icon"><img class="leaderboard_student-icon" src="/web-app/static/images/leaderboard_student.svg"/></td>
+                        <td class="leaderboard_table-user-name">nickname</td>
+                        <td class="leaderboard_table-user-score">score</td>
                     </tr>
                     <tr>
                         <td class="leaderboard_table-user-place">##</td>
