@@ -2,6 +2,19 @@
 <html lang="en" style="height: 100%">
 
 <head>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+
     <script src="../scripts/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -25,7 +38,8 @@
             <div class="me-auto">
                 <h1 class="logo_intaby">INTABY</h1>
             </div>
-            <button class="Log_Out col-xl-1 col-md-2 col-3 my-2 mx-1 mx-md-3 py-1"><a href="main_page.html">Log Out</a>
+            <button class="Log_Out col-xl-1 col-md-2 col-3 my-2 mx-1 mx-md-3 py-1">
+                <a class="log-out-text" href="main_page.html">Log Out</a>
             </button>
         </div>
     </header>
@@ -34,17 +48,17 @@
             <img src="/web-app/static/images/User_icon.png" class="col-2 col-md-1">
             <div class="user_name justify-content-start align-self-start col-6" style="color: white;">User name</div>
         </div>
-        <button class="Edit_profile col-xl-1 col-md-2 col-4 my-2 mx-1 mx-md-3 py-1"><a href="main_page.html">Edit
-                profile
-            </a>
+        <button class="Edit_profile col-xl-1 col-md-2 col-4 my-2 mx-1 mx-md-3 py-1">
+            <a class="Edit_profile-link" href="main_page.html">Edit profile </a>
+        </button>
     </div>
-    <div class="quiz_storage d-flex flex-wrap align-items-center justify-content-center justify-content-md-start"
+    <div class="quiz_storage d-flex flex-wrap align-items-center justify-content-center"
         id="quiz_storage" style="height: 70%">
-        <div class="add_quiz_button mx-4 my-4 p-2 col-8 col-md-3 position-relative" style="height: 70%">
-            <div class="add_quiz_text text-center position-absolute top-50 start-50 translate-middle col-10"
+        <button class="add_quiz_button mx-4 my-4 p-2 col-8 col-md-3 position-relative" style="height: 70%">
+            <a class="add_quiz_text text-center position-absolute top-50 start-50 translate-middle col-10" href="page_of_create.html"
                 style="color:#DBE4ED">+ Add Quizz
-            </div>
-        </div>
+            </a>
+        </button>
         <div class="quiz_button mx-4 my-4 col-8 col-md-3 position-relative" id="quiz_button" style="height: 70%">
             <div class="d-flex flex-column justify-content-between align-items-center" style="height: 100%; background-color: #193050;">
                 <div class="add_quiz_header p-2 col-12">
@@ -53,7 +67,7 @@
                 </div>
                 <div class="quiz_text text-center col-10" style="color:#DBE4ED">Quiz</div>
                 <div class="add_quiz_footer p-2 col-12">
-                    <div class="description">desription</div>
+                    <div class="description">description</div>
                     <div class="edit">EDIT</div>
                 </div>
             </div>
