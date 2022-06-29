@@ -15,14 +15,11 @@ type GamesState = Mutex<Games>;
 
 pub async fn rocket(
     config: rocket::Config,
-    db_uri: &str,
+    database: Database,
     web_client: WebClient,
 ) -> rocket::Rocket<rocket::Build> {
-    let database = crate::database::sql::SqlAccess::new(db_uri)
-        .await
-        .expect("Failed to access the database");
     rocket::custom(config)
-        .manage(Box::new(database) as Database)
+        .manage(database)
         .manage(web_client)
         .manage(Mutex::new(Games::new()))
         .mount(
