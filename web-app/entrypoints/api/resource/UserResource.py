@@ -4,6 +4,7 @@ from flask_restful import reqparse, abort, Resource
 from adapters.repository import SqlAlchemyRepository, get_repo
 from domain.model import User
 from service_layer import services
+from sqlalchemy.exc import IntegrityError
 
 login_parser = reqparse.RequestParser()
 login_parser.add_argument('email', required=True)
@@ -31,6 +32,15 @@ def check_for_credentials(args: dict) -> int:
     return user.id
 
 
+def abort_if_user_already_exists(email):
+    repo = get_repo()
+
+    user = repo.get_user_by_email(email)
+
+    if user:
+        abort(403, message="User already exists")
+
+
 def abort_if_user_not_found(user_id: int, args: dict):
     email, password = services.email_and_pass_from(args)
 
@@ -56,5 +66,11 @@ class UserRegistrationResource(Resource):
 
         user = services.user_from(args)
 
-        repo.add_user(user)
-        return make_response("User created", 201)
+        # abort_if_user_already_exists(user.email)
+        try:
+            repo.add_user(user)
+            return make_response("User created", 201)
+
+        except IntegrityError:
+            repo.session.rollback()
+            return make_response("User already exists", 403)

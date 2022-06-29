@@ -115,7 +115,11 @@ class QuizListResource(Resource):
 
         repo = get_repo()
         quizzes = repo.list_quizzes(user_id)
-        return make_response({"quizzes": [quiz.to_dict() for quiz in quizzes]}, 200)
+
+        user = repo.get_user_by_id(user_id)
+
+        return make_response(
+            {"quizzes": [quiz.to_dict() for quiz in quizzes], "quiz_number": len(quizzes), "user": user.to_dict()}, 200)
 
     def post(self, user_id):
         args = quiz_creation_parser.parse_args()

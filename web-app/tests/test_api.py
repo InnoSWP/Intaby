@@ -33,31 +33,31 @@ def test_quizzes_post_request():
     # print(type(quiz_post_request_body["questions"]))
 
     url = "http://127.0.0.1:8888/api/user/1/quiz"
-    return post(url, json=quiz_post_request_body,
-                headers={"Content-Type": "application/json"}).text
+    assert post(url, json=quiz_post_request_body,
+                headers={"Content-Type": "application/json"}).status_code == 201
 
 
 def test_quiz_get_request():
     url = "http://127.0.0.1:8888/api/user/1/quiz/1"
-    assert get(url) == 200
+    assert get(url).status_code == 200
 
 
-def test_quiz_delete_request():
-    quiz_post_request_body = {
-        "questions": {"question1": {"Hello": True, "World": True}, "question2": {"Hello": True, "World": True}},
-        "name": "Quiz name"
-    }
-    url = "http://127.0.0.1:8888/api/user/1/quiz"
-
-    post(url, data=json.dumps(quiz_post_request_body), headers={"Content-Type": "application/json"})
-
-    assert delete(url + "/1").status_code == 200
+# def test_quiz_delete_request():
+#     quiz_post_request_body = {
+#         "questions": {"question1": {"Hello": True, "World": True}, "question2": {"Hello": True, "World": True}},
+#         "name": "Quiz name"
+#     }
+#     url = "http://127.0.0.1:8888/api/user/1/quiz"
+#
+#     post(url, data=json.dumps(quiz_post_request_body), headers={"Content-Type": "application/json"})
+#
+#     assert delete(url + "/1").status_code == 200
 
 
 def test_quizzes_get_request():
     url = "http://127.0.0.1:8888/api/user/1/quiz"
 
-    return get(url).text
+    assert get(url).status_code == 200
 
 
 def test_quiz_put_request():
@@ -89,7 +89,7 @@ def test_quiz_put_request():
         "name": "Quiz recreated name"
     }
 
-    return put(url, json=quiz_put_request_body, headers={"Content-Type": "application/json"}).text
+    assert put(url, json=quiz_put_request_body, headers={"Content-Type": "application/json"}).status_code == 200
 
 
 def test_user_login_request():
@@ -98,7 +98,7 @@ def test_user_login_request():
     body = {"email": "vikochka_kruk@mail.ru",
             "password": "123"}
 
-    return post(url, json=body).text
+    assert post(url, json=body).status_code == 200
 
 
 def test_user_post_request():
@@ -110,30 +110,30 @@ def test_user_post_request():
         'email': 'il@k.r',
         'password': 'strong_pass'
     }
-    return post(url, json=user_post_request_body, headers={"Content-Type": "application/json"}).text
+    assert post(url, json=user_post_request_body, headers={"Content-Type": "application/json"}).status_code == 201
 
 
 def test_question_get_request():
     url = "http://127.0.0.1:8888/api/quiz/1/question/2"
-    return get(url).text
+    assert get(url).status_code == 200
 
 
 def test_question_post_request():
     url = "http://127.0.0.1:8888/api/quiz/1/question/2"
 
     question_post_request_body = {"answers": ["Incorrect answer", "Correct answer"]}
-    return post(url, json=question_post_request_body, headers={"Content-Type": "application/json"}).text
+    assert post(url, json=question_post_request_body, headers={"Content-Type": "application/json"}).status_code == 201
 
 
 def test_quiz_delete_request():
     url = "http://127.0.0.1:8888/api/user/1/quiz/1"
 
-    return delete(url).text
+    assert delete(url).status_code == 200
 
 
 # print(test_user_post_request())
 # print(test_quiz_delete_request())
-print(test_quiz_put_request())
+# print(test_quiz_put_request())
 # print(test_quizzes_post_request())
 # print(test_quiz_get_request())
 # print(test_user_login_request())
