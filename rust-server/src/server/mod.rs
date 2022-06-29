@@ -34,15 +34,15 @@ fn index() -> &'static str {
 }
 
 /// Create a new game from the quiz id
-#[post("/games/<id>", data = "<user_id>")]
+#[post("/games/<quiz_id>", data = "<user_id>")]
 async fn create_game(
-    id: QuizId,
+    quiz_id: QuizId,
     user_id: Json<UserId>,
     games: &State<GamesState>,
     web_client: &State<WebClient>,
 ) -> SResult<GameCode> {
     let user_id = user_id.0;
-    let quiz_config = web_client.get_quiz(user_id, id).await?;
+    let quiz_config = web_client.get_quiz(user_id, quiz_id).await?;
     let code = games.lock().unwrap().create_game(quiz_config);
     Ok(code)
 }
