@@ -66,16 +66,12 @@ document.querySelector("#btn_log").onclick = function(event){
 
         }
       
-            ajax("https://9c9d-188-130-155-167.ngrok.io/api/user/login", "POST", response_reg, JSON.stringify(data));
+            ajax("https://f865-188-130-155-167.ngrok.io/api/user/login", "POST", response_reg, JSON.stringify(data));
             function response_reg(dataArr){
-                if (this.readyState == 4 && this.status==200){
-                   
+               
                     localStorage.setItem("user_data",JSON.stringify(dataArr));
                     window.location.href="../templates/page_of_user.html"
-                }
-                else if (this.status < 500){
-                    alert("Try again")
-                }
+               
                 // console.log(dataArr);
             // dataArr = response;
 
