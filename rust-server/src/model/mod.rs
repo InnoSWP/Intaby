@@ -33,7 +33,7 @@ pub enum QuestionType {
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
 pub struct Question {
     pub answers: Vec<Answer>,
-    pub quiestion_type: QuestionType,
+    pub question_type: QuestionType,
     pub quiz_id: QuizId,
     pub text: String,
     pub time: Time,
