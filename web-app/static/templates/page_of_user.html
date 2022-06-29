@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/web-app/static/styles/style.css">
+    <link rel="stylesheet" href="/web-app/static/styles/new_style_1.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -20,7 +20,7 @@
 </head>
 
 <body style=" background-color: #DBE4ED;">
-    <header class="main_page">
+    <header>
         <div class="d-flex align-items-center">
             <div class="me-auto">
                 <h1 class="logo_intaby">INTABY</h1>
@@ -36,14 +36,15 @@
         </div>
       
     </div>
-    <div class="quiz_storage d-flex flex-wrap align-items-center justify-content-center justify-content-md-start" style="height: 70%">
-        <div class="add_quiz_button mx-4 my-4 p-2 col-8 col-md-4 position-relative" style="height: 70%">
+    <div class="quiz_storage d-flex flex-wrap align-items-center justify-content-center justify-content-md-start"
+        id="quiz_storage" style="height: 70%">
+        <div class="add_quiz_button mx-4 my-4 p-2 col-8 col-md-3 position-relative" style="height: 70%">
             <div class="add_quiz_text text-center position-absolute top-50 start-50 translate-middle col-10"
                 style="color:#DBE4ED">+ Add Quizz
             </div>
         </div>
-        <div class="quiz_button mx-4 my-4 col-8 col-md-4 position-relative" style="height: 70%">
-            <div class="d-flex flex-column justify-content-between align-items-center" style="height: 100%">
+        <div class="quiz_button mx-4 my-4 col-8 col-md-3 position-relative" id="quiz_button" style="height: 70%">
+            <div class="d-flex flex-column justify-content-between align-items-center" style="height: 100%; background-color: #193050;">
                 <div class="add_quiz_header p-2 col-12">
                     <div class="title">TITLE</div>
                     <div class="secondary_text">Secondary text</div>
@@ -60,6 +61,7 @@
 <script src="../scripts/page_of_user_script.js"></script>
 <script src="../scripts/ajax.js"></script>
 <!-- <script type="module" src="../scripts/page_of_user2.js"></script> -->
+<script src="../scripts/addQuiz.js"></script>
 
 
 
