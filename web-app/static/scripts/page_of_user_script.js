@@ -4,5 +4,8 @@ ajax("", POST, response_reg, user_token)
 
 function response_reg(data){
     console.log(data)
-    
+    if (this.readyState == 4 && this.status==200){
+        $("#username").val();
+        $("#")
+    }
 }
