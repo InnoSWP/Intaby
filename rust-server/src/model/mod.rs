@@ -1,6 +1,9 @@
 pub use rocket::serde;
 pub use rocket::serde::json::serde_json;
-use rocket::serde::{Deserialize, Serialize};
+use rocket::{
+    serde::{Deserialize, Serialize},
+    time::Instant,
+};
 use std::collections::HashMap;
 
 pub type UserId = u64;
@@ -8,8 +11,7 @@ pub type QuizId = u64;
 pub type QuestionId = u64;
 pub type Time = u64;
 
-#[derive(Debug, Serialize, Deserialize)]
-#[serde(crate = "rocket::serde", deny_unknown_fields)]
+#[derive(Debug)]
 pub struct Games {
     map: HashMap<GameCode, Game>,
 }
@@ -48,12 +50,15 @@ pub struct Answer {
 }
 
 /// Represents different states of a game
-#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
-#[serde(crate = "rocket::serde", deny_unknown_fields)]
+#[derive(Debug)]
 pub enum GameState {
     /// Initial state of the game
     Lobby,
-    InProgress,
+    InProgress {
+        current_question: usize,
+        current_answers: HashMap<UserId, GameAnswer>,
+        start_time: Instant,
+    },
     Finished,
 }
 
@@ -67,11 +72,11 @@ pub struct Player {
     name: PlayerName,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
-#[serde(crate = "rocket::serde", deny_unknown_fields)]
+#[derive(Debug)]
 pub struct Game {
     players: HashMap<UserId, Player>,
     quiz_config: QuizConfig,
+    state: GameState,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -116,6 +121,7 @@ impl Game {
         Self {
             players: HashMap::new(),
             quiz_config,
+            state: GameState::Lobby,
         }
     }
 
@@ -125,7 +131,42 @@ impl Game {
     }
 
     pub fn player_answer(&mut self, answer: GameAnswer) {
-        todo!()
+        self.update();
+        match &mut self.state {
+            GameState::InProgress {
+                current_answers, ..
+            } => {
+                current_answers.insert(answer.user_id, answer);
+            }
+            _ => {}
+        }
+    }
+
+    fn update(&mut self) {
+        match &mut self.state {
+            GameState::Lobby => {}
+            GameState::InProgress {
+                current_question,
+                current_answers,
+                start_time,
+            } => {
+                let elapsed = start_time.elapsed().as_seconds_f64().floor() as Time;
+                let time_limit = self
+                    .quiz_config
+                    .questions
+                    .get(*current_question)
+                    .expect("Current question index is illegal")
+                    .time;
+                if elapsed >= time_limit {
+                    if *current_question + 1 >= self.quiz_config.questions.len() {
+                        self.state = GameState::Finished;
+                    } else {
+                        *current_question += 1;
+                    }
+                }
+            }
+            GameState::Finished => {}
+        }
     }
 }
 
