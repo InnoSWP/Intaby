@@ -156,6 +156,11 @@ impl Game {
     }
 
     pub fn player_join(&mut self, player: Player) {
+        // Players can only join before the start
+        if !matches!(self.state, GameState::Lobby) {
+            return;
+        }
+
         // TODO: check collisions
         self.players.insert(player.user_id, player);
     }
@@ -191,7 +196,9 @@ impl Game {
                 current_answers,
                 current_question,
                 ..
-            } if answer.question_id == *current_question as QuestionId => {
+            } if answer.question_id == *current_question as QuestionId
+                && self.players.contains_key(&answer.user_id) =>
+            {
                 current_answers.insert(answer.user_id, answer);
             }
             _ => {}
