@@ -22,14 +22,12 @@ document.querySelector("#btn_reg").onclick = function(event){
 
         }
         if (name&&surname&&pass&&email&&pass2){
-            ajax("https://9c9d-188-130-155-167.ngrok.io/api/user/register", "POST", response_reg, JSON.stringify(data));
+            ajax("https://f865-188-130-155-167.ngrok.io/api/user/register", "POST", response_reg, JSON.stringify(data));
             function response_reg(dataArr){
-                if (this.readyState == 4 && this.status==201){
+                
                     window.location.href="../templates/authorization_page.html"
-                }
-                else if (this.status < 500){
-                    alert("Try again")
-                }
+                
+               
                 
             }
         

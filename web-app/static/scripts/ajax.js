@@ -5,6 +5,12 @@ function ajax(url, method, functionName, dataArray){
     console.log(dataArray)
     xhttp.send(dataArray);
     xhttp.onreadystatechange = function(){
-        functionName(this.response);
+        if (this.readyState == 4 && (this.status == 200 || this.status == 201)){
+            functionName(this.response);
+        }
+        else if (this.status == 403){
+            alert("User already exist")
+        }
+        
     }
 }

@@ -1,11 +1,9 @@
 
-window.onload = addQuiz(7)
-
-
 function addQuiz(quizNumber) {
     var wrapper = document.getElementById('quiz_storage')
     for (let index = 0; index < quizNumber; index++) {
         var copy = createQuiz()
+        console.log("aoaoa")
         wrapper.appendChild(copy)
     }
 }
