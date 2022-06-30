@@ -1,12 +1,12 @@
 use async_trait::async_trait;
 
-use super::*;
+use crate::model::*;
 use crate::web_client::Result as WebResult;
 
-struct MockWebClient {}
+pub struct MockWebClient {}
 
 impl MockWebClient {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Self {}
     }
 }
@@ -56,9 +56,4 @@ impl crate::web_client::WebClient for MockWebClient {
             ],
         })
     }
-}
-
-pub async fn setup_mock() -> Client {
-    let web_client = Box::new(MockWebClient::new());
-    setup(web_client).await
 }

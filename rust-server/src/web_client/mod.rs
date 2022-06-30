@@ -1,6 +1,7 @@
 use crate::model::*;
 use async_trait::async_trait;
 
+pub mod mock;
 pub mod reqwest_client;
 
 #[derive(Debug)]

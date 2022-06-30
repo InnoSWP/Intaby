@@ -3,12 +3,6 @@ use rocket::{http::Status, local::asynchronous::Client};
 
 use crate::model::*;
 
-mod end_to_end;
-mod mock;
-
-use end_to_end::setup_end_to_end;
-use mock::setup_mock;
-
 macro_rules! request {
     ($request: expr) => {{
         println!("---\nProcessing: {:?}", $request);
@@ -27,6 +21,16 @@ async fn setup(web_client: Box<dyn crate::web_client::WebClient>) -> Client {
     };
     let rocket = crate::server::rocket(config, web_client).await;
     Client::tracked(rocket).await.unwrap()
+}
+
+async fn setup_end_to_end() -> Client {
+    let web_client = Box::new(crate::web_client::reqwest_client::ReqwestClient::new());
+    setup(web_client).await
+}
+
+async fn setup_mock() -> Client {
+    let web_client = Box::new(crate::web_client::mock::MockWebClient::new());
+    setup(web_client).await
 }
 
 #[tokio::test]
