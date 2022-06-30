@@ -1,25 +1,21 @@
 use rocket::{get, post, put, serde::json::Json, State};
 use std::sync::Mutex;
 
-use crate::database::{DBAccessor, DBError};
 use crate::model::*;
 
 mod error;
 
 use error::*;
 
-type Database = Box<dyn DBAccessor>;
 type WebClient = Box<dyn crate::web_client::WebClient>;
 type SResult<T> = Result<T, Error>;
 type GamesState = Mutex<Games>;
 
 pub async fn rocket(
     config: rocket::Config,
-    database: Database,
     web_client: WebClient,
 ) -> rocket::Rocket<rocket::Build> {
     rocket::custom(config)
-        .manage(database)
         .manage(web_client)
         .manage(Mutex::new(Games::new()))
         .mount(

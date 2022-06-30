@@ -1,4 +1,3 @@
-mod database;
 mod model;
 mod server;
 mod web_client;
@@ -14,11 +13,6 @@ async fn launch() -> _ {
         port: 8080,
         ..Default::default()
     };
-    let database = Box::new(
-        database::sql::SqlAccess::new("postgresql://test:test@postgres_db:5432/test")
-            .await
-            .expect("Failed to access the database"),
-    );
     let web_client = Box::new(web_client::reqwest_client::ReqwestClient::new());
-    server::rocket(config, database, web_client).await
+    server::rocket(config, web_client).await
 }

@@ -18,17 +18,14 @@ macro_rules! request {
     }};
 }
 
-async fn setup(
-    database: Box<dyn crate::database::DBAccessor>,
-    web_client: Box<dyn crate::web_client::WebClient>,
-) -> Client {
+async fn setup(web_client: Box<dyn crate::web_client::WebClient>) -> Client {
     let config = rocket::Config {
         log_level: rocket::log::LogLevel::Debug,
         address: std::net::Ipv4Addr::new(127, 0, 0, 1).into(),
         port: 8000,
         ..Default::default()
     };
-    let rocket = crate::server::rocket(config, database, web_client).await;
+    let rocket = crate::server::rocket(config, web_client).await;
     Client::tracked(rocket).await.unwrap()
 }
 

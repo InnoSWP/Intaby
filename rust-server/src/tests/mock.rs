@@ -3,17 +3,6 @@ use async_trait::async_trait;
 use super::*;
 use crate::web_client::Result as WebResult;
 
-struct MockDatabase {}
-
-impl MockDatabase {
-    fn new() -> Self {
-        Self {}
-    }
-}
-
-#[async_trait]
-impl crate::database::DBAccessor for MockDatabase {}
-
 struct MockWebClient {}
 
 impl MockWebClient {
@@ -70,7 +59,6 @@ impl crate::web_client::WebClient for MockWebClient {
 }
 
 pub async fn setup_mock() -> Client {
-    let database = Box::new(MockDatabase::new());
     let web_client = Box::new(MockWebClient::new());
-    setup(database, web_client).await
+    setup(web_client).await
 }
