@@ -62,6 +62,19 @@ pub enum GameState {
     Finished,
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(crate = "rocket::serde")]
+pub enum StateTarget {
+    InProgress,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(crate = "rocket::serde")]
+pub struct StateUpdate {
+    pub user_id: UserId,
+    pub state: StateTarget,
+}
+
 pub type GameCode = String;
 pub type PlayerName = String;
 
@@ -74,6 +87,7 @@ pub struct Player {
 
 #[derive(Debug)]
 pub struct Game {
+    creator_id: UserId,
     players: HashMap<UserId, Player>,
     quiz_config: QuizConfig,
     state: GameState,
@@ -94,14 +108,14 @@ impl Games {
         }
     }
 
-    pub fn create_game(&mut self, quiz_config: QuizConfig) -> GameCode {
+    pub fn create_game(&mut self, owner_id: UserId, quiz_config: QuizConfig) -> GameCode {
         let code = loop {
             let code = game_code_generator();
             if !self.map.contains_key(&code) {
                 break code;
             }
         }; // TODO: avoid infinite loop
-        let game = Game::new(quiz_config);
+        let game = Game::new(owner_id, quiz_config);
         let res = self.map.insert(code.clone(), game);
         assert!(res.is_none());
         code
@@ -117,17 +131,42 @@ impl Games {
 }
 
 impl Game {
-    pub fn new(quiz_config: QuizConfig) -> Self {
+    pub fn new(creator_id: UserId, quiz_config: QuizConfig) -> Self {
         Self {
             players: HashMap::new(),
-            quiz_config,
             state: GameState::Lobby,
+            quiz_config,
+            creator_id,
         }
     }
 
     pub fn player_join(&mut self, player: Player) {
         // TODO: check collisions
         self.players.insert(player.user_id, player);
+    }
+
+    pub fn change_state(&mut self, update: StateUpdate) {
+        // Only the creator can change the state of the game
+        if self.creator_id != update.user_id {
+            return;
+        }
+
+        match update.state {
+            StateTarget::InProgress => self.start_game(),
+        }
+    }
+
+    fn start_game(&mut self) {
+        match self.state {
+            GameState::Lobby => {
+                self.state = GameState::InProgress {
+                    current_question: 0,
+                    current_answers: HashMap::new(),
+                    start_time: Instant::now(), // TODO: delay start
+                };
+            }
+            _ => {}
+        }
     }
 
     pub fn player_answer(&mut self, answer: GameAnswer) {
@@ -196,7 +235,7 @@ mod tests {
             questions: vec![],
         };
         let mut codes = (0..CODE_GENS)
-            .map(|_| games.create_game(quiz.clone()))
+            .map(|_| games.create_game(0, quiz.clone()))
             .collect::<Vec<_>>();
         codes.sort();
         codes.dedup();

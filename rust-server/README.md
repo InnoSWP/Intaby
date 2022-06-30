@@ -19,6 +19,11 @@ The executable file will be generated at `target/release/`
 
 Returns: `String` - a 4-letter code of the new game
 
+ - Start game
+> PUT /games/\<code>/state
+
+> data = "InProgress"
+
  - Join game
 > POST /games/\<code>
 

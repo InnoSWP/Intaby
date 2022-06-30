@@ -20,7 +20,14 @@ pub async fn rocket(
         .manage(Mutex::new(Games::new()))
         .mount(
             "/",
-            rocket::routes![index, create_game, join_game, get_game_state, game_answer],
+            rocket::routes![
+                index,
+                create_game,
+                join_game,
+                get_game_state,
+                game_answer,
+                change_state
+            ],
         )
 }
 
@@ -39,7 +46,7 @@ async fn create_game(
 ) -> SResult<GameCode> {
     let user_id = user_id.0;
     let quiz_config = web_client.get_quiz(user_id, quiz_id).await?;
-    let code = games.lock().unwrap().create_game(quiz_config);
+    let code = games.lock().unwrap().create_game(user_id, quiz_config);
     Ok(code)
 }
 
@@ -53,6 +60,19 @@ async fn join_game(code: GameCode, player: Json<Player>, games: &State<GamesStat
             Ok(())
         }
     }
+}
+
+/// Start the newly created game. Only the creator of the game can start it
+#[put("/games/<code>/state", data = "<state>")]
+async fn change_state(
+    code: GameCode,
+    state: Json<StateUpdate>,
+    games: &State<GamesState>,
+) -> SResult<()> {
+    let games = &mut games.lock().unwrap();
+    let game = get_game_mut(games, &code)?;
+    game.change_state(state.0);
+    Ok(())
 }
 
 #[get("/games/<code>")]
