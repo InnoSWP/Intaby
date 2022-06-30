@@ -10,6 +10,12 @@ cargo build --release
 
 The executable file will be generated at `target/release/`
 
+Alternatively, you can run the server locally with mock handlers using
+
+```rust
+cargo run -- --mock
+```
+
 # API
 
  - Create game
