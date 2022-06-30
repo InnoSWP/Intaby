@@ -18,29 +18,60 @@ cargo run -- --mock
 
 # API
 
- - Create game
+## Create game
+
 > POST /games/\<quiz_id>
 
 > data = \<user_id>
 
 Returns: `String` - a 4-letter code of the new game
 
- - Start game
+## Start game
+
 > PUT /games/\<code>/state
 
 > data = "InProgress"
 
- - Join game
+## Join game
+
 > POST /games/\<code>
 
 > data = { user_id, name }
 
- - Get game state
+## Get game state
+
 > GET /games/\<code>
 
-Returns: `TODO` - state of the game
+Returns the state of the game, which has the type
 
- - Give an answer
+```rust
+enum Game {
+    Lobby {
+        players: Vec<String>,
+    },
+    InProgress {
+        current_question: Question,
+        current_question_id: QuestionId,
+        time_left: f64,
+    },
+    Finished,
+}
+```
+
+For example, if game was in lobby with players Jake and Olyvia, then the returned json would look like:
+```json
+{
+  "Lobby": {
+    "players": [
+      "Jake",
+      "Olyvia"
+    ]
+  }
+}
+```
+
+## Give an answer
+
 > PUT /games/\<code>
 
 > data = { user_id, question_id, answers: [String] }
