@@ -76,10 +76,10 @@ async fn change_state(
 }
 
 #[get("/games/<code>")]
-async fn get_game_state(code: GameCode, games: &State<GamesState>) -> SResult<GameCode> {
-    // TODO: proper game json
-    let _ = get_game(&games.lock().unwrap(), &code)?;
-    Ok(code)
+async fn get_game_state(code: GameCode, games: &State<GamesState>) -> SResult<Json<SerGame>> {
+    let games = &games.lock().unwrap();
+    let game = get_game(games, &code)?;
+    Ok(Json(game.to_serializable()))
 }
 
 #[put("/games/<code>", data = "<answer>")]

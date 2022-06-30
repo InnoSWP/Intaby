@@ -85,6 +85,14 @@ pub struct Player {
     name: PlayerName,
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(crate = "rocket::serde", deny_unknown_fields)]
+pub struct GameAnswer {
+    user_id: UserId,
+    question_id: QuestionId,
+    answers: Vec<String>,
+}
+
 #[derive(Debug)]
 pub struct Game {
     creator_id: UserId,
@@ -95,10 +103,17 @@ pub struct Game {
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
-pub struct GameAnswer {
-    user_id: UserId,
-    question_id: QuestionId,
-    answers: Vec<String>,
+pub enum SerGame {
+    Lobby {
+        players: Vec<PlayerName>,
+    },
+    InProgress {
+        current_question: Question,
+        current_question_id: QuestionId,
+        /// Time left for the current question in seconds
+        time_left: f64,
+    },
+    Finished, // TODO: statistics
 }
 
 impl Games {
@@ -173,8 +188,10 @@ impl Game {
         self.update();
         match &mut self.state {
             GameState::InProgress {
-                current_answers, ..
-            } => {
+                current_answers,
+                current_question,
+                ..
+            } if answer.question_id == *current_question as QuestionId => {
                 current_answers.insert(answer.user_id, answer);
             }
             _ => {}
@@ -205,6 +222,36 @@ impl Game {
                 }
             }
             GameState::Finished => {}
+        }
+    }
+
+    pub fn to_serializable(&self) -> SerGame {
+        match &self.state {
+            GameState::Lobby => SerGame::Lobby {
+                players: self
+                    .players
+                    .values()
+                    .map(|player| player.name.clone())
+                    .collect(),
+            },
+            GameState::InProgress {
+                current_question,
+                start_time,
+                ..
+            } => {
+                let question = self
+                    .quiz_config
+                    .questions
+                    .get(*current_question)
+                    .expect("Failed to get current question")
+                    .clone();
+                SerGame::InProgress {
+                    time_left: question.time as f64 - start_time.elapsed().as_seconds_f64(),
+                    current_question: question,
+                    current_question_id: *current_question as QuestionId,
+                }
+            }
+            GameState::Finished => SerGame::Finished,
         }
     }
 }
