@@ -20,7 +20,7 @@ pub async fn rocket(
         .manage(Mutex::new(Games::new()))
         .mount(
             "/",
-            rocket::routes![index, create_game, join_game, get_game, game_answer],
+            rocket::routes![index, create_game, join_game, get_game_state, game_answer],
         )
 }
 
@@ -44,27 +44,46 @@ async fn create_game(
 }
 
 /// Join an existing game with the specified code
-#[post("/games/<code>", data = "<name>", rank = 2)]
-async fn join_game(code: GameCode, name: PlayerName, games: &State<GamesState>) -> SResult<()> {
+#[post("/games/<code>", data = "<player>", rank = 2)]
+async fn join_game(code: GameCode, player: Json<Player>, games: &State<GamesState>) -> SResult<()> {
     match games.lock().unwrap().get_game_mut(&code) {
         None => Err(Error::GameNotFound(code)),
         Some(game) => {
-            game.player_join(name);
+            game.player_join(player.0);
             Ok(())
         }
     }
 }
 
 #[get("/games/<code>")]
-async fn get_game(code: GameCode, games: &State<GamesState>) -> SResult<GameCode> {
-    match games.lock().unwrap().get_game(&code) {
-        Some(_game) => Ok(code),
-        None => Err(Error::GameNotFound(code)),
-    }
+async fn get_game_state(code: GameCode, games: &State<GamesState>) -> SResult<GameCode> {
+    // TODO: proper game json
+    let _ = get_game(&games.lock().unwrap(), &code)?;
+    Ok(code)
 }
 
 #[put("/games/<code>", data = "<answer>")]
-async fn game_answer(code: GameCode, answer: Json<GameAnswer>) -> SResult<()> {
-    // TODO: register answer
+async fn game_answer(
+    code: GameCode,
+    answer: Json<GameAnswer>,
+    games: &State<GamesState>,
+) -> SResult<()> {
+    let games = &mut games.lock().unwrap();
+    let game = get_game_mut(games, &code)?;
+    game.player_answer(answer.0);
     Ok(())
+}
+
+fn get_game<'a>(games: &'a Games, code: &GameCode) -> SResult<&'a Game> {
+    match games.get_game(&code) {
+        Some(game) => Ok(game),
+        None => Err(Error::GameNotFound(code.to_owned())),
+    }
+}
+
+fn get_game_mut<'a>(games: &'a mut Games, code: &GameCode) -> SResult<&'a mut Game> {
+    match games.get_game_mut(&code) {
+        Some(game) => Ok(game),
+        None => Err(Error::GameNotFound(code.to_owned())),
+    }
 }

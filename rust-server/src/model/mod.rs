@@ -62,18 +62,25 @@ pub type PlayerName = String;
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(crate = "rocket::serde")]
-pub struct Player {}
+pub struct Player {
+    user_id: UserId,
+    name: PlayerName,
+}
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
 pub struct Game {
-    players: HashMap<PlayerName, Player>,
+    players: HashMap<UserId, Player>,
     quiz_config: QuizConfig,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
-pub struct GameAnswer {}
+pub struct GameAnswer {
+    user_id: UserId,
+    question_id: QuestionId,
+    answers: Vec<String>,
+}
 
 impl Games {
     pub fn new() -> Self {
@@ -112,8 +119,13 @@ impl Game {
         }
     }
 
-    pub fn player_join(&mut self, player_name: PlayerName) {
-        self.players.entry(player_name).or_insert_with(|| Player {});
+    pub fn player_join(&mut self, player: Player) {
+        // TODO: check collisions
+        self.players.insert(player.user_id, player);
+    }
+
+    pub fn player_answer(&mut self, answer: GameAnswer) {
+        todo!()
     }
 }
 
