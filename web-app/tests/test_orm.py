@@ -1,3 +1,4 @@
+# static analysis: ignore[import_failed]
 from adapters import repository
 from domain import model
 

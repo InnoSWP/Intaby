@@ -1,8 +1,10 @@
+# static analysis: ignore[import_failed]
 from sqlalchemy import Column, MetaData, Integer, String, ForeignKey, Text, Enum, Table, Boolean
 from sqlalchemy.orm import registry
 from sqlalchemy.orm import mapper, relationship
 
 from domain import model
+
 
 # Base = declarative_base()
 mapper_registry = registry()

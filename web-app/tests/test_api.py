@@ -1,3 +1,4 @@
+# static analysis: ignore[import_failed]
 import json
 
 from requests import get, post, delete, put

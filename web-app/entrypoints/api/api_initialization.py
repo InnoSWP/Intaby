@@ -1,4 +1,6 @@
+# static analysis: ignore[import_failed]
 from entrypoints.api.resource import AnswerResource, QuizResource, QuestionResource, UserResource
+
 from flask_restful import Api
 
 

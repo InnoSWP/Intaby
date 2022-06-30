@@ -1,3 +1,4 @@
+# static analysis: ignore[import_failed]
 from flask import jsonify
 from flask_restful import reqparse, abort, Resource
 from adapters.repository import SqlAlchemyRepository, get_repo

@@ -1,4 +1,4 @@
-# from abc import ABC, abstractmethod
+# static analysis: ignore[import_failed]
 
 from domain import model
 

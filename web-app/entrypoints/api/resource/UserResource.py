@@ -1,9 +1,13 @@
+# static analysis: ignore[import_failed]
 import flask
 from flask import jsonify, make_response
 from flask_restful import reqparse, abort, Resource
 from adapters.repository import SqlAlchemyRepository, get_repo
+
 from domain.model import User
+
 from service_layer import services
+
 from sqlalchemy.exc import IntegrityError
 
 login_parser = reqparse.RequestParser()
