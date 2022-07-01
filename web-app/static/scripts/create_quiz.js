@@ -38,13 +38,13 @@ let time_mode;
         this.value =""
     })
     if (question_type==1){
-        question_type = "Single answer"
+        question_type = "quiz"
     }
     else if (question_type == 2){
-        question_type = "Multiple answer"
+        question_type = "multquiz"
     }
     else if (question_type == 3){
-        question_type = "Interview"
+        question_type = "poll"
     }
     question_json = {
         "question_type":question_type,
