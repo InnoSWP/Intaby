@@ -1,8 +1,7 @@
-window.onload = addParticipant(100)
 
 function addParticipant(number) {
     var wrapper = document.getElementsByClassName('waiting_hall_wrapper')[0]
-    console.log(wrapper)
+    // console.log(wrapper)
     for (let index = 0; index < number; index++) {
         var element = createParticipant()
         wrapper.appendChild(element)

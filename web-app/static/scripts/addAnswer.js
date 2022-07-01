@@ -4,9 +4,12 @@ var addButton = document.getElementById("add_button")
 var clicks = 2
 var wrapper = document.getElementsByClassName("Answer_add_wrapper")
 
+sessionStorage.setItem('type', 'Interview')
+
 addButton.addEventListener('click', function addAnswer() {
     clicks += 1
     if (clicks <= 6) {
+
         var newAnswer = document.createElement('div')
         newAnswer.classList.add('answer_wrapper', 'd-flex', 'col-12', 'position-relative')
         var textField = document.createElement('textarea')
@@ -16,6 +19,7 @@ addButton.addEventListener('click', function addAnswer() {
         deleteButton.classList.add('Delete_button', 'position-absolute', 'top-0', 'end-0', 'mt-2', 'p-2')
         newAnswer.append(textField)
         newAnswer.append(deleteButton)
+
         if (answerDropList.options[answerDropList.selectedIndex].text === "Multiple answer") {
             let badge = document.createElement('button')
             badge.classList.add('Badge', 'position-absolute', 'top-50', 'end-0', 'translate-middle-y', 'p-2', 'mt-2', 'me-2', 'border', 'border-light', 'rounded-2', 'border-5')
@@ -30,15 +34,19 @@ addButton.addEventListener('click', function addAnswer() {
         }
         if (clicks === 3) {
             textField.style.backgroundColor = "#FF943B";
+            // sessionStorage.setItem('color', '#FF943B')
         }
         if (clicks === 4) {
             textField.style.backgroundColor = "#467CD3";
+            // sessionStorage.setItem('color', '#467CD3')
         }
         if (clicks === 5) {
             textField.style.backgroundColor = "#8AC600";
+            // sessionStorage.setItem('color', '#8AC600')
         }
         if (clicks === 6) {
             textField.style.backgroundColor = "#9D3FE1";
+            // sessionStorage.setItem('color', '#9D3FE1')
         }
         if (clicks < 6) {
             wrapper[0].append(newAnswer)
@@ -48,10 +56,12 @@ addButton.addEventListener('click', function addAnswer() {
             wrapper[0].append(newAnswer)
             addButton.parentNode.removeChild(addButton)
         }
+        sessionStorage.setItem('number', clicks)
     }
     addEventSelect()
     addEventDelete()
 })
+
 
 // Delete answer
 
@@ -93,6 +103,7 @@ answerDropList.addEventListener('change', function ReceiveType() {
                     badge.style.color = 'white'
                     item.append(badge)
                 }
+                sessionStorage.setItem('type', 'Multiple answer')
             }
             else {
                 let badges = document.getElementsByClassName('Badge')
@@ -101,6 +112,7 @@ answerDropList.addEventListener('change', function ReceiveType() {
                     item.classList.remove('rounded-circle')
                     item.classList.add('rounded-2')
                 }
+                sessionStorage.setItem('type', 'Multiple answer')
             }
             break
         case 'Single answer':
@@ -112,6 +124,7 @@ answerDropList.addEventListener('change', function ReceiveType() {
                     badge.style.color = 'white'
                     item.append(badge)
                 }
+                sessionStorage.setItem('type', 'Single answer')
             }
             else {
                 let badges = document.getElementsByClassName('Badge')
@@ -120,6 +133,7 @@ answerDropList.addEventListener('change', function ReceiveType() {
                     item.classList.remove('rounded-2')
                     item.classList.add('rounded-circle')
                 }
+                sessionStorage.setItem('type', 'Single answer')
             }
             break
         case 'Interview':
@@ -129,6 +143,7 @@ answerDropList.addEventListener('change', function ReceiveType() {
                     badge[0].parentNode.removeChild(badge[0])
                 }
             }
+            sessionStorage.setItem('type', 'Interview')
             break
     }
     addEventSelect()
@@ -181,12 +196,14 @@ function addEventDelete() {
                     wrapper[0].append(addButton)
                     deleteButton[0].parentNode.remove()
                     clicks -= 1
+                    sessionStorage.setItem('number', clicks)
                     update()
                 }
                 else if (clicks > 2) {
                     deletedN = Number((deleteButton[0].parentNode.firstChild.placeholder)[7])
                     deleteButton[0].parentNode.remove()
                     clicks -= 1
+                    sessionStorage.setItem('number', clicks)
                     update()
                 }
             })
