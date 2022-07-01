@@ -39,19 +39,12 @@ fn test_lobby_serialization(mut players: Vec<&str>) {
     let user_id = 0;
     let mut game = Game {
         creator_id: user_id,
-        players: HashMap::new(),
+        players: Default::default(),
         quiz_config: quiz,
         state: GameState::Lobby,
     };
-    for (user_id, name) in players.iter().enumerate() {
-        let user_id = user_id as UserId;
-        game.players.insert(
-            user_id,
-            Player {
-                user_id,
-                name: name.to_string(),
-            },
-        );
+    for name in &players {
+        game.players.insert(name.to_string());
     }
     let mut state = game.to_serializable();
     println!("{}", serde_json::to_string_pretty(&state).unwrap());
@@ -59,6 +52,7 @@ fn test_lobby_serialization(mut players: Vec<&str>) {
         match &mut state {
             SerGame::Lobby { players: names } => {
                 players.sort();
+                players.dedup();
                 names.sort();
                 assert_eq!(players, *names);
                 true
@@ -84,7 +78,7 @@ fn test_progress_serialization() {
     let user_id = 0;
     let game = Game {
         creator_id: user_id,
-        players: HashMap::new(),
+        players: Default::default(),
         quiz_config: quiz,
         state: GameState::InProgress {
             current_question: 0,
@@ -120,7 +114,7 @@ fn test_finished_serialization() {
     let user_id = 0;
     let game = Game {
         creator_id: user_id,
-        players: HashMap::new(),
+        players: Default::default(),
         quiz_config: quiz,
         state: GameState::Finished,
     };

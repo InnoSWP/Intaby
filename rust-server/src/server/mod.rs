@@ -51,12 +51,12 @@ async fn create_game(
 }
 
 /// Join an existing game with the specified code
-#[post("/games/<code>", data = "<player>", rank = 2)]
-async fn join_game(code: GameCode, player: Json<Player>, games: &State<GamesState>) -> SResult<()> {
+#[post("/games/<code>", data = "<name>", rank = 2)]
+async fn join_game(code: GameCode, name: PlayerName, games: &State<GamesState>) -> SResult<()> {
     match games.lock().unwrap().get_game_mut(&code) {
         None => Err(Error::GameNotFound(code)),
         Some(game) => {
-            game.player_join(player.0);
+            game.player_join(name);
             Ok(())
         }
     }

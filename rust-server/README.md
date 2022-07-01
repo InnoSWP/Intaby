@@ -36,7 +36,7 @@ Returns: `String` - a 4-letter code of the new game
 
 > POST /games/\<code>
 
-> data = { user_id, name }
+> data = \<player_name>
 
 ## Get game state
 
@@ -91,4 +91,4 @@ Or if the game is currently in progress, the returned json will look similar to:
 
 > PUT /games/\<code>
 
-> data = { user_id, question_id, answers: [String] }
+> data = { player_name, question_id, answers: [String] }

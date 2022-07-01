@@ -4,7 +4,7 @@ use rocket::{
     serde::{Deserialize, Serialize},
     time::Instant,
 };
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 #[cfg(test)]
 mod tests;
@@ -59,7 +59,7 @@ pub enum GameState {
     Lobby,
     InProgress {
         current_question: usize,
-        current_answers: HashMap<UserId, GameAnswer>,
+        current_answers: HashMap<PlayerName, GameAnswer>,
         start_time: Instant,
     },
     Finished,
@@ -82,16 +82,9 @@ pub type GameCode = String;
 pub type PlayerName = String;
 
 #[derive(Debug, Serialize, Deserialize)]
-#[serde(crate = "rocket::serde")]
-pub struct Player {
-    user_id: UserId,
-    name: PlayerName,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
 pub struct GameAnswer {
-    user_id: UserId,
+    player_name: PlayerName,
     question_id: QuestionId,
     answers: Vec<String>,
 }
@@ -99,7 +92,7 @@ pub struct GameAnswer {
 #[derive(Debug)]
 pub struct Game {
     creator_id: UserId,
-    players: HashMap<UserId, Player>,
+    players: HashSet<PlayerName>,
     quiz_config: QuizConfig,
     state: GameState,
 }
@@ -151,21 +144,21 @@ impl Games {
 impl Game {
     pub fn new(creator_id: UserId, quiz_config: QuizConfig) -> Self {
         Self {
-            players: HashMap::new(),
+            players: Default::default(),
             state: GameState::Lobby,
             quiz_config,
             creator_id,
         }
     }
 
-    pub fn player_join(&mut self, player: Player) {
+    pub fn player_join(&mut self, name: PlayerName) {
         // Players can only join before the start
         if !matches!(self.state, GameState::Lobby) {
             return;
         }
 
         // TODO: check collisions
-        self.players.insert(player.user_id, player);
+        self.players.insert(name);
     }
 
     pub fn change_state(&mut self, update: StateUpdate) {
@@ -200,9 +193,9 @@ impl Game {
                 current_question,
                 ..
             } if answer.question_id == *current_question as QuestionId
-                && self.players.contains_key(&answer.user_id) =>
+                && self.players.contains(&answer.player_name) =>
             {
-                current_answers.insert(answer.user_id, answer);
+                current_answers.insert(answer.player_name.clone(), answer);
             }
             _ => {}
         }
@@ -238,11 +231,7 @@ impl Game {
     pub fn to_serializable(&self) -> SerGame {
         match &self.state {
             GameState::Lobby => SerGame::Lobby {
-                players: self
-                    .players
-                    .values()
-                    .map(|player| player.name.clone())
-                    .collect(),
+                players: self.players.iter().cloned().collect(),
             },
             GameState::InProgress {
                 current_question,
