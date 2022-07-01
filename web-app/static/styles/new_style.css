@@ -37,21 +37,43 @@ body::-webkit-scrollbar {
     padding: 0;
 }
 
-.body_lobby {
-    min-width: 500px;
-    width: 100%;
-    height: 100%;
-    background: rgba(13, 66, 120, 1);
+.main_registration {
+    /* Size */
+    /*width: 100vw;*/
+    height: 120vh;
+
+    /* Display */
     display: flex;
-    justify-content: center;
-    align-items: stretch;
+    align-items: center;
     flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+
+    /* Others */
+    margin: 0;
+    padding: 0;
+}
+.background_registration {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: inherit;
+
+    z-index: -1;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 .background {
     pointer-events: none;
     position: absolute;
-    width: -webkit-fill-available;
-    height: 100vh;
+    width: 100%;
+    height: inherit;
 
     z-index: -1;
 
