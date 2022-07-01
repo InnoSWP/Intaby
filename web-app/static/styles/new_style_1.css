@@ -97,9 +97,10 @@ header {
     border-bottom: 2px #585B5F solid;
 }
 
-.Enter_quiz_name_text::placeholder{
+.Enter_quiz_name_text::placeholder {
     color: #585B5F;
 }
+
 .Editor {
     background-color: #0D4278;
     /*height: 60%;*/
@@ -115,6 +116,7 @@ header {
     font-size: x-large;
     border: 3px dashed white;
 }
+
 .type_a_question::placeholder {
     text-align: left;
 }
@@ -129,6 +131,7 @@ header {
     font-size: x-large;
     height: 2em;
 }
+
 .Answer_add_wrapper {
     height: max-content;
 }
@@ -137,6 +140,7 @@ header {
     color: white;
     font-size: x-large;
 }
+
 .Answer_type::placeholder {
     text-align: left;
 }
@@ -273,9 +277,11 @@ textarea::-moz-placeholder {
     background: #0D4278;
     border: 2px #FFFFFF solid;
 }
-.Edit_profile-link{
+
+.Edit_profile-link {
     color: #FFFFFF;
 }
+
 .quiz_storage {
     background-color: #DBE4ED;
 }
@@ -310,6 +316,7 @@ textarea::-moz-placeholder {
     font-style: normal;
     color: #DBE4ED;
 }
+
 .edit {
     font-size: large;
     font-family: 'Rubik', serif;
@@ -386,7 +393,6 @@ a {
 }
 
 .person {
-
     font-size: x-large;
     color: white;
     font-family: "Josefin Sans", serif;
@@ -425,4 +431,13 @@ a {
     .person {
         font-size: xx-large;
     }
+    .user_icon {
+        height: 100%;
+        width: 8%;
+    }
+}
+
+.user_icon {
+    height: 100%;
+    width: 3%;
 }
