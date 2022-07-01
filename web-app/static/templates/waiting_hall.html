@@ -4,11 +4,11 @@
 <head>
   <title>waiting hall</title>
   <script src="jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="/web-app/static/styles/new_style_1.css">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  
-  
+  <link rel="stylesheet" href="/web-app/static/styles/new_style_1.css">
+
 </head>
 
 <body style="background-color: #0D4278; height:100%">
@@ -31,7 +31,7 @@
           666666
         </div>
       </div>
-      <div class="timer_wrapper d-flex flex-column justify-content-center align-items-center r m-4">
+      <div class="timer_wrapper d-flex flex-column justify-content-center align-items-center m-4">
         <div class="starts_in">Starts in</div>
         <div class="timer px-4 py-1">15</div>
         <div class="seconds">seconds</div>
@@ -40,19 +40,19 @@
 
     <div class="line_separator"></div>
 
-    <div class="waiting_hall_wrapper d-flex justify-content-between text-center flex-wrap">
-      <div class="person  mt-3 col-md-2 col-xs-6">Person 1</div>
+    <div class="waiting_hall_wrapper d-flex justify-content-begin text-center flex-wrap">
+      <!-- <div class="person  mt-3 col-md-2 col-xs-6">Person 1</div>
       <div class="person  mt-3 col-md-2 col-xs-6">Person 2</div>
       <div class="person  mt-3 col-md-2 col-xs-6">Person 3</div>
-      <div class="person  mt-3 col-md-2 col-xs-6">Person 4</div>
+      <div class="person  mt-3 col-md-2 col-xs-6">Person 4</div> -->
     </div>
-    <div
-      class="d-flex justify-content-center align-items-center participants_wrapper position-absolute bottom-0 end-0 col-1 mb-4 me-4">
-      <img src="/web-app/static/images/User_icon.png" class="col-12 col-md-8 col-lg-6 col-lx-4">
-      <div class="participants_text col-12 col-md-8 col-lg-6 col-lx-4  me-3">15</div>
+    <div class="d-flex justify-content-end align-items-center participants_wrapper mb-4 me-4"
+      style="width: 100%">
+      <img src="/web-app/static/images/User_icon.png" class="user_icon" >
+      <div class="participants_text me-3">15</div>
     </div>
   </div>
-
+  <script src="..\scripts\addParticipant.js"></script>
   <script src="../scripts/ajax.js"></script>
   <script src="../scripts/wh.js"></script>
 </body>
