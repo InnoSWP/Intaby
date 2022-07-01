@@ -1,0 +1,1772 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100%;
+}
+
+.header {
+    width: 80%;
+    background-color: gray;
+    margin-left: 10%;
+    margin-top: 2%;
+    text-align: center;
+}
+
+.Name_of_quiz {
+    width: 40%;
+    background-color: gray;
+    margin-left: 10%;
+    margin-top: 2%;
+    text-align: left;
+    margin-bottom: 1%;
+}
+
+.Block1 {
+    display: inline-block;
+    width: 15%;
+    background-color: gray;
+    margin-left: 10%;
+    text-align: left;
+    height: 2em;
+}
+
+.Block {
+    display: inline-block;
+    width: 15%;
+    background-color: gray;
+    margin-left: 9.75%;
+    text-align: left;
+    height: 2em;
+}
+
+.Question_wrapper {
+    border: #FFFFFF 4px dashed;
+
+}
+
+.Content_wrapper {
+    width: 90%;
+    height: 90%;
+}
+
+
+@media (min-width: 768px) {
+    .Question_wrapper {
+        font-size: large;
+    }
+
+    .Answer_button {
+        font-size: medium;
+    }
+}
+
+
+@media (min-width: 576px) {
+    .Question_wrapper {
+        font-size: xx-large;
+    }
+
+    .Answer_button {
+        font-size: x-large;
+    }
+}
+
+.Test_class {
+    max-height: 200px;
+}
+
+/* .Editor {
+    position: absolute;
+    width: 80%;
+    height: 40%;
+    background-color: gray;
+    margin-left: 10%;
+    margin-top: 1%;
+    text-align: left;
+} */
+
+.Question_text {
+    margin-top: 3%;
+    height: 3em;
+    width: 50%;
+    margin-left: 10%;
+
+}
+
+.time_mode {
+    margin-top: 3%;
+    height: 3em;
+    width: 20%;
+    margin-left: 10%;
+}
+
+.Add_answer {
+    width: 35%;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 3em;
+}
+
+.save {
+    height: 5%;
+    width: 5%;
+
+    float: right;
+    margin-top: 60%;
+}
+
+.Answer1,
+.Answer2,
+.Answer3,
+.Answer4 {
+    width: 40%;
+    display: inline-block;
+    margin-left: 5%;
+    margin-bottom: 1%;
+    height: 7em;
+    background-color: aqua;
+}
+
+.Task {
+    width: 85%;
+    text-align: center;
+    background-color: aqua;
+    margin: 3%;
+    height: 13em;
+    margin-left: 5%;
+
+}
+
+.TimeScale {
+    background-color: aqua;
+    text-align: center;
+    width: 85%;
+    height: 1.5em;
+    margin: 3%;
+    margin-top: 2%;
+    border-radius: 10px;
+    margin-left: 5%;
+
+}
+
+fieldset {
+    width: 90%;
+}
+
+header {
+    /*width: 100%;
+    height: 2.5em;
+    background-color: #142036;
+
+    margin: 0;
+    padding: 0;*/
+    height: calc(2rem + 4em);
+    width: 100%;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    top: 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+footer {
+    width: 100%;
+    height: 5em;
+    left: 0;
+    bottom: 0;
+    background-color: aqua;
+    position: fixed;
+}
+
+.Registration,
+.Authorization,
+.Lobby {
+    width: 90%;
+    height: max-content;
+    padding: 2%;
+    padding-top: 0;
+    /* margin-left: 35%; */
+    margin-top: 1rem;
+
+}
+
+.Registration_inner,
+.Authorization_inner,
+.Lobby_inner {
+    width: 100%;
+    padding-bottom: 1%;
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #3D71A0;
+}
+
+input {
+    padding-left: 1.063rem;
+}
+
+/*Authorization*/
+
+
+.email {
+    height: 3em;
+    /*margin: 1%;*/
+    width: 80%;
+    background-color: #DAE3ED;
+
+    /* Edition */
+
+    font-size: large;
+    margin: 2% 1%;
+
+    font-family: 'Roboto', serif;
+    font-style: normal;
+    font-weight: 400;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.005em;
+    background-clip: padding-box;
+    color: rgba(0, 0, 0, 0.6);
+
+    flex-direction: row;
+    padding: 1.063rem;
+    box-shadow: inset 0 -0.25rem 0 #0D4278;
+    border-radius: 8px 8px 0 0;
+    border: 0;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+    z-index: 3;
+}
+
+.namesurname {
+    width: 80%;
+    /*margin-left: 10%;*/
+    margin: 1%;
+    /*display: inline-block;*/
+    display: flex;
+    justify-content: center;
+}
+
+.name,
+.surname {
+    width: 39%;
+    height: 3em;
+    background-color: #DAE3ED;
+    /* Edition */
+
+    font-size: large;
+
+    font-family: 'Roboto', serif;
+    font-style: normal;
+    font-weight: 400;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.005em;
+    background-clip: padding-box;
+    color: rgba(0, 0, 0, 0.6);
+
+    flex-direction: row;
+    padding: 1.063rem;
+    box-shadow: inset 0 -0.25rem 0 #0D4278;
+    border-radius: 8px 8px 0 0;
+    border: 0;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+    z-index: 3;
+}
+
+.name {
+    margin-right: 2%;
+}
+
+.password {
+    width: 80%;
+    height: 3em;
+    background-color: #DAE3ED;
+
+    /* Edition */
+
+    /*font-size: x-large;*/
+    font-size: large;
+    margin: 2% 1%;
+
+    font-family: 'Roboto', serif;
+    font-style: normal;
+    font-weight: 400;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.005em;
+    background-clip: padding-box;
+    color: rgba(0, 0, 0, 0.6);
+
+    flex-direction: row;
+    padding: 1.063rem;
+    box-shadow: inset 0 -0.25rem 0 #0D4278;
+    border-radius: 8px 8px 0 0;
+    border: 0;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+    z-index: 3;
+}
+
+.reg_button {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+    margin-bottom: 4%;
+    width: 80%;
+    /* Edition */
+    height: 2.5em;
+    font-size: 4vw;
+
+}
+
+
+.reg {
+    /*height: 4em;*/
+    /* what is that?
+    padding-left: 100%;
+    padding-right: 100%;*/
+    width: 100%;
+    margin: 0;
+    background-color: #142036;
+    border: #FFFFFF 2px solid;
+}
+
+.enter {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #142036;
+    border: #FFFFFF 2px solid;
+
+    /* Edit */
+    box-sizing: border-box;
+    border-radius: 0;
+}
+
+
+.reg_text {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 4vw;
+    font-family: 'Rubik', serif;
+    font-style: normal;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.img1 {
+    margin-top: 3%;
+    margin-bottom: 2%;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.circled_UI {
+    background-color: white;
+    width: 40%;
+    border-radius: 50%;
+}
+
+.circled_Google {
+    background-color: white;
+    width: 40%;
+    border-radius: 60px;
+}
+
+.UI,
+.google {
+    width: auto;
+    height: auto;
+    /*max-width: 45px;*/
+    padding: 0;
+    cursor: pointer;
+}
+
+.buttons {
+    /*display: flexbox;*/
+
+    right: 0;
+    width: 50%;
+    float: right;
+    position: absolute;
+}
+
+.main_page {
+    height: max-content;
+    /*min-width: 576px;*/
+    background-color: #142036;
+}
+
+.right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.left {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.Sign_up,
+.Back {
+    background-color: #FFFFFF;
+
+    /* Edition */
+    margin-right: 1rem !important;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1.625rem;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    border: 2px solid #FFFFFF;
+
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.Sign_up a,
+.Back a {
+    color: #142036FF;
+    text-decoration: none;
+    font-size: x-large;
+    font-family: 'Rubik', serif;
+    font-style: normal;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Edition */
+    text-align: center;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.Log_in a {
+    color: #FFFFFF;
+    text-decoration: none;
+    /*font-size: medium;*/
+
+    /* Edition */
+
+    align-items: center;
+    text-align: center;
+
+    font-family: 'Rubik', serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: x-large;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.Log_in {
+    /* Edition */
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1.625rem;
+
+    background: #142036;
+    border: 2px solid #FFFFFF;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration-line: none;
+}
+
+/* Вот эта тварь отвечает за header */
+.name2 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: fixed;
+
+    background-color: #142036;
+    top: 0;
+    z-index: 4;
+}
+
+.Border_quiz {
+    border-width: 20px 10px 20px 10px;
+    border-style: solid;
+    width: 100%;
+    padding: 20px;
+    color: #FFFFFF;
+}
+
+.Intaby {
+
+    float: left;
+    margin: 1%;
+    color: #FFFFFF;
+    font-size: xx-large;
+
+}
+
+
+.join_quiz,
+.Registration_wrapper,
+.Authorization_wrapper,
+.Lobby_wrapper {
+    width: 100%;
+    min-height: 85vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width:740px) {
+    fieldset {
+        border-width: 1vw;
+        border-style: solid;
+        width: auto;
+        padding: 0 5vw 5vw 5vw;
+        border-color: #CAD8E5;
+        color: #FFFFFF;
+    }
+
+    .reg_button,
+    .reg_text,
+    .email,
+    .name,
+    .surname,
+    .password,
+    .or_reg,
+    .code,
+    .mp_name,
+    .connect,
+    .qr,
+    .Log_in,
+    .Sign_up,
+    .Back {
+        /*font-size: 2vw;*/
+        font-size: xx-large;
+    }
+
+    .UI,
+    .google {
+        width: 10vw;
+        height: auto;
+        /* max-width: 45px; */
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .join_quiz1 {
+        width: 50%;
+        padding: 30px;
+
+        /* outline: 2px solid white; Чёрная рамка */
+
+        /* border: 10px solid #0D4278; */
+
+
+    }
+
+    .join_quiz_2 {
+        padding: 3% 0;
+        background-color: #3D71A0;
+        margin: 0;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3%;
+        isolation: isolate;
+
+        flex: none;
+        order: 1;
+        align-self: stretch;
+        flex-grow: 1;
+    }
+
+    /*.Log_in,
+    .Sign_up,
+    .Back {
+        !* width: 20%; *!
+        width: 10rem;
+        !* margin: 1%; *!
+        !*height: 3em;*!
+        height: 4em;
+    }
+*/
+    .Sign_up .Back {
+        margin-right: 1%;
+    }
+
+    /*.mp_name {
+        background-color: #DAE3ED;
+        width: 94%;
+        height: 3em;
+        margin-top: 2%;
+        font-size: xx-large;
+        margin-bottom: 2%;
+
+        !* Edition *!
+
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 400;
+
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.005em;
+        background-clip: padding-box;
+        color: rgba(0, 0, 0, 0.6);
+
+        flex-direction: row;
+        padding: 1.063rem;
+        box-shadow: inset 0 -0.25rem 0 #0D4278;
+        border-radius: 8px 8px 0 0;
+        border: 0;
+        !* Inside auto layout *!
+        flex: none;
+        order: 0;
+        flex-grow: 1;
+        z-index: 3;
+    }
+    */
+
+    .reg_test {
+        text-align: center;
+        font-family: 'Staatliches', serif;
+        font-style: normal;
+        font-weight: 400;
+        /*font-size: 300%;*/
+        /*line-height: 14vw;*/
+        display: flex;
+        align-items: center;
+
+        color: #FFFFFF;
+
+        /*font-size: xxx-large;*/
+        font-size: 10vw;
+        width: auto;
+    }
+
+}
+
+@media (max-width:740px) {
+
+    .join_text {
+        font-size: x-large;
+    }
+
+    .reg_button,
+    .reg_text,
+    .email,
+    .name,
+    .surname,
+    .password,
+    .or_reg,
+    .code,
+    .mp_name,
+    .connect,
+    .qr,
+    .Log_in,
+    .Sign_up,
+    .Back {
+        /*font-size: 2vw;*/
+        font-size: large;
+    }
+
+    .reg_test {
+        text-align: center;
+        font-family: 'Staatliches', serif;
+        font-style: normal;
+        font-weight: 400;
+        /*font-size: 300%;*/
+        /*line-height: 14vw;*/
+        display: flex;
+        align-items: center;
+        color: #FFFFFF;
+        font-size: xxx-large;
+        width: auto;
+    }
+
+    fieldset {
+        border-width: 1vw;
+        border-style: solid;
+        width: 100%;
+        padding: 0 5vw 5vw 5vw;
+        border-color: #CAD8E5;
+        color: #FFFFFF;
+    }
+
+    .join_quiz1 {
+        width: 90%;
+        /* outline: 2px solid #000; /* Чёрная рамка */
+        /* border: 3px solid #fff; */
+
+    }
+
+    .join_quiz_2 {
+        background-color: #3D71A0;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 3% 0;
+        margin: 0;
+        border-radius: 0;
+        justify-content: space-between;
+        gap: 3%;
+        isolation: isolate;
+        flex: none;
+        order: 1;
+        align-self: stretch;
+        flex-grow: 1;
+    }
+
+
+    /*.Log_in,
+    .Sign_up,
+    .Back {
+        width: 60%;
+        margin: 3% 0;
+        height: 2em;
+    }*/
+
+    /*
+    .logo {
+        width: 20%;
+        margin-left: 2%;
+        margin-top: 1%;
+        margin-bottom: 1%;
+    } */
+
+    /* Для registrtation_page */
+
+    .Authorization,
+    .Registration,
+    .Lobby {
+        /*width: 90%;*/
+        width: auto;
+        height: max-content;
+        padding: 2%;
+        padding-top: 0%;
+    }
+
+    .logo_intaby {
+        /* INTABY */
+
+
+        width: 30%;
+
+
+        font-family: 'Josefin Sans', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: xx-large;
+        margin: 3%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.115em;
+
+        color: #FFFFFF;
+
+        /* INTABY */
+
+
+        width: 20%;
+        font-family: 'Josefin Sans', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: xx-large;
+        margin: 2%;
+
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.115em;
+
+        color: #FFFFFF;
+
+    }
+
+    .logo {
+        width: 10%;
+        margin-left: 5%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+    }
+
+    .img1 {
+        margin-top: 3%;
+        margin-bottom: 2%;
+        width: 50%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+}
+
+.join_text {
+    text-align: center;
+    font-family: 'Staatliches', serif;
+    font-style: normal;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 10vw;
+    width: auto;
+}
+
+.connect,
+.qr {
+    /* width: 35%;
+    height: 3em;
+    margin-bottom: 2.5%; */
+    background-color: #142036;
+    /*border: 3px solid white;*/
+    color: #FFFFFF;
+    /*font-size: x-large;*/
+
+    /* Edit */
+    font-family: Rubik, serif;
+    box-sizing: border-box;
+    border: 2px solid #FFFFFF;
+    border-radius: 0;
+    width: 50%;
+
+    /* Edition */
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.mp_join {
+    color: #FFFFFF;
+    text-align: center;
+    font-family: 'Staatliches', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10vh;
+    width: auto;
+}
+
+.title-joinquiz-text {
+    /* Frame 19 */
+    /* Auto layout */
+
+    justify-content: center;
+    align-items: center;
+    padding: 0 213px;
+    gap: 10px;
+
+    width: 100%;
+    height: 115px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+
+    /* Join Quiz! */
+
+    font-family: 'Staatliches', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 128px;
+    line-height: 160px;
+    text-align: center;
+
+    color: #FFFFFF;
+    left: 213.5px;
+    top: 0;
+    border-radius: 0;
+
+}
+
+.or {
+    margin-top: 4vh;
+    text-align: center;
+
+}
+
+.or_reg {
+    text-align: center;
+    color: white;
+    /*font-size: large;*/
+
+    /* Edition */
+    /*font-size: 200%;*/
+    width: 15vw;
+    font-family: Roboto Condensed, serif;
+    font-style: normal;
+    font-weight: 400;
+    align-items: center;
+    z-index: 2;
+    padding: 0;
+    margin: 0;
+}
+
+.line-1 {
+    width: 100%;
+    border-top: 0.25rem solid #000000FF;
+    display: block;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.code,
+.mp_name {
+    width: 80%;
+    height: 3em;
+    background-color: #DAE3ED;
+    /*font-size: x-large;*/
+    /*margin-bottom: 5%;*/
+
+    /* Edition */
+
+    font-family: 'Roboto', serif;
+    font-style: normal;
+    font-weight: 400;
+
+    background-clip: padding-box;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.005em;
+
+    color: #00000099;
+    flex: none;
+    flex-grow: 0;
+
+    flex-direction: row;
+    padding: 1.063rem;
+
+    box-shadow: inset 0 -0.25rem 0 #0D4278;
+    border-radius: 8px 8px 0 0;
+    border: 0;
+
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+    z-index: 3;
+}
+
+
+.Or {
+    text-align: center;
+    color: white;
+    /*font-size: 200%;*/
+    font-size: 4vw;
+    width: 15vw;
+
+    /* Edition */
+    font-family: Roboto Condensed, serif;
+    font-style: normal;
+    font-weight: 400;
+    align-items: center;
+    z-index: 2;
+    padding: 0;
+    margin: 0;
+}
+
+/*
+
+.qr {
+    !* width: 35%;
+    height: 3em;
+    margin-top: 2.5%;
+    margin-bottom: 2%; *!
+    background-color: #142036;
+    !*border: 3px solid white;*!
+    color: #FFFFFF;
+    font-size: x-large;
+
+    !* Edit *!
+    font-family: Rubik, serif;
+    box-sizing: border-box;
+    border: 2px solid #FFFFFF;
+    border-radius: 0;
+    max-width: 160px;
+}
+*/
+
+.login,
+.password2 {
+    display: block;
+    width: 40%;
+    height: 3em;
+    margin: 0;
+}
+
+.autorithation {
+    width: 50%;
+    margin-top: 35vh;
+}
+
+.autorithation {
+    margin-bottom: 4vh;
+    font-family: "Trocchi", serif;
+}
+
+@media (min-width:740px) {
+    .wh_name {
+        margin-right: 8.3%;
+    }
+
+    .logo {
+        width: 20%;
+    }
+
+    .logo_intaby {
+        /* INTABY */
+
+
+        width: 20%;
+        font-family: 'Josefin Sans', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: xx-large;
+        margin: 2%;
+
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.115em;
+
+        color: #FFFFFF;
+    }
+
+
+}
+
+/* @media(max-width:576px){
+     mar
+ } */
+
+.wh_name {
+    background-color: aqua;
+    margin-top: 5%;
+    display: flex;
+    height: 10vh;
+    align-items: center;
+    font-size: xx-large;
+
+}
+
+.wh_start {
+    height: 10vh;
+    background-color: aquamarine;
+    margin-top: 5%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    font-size: xx-large;
+}
+
+@media (max-width:576px) {
+    .wh_count {
+        display: flex;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        height: 5vh;
+        float: right;
+        background-color: black;
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        padding: 3px;
+        font-size: large;
+        color: aliceblue;
+        margin: 3%;
+
+    }
+}
+
+@media (min-width:575px) {
+    .wh_count {
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        margin: 2%;
+        display: flex;
+        margin-top: 25%;
+        height: 7vh;
+        float: right;
+        background-color: black;
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        padding-left: 10px;
+        font-size: xx-large;
+        color: aliceblue;
+
+    }
+
+}
+
+.wh_hall {
+    margin-top: 5%;
+    height: 50vh;
+    position: relative;
+    background-color: blue;
+}
+
+.mh_top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes move {
+    from {
+        /*Начальная позиция. В самом начале вверху и слева равно 0*/
+        /* top: 0; */
+        left: 15%;
+    }
+
+    25%,
+    75% {
+        left: 25%;
+    }
+
+    /*при 25% и 75% длительности анимации максимум равен 80%; */
+    50% {
+        left: 70%;
+    }
+
+    /*at 250% of the animaton duration top equals 50%;*/
+    to {
+        /*finish position В самом конце вверху и слева равны 0. Мы используем эти свойства. bcz мы хотим поместить элемент в начальную позицию*/
+        /* top: 0; */
+        left: 15%;
+    }
+}
+
+.circle {
+    margin-top: 15%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(7, 206, 173);
+    position: absolute;
+    /* top: 0px; */
+    left: 0px;
+    animation-name: move;
+    /*название анимации */
+    animation-duration: 4s;
+    /*и ее продолжительность в секундах*/
+    animation-iteration-count: infinite;
+}
+
+legend {
+    padding-left: 40px;
+    /* Свои значения */
+    padding-right: 40px;
+    /* Свои значения */
+    font-size: xx-large;
+    float: none;
+}
+
+.Question_wrapper {
+    border: #FFFFFF 4px dashed;
+
+}
+
+.Content_wrapper {
+    width: 90%;
+    height: 90%;
+}
+
+
+@media (min-width: 768px) {
+    .Question_wrapper {
+        font-size: large;
+    }
+
+    .Answer_button {
+        font-size: medium;
+    }
+}
+
+
+@media (min-width: 576px) {
+    .Question_wrapper {
+        font-size: xx-large;
+    }
+
+    .Answer_button {
+        font-size: x-large;
+    }
+}
+
+@media (max-width: 376px) {
+
+    .Authorization,
+    .Registration,
+    .Lobby {
+        width: 90%;
+    }
+
+    .reg_test {
+        font-size: xx-large;
+    }
+
+    .join_text {
+        font-size: xxx-large;
+    }
+
+    .reg_button,
+    .reg_text,
+    .email,
+    .name,
+    .surname,
+    .password,
+    .code,
+    .mp_name,
+    .connect,
+    .qr,
+    .Log_in,
+    .Sign_up,
+    .Back {
+        /*font-size: 2vw;*/
+        font-size: medium;
+    }
+
+    .UI,
+    .google {
+        width: auto;
+        height: auto;
+        max-width: 45px;
+    }
+
+    .line-1 {
+        border-top: 0.5vw solid #000000FF;
+    }
+}
+
+@media (max-width: 280px) {
+
+    .Registration,
+    .Authorization,
+    .Lobby {
+        width: auto;
+    }
+
+    .reg_test {
+        font-size: x-large;
+    }
+
+    .join_text {
+        font-size: xx-large;
+    }
+
+    .reg_button,
+    .reg_text,
+    .email,
+    .name,
+    .surname,
+    .password,
+    .code,
+    .mp_name,
+    .connect,
+    .qr,
+    .Log_in,
+    .Sign_up,
+    .Back {
+        /*font-size: 2vw;*/
+        font-size: small;
+    }
+
+    .UI,
+    .google {
+        width: auto;
+        height: auto;
+        max-width: 40px;
+    }
+
+}
+
+@media (min-width: 1000px) {
+
+    .Registration,
+    .Authorization,
+    .Lobby {
+        width: auto;
+    }
+
+    fieldset {
+        border-width: 0.5vw;
+        padding: 0 2vw 2vw 2vw;
+        width: 50vw;
+    }
+
+    .reg_test {
+        /*font-size: 4.102vw;*/
+        font-size: xxx-large;
+        /*line-height: 7vw;*/
+    }
+
+    .join_text {
+        font-size: 5vw;
+    }
+
+    .reg_button,
+    .reg_text,
+    .email,
+    .name,
+    .surname,
+    .password,
+    .code,
+    .mp_name,
+    .connect,
+    .qr,
+    .Log_in,
+    .Sign_up,
+    .Back {
+        /*font-size: 2vw;*/
+        font-size: x-large;
+    }
+
+    .UI,
+    .google {
+        width: auto;
+        height: auto;
+    }
+
+    .connect,
+    .qr {
+        width: 41.66666667%;
+    }
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+}
+
+.v377_12 {
+    /*width: 100%;
+    height: 100%;
+    background: rgba(13, 66, 120, 1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;*/
+
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 66, 120, 1);
+    /* opacity: 1; */
+    /* position: static; */
+    /* top: 0px; */
+    /* left: 0px; */
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.v377_12_lobby {
+    min-width: 500px;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 66, 120, 1);
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+/* Fucking Fuck */
+
+a {
+    color: inherit;
+    text-decoration-line: none;
+}
+
+.user_wrapper {
+    background-color: #193050;
+}
+
+.quiz_storage {
+    background-color: #DBE4ED;
+}
+
+.add_quiz_button {
+    background-color: #193050;
+    border: 5px white solid;
+}
+
+.quiz_button {
+    background-color: #193050;
+}
+
+.add_quiz_header,
+.add_quiz_footer {
+    background-color: #3D71A0;
+}
+
+.add_quiz_text,
+.quiz_text {
+    font-size: x-large;
+    font-family: 'Rubik';
+    font-style: normal;
+}
+
+.title,
+.edit {
+    font-size: large;
+    font-family: 'Rubik';
+    font-style: normal;
+    color: #DBE4ED;
+}
+
+.secondary_text,
+.description {
+    font-size: medium;
+    font-family: 'Rubik';
+    font-style: normal;
+    color: #DBE4ED;
+}
+
+.user_name {
+    font-size: x-large;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    color: #DBE4ED;
+}
+
+/* Page of create */
+
+.Enter_quiz_name {
+    border-bottom: 2px gray solid;
+}
+
+.Enter_quiz_name_text {
+    color: gray;
+    font-size: x-large;
+    background-color: #DAE3ED;
+    border-style: none;
+}
+
+.Editor {
+    /* position: absolute;
+    width: 80%;
+    height: 40%; */
+    background-color: #0D4278;
+    height: 60%;
+    /* margin-left: 10%;
+    margin-top: 1%;
+    text-align: left; */
+}
+
+.type_a_question {
+    resize: none;
+    height: max-content;
+    background-color: #0D4278;
+    color: white;
+    min-height: 5em;
+    font-size: x-large;
+    border: 3px dashed white;
+}
+
+.enter_header {
+    height: 40%;
+}
+
+.Answer_type {
+    color: white;
+    font-size: x-large;
+    /* height: 80%; */
+}
+
+textarea::-webkit-input-placeholder {
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+textarea::-moz-placeholder {
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+@media(min-width: 992px) {
+
+    .add_answer_quiz,
+    .answer_wrapper {
+        width: 47%;
+    }
+}
+
+.enter_question_wrapper {
+    height: 100%;
+    border: 2px white dashed;
+    border-radius: 15px;
+    color: white;
+}
+
+.add_answer_quiz {
+    background-color: #142036;
+    border: #FFFFFF 2px solid;
+    font-size: x-large;
+    border-radius: 0;
+    height: 3.7em;
+}
+
+.enter_below {
+    height: 8%;
+}
+
+
+.mode {
+    background-color: #C5D3E1;
+    text-align: center;
+    font-size: x-large;
+    height: 2em;
+}
+
+.add_question_wrapper {
+    height: 100%;
+}
+
+.add_qustion_button {
+    border-style: none;
+    background-color: #DAE3ED;
+    color: #0D4278;
+    font-size: x-large;
+}
+
+.save_wrapper {
+    height: 100%;
+}
+
+.save_button {
+    font-size: x-large;
+    border: 4px white solid;
+    background-color: #142036;
+    color: white;
+}
+
+.Delete_button {
+    margin-bottom: 6%;
+    margin-right: 2%;
+    background-image: url("../images/Cross_icon.png");
+    background-color: rgba(28,28,28,0);
+    border-style: none;
+}
+
+
+
+.add_qustion_button {
+    height: 100%;
+    text-align: left;
+}
+
+button {
+    cursor: pointer;
+    line-height: inherit;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #142036;
+}
+
+body::-webkit-scrollbar {
+    width: 1em;
+}
+
+.Answer_add_wrapper {
+    height: max-content;
+}
+
+.delete_answer {
+    font-size: x-large;
+}
+
+@media (max-width: 768px) {
+    .add_answer_quiz {
+        font-size: large;
+    }
+
+    .Editor {
+        height: 80%;
+    }
+}
+
+
+/* waiting hall */
+
+.waiting_hall_content {
+    height: 90%;
+}
+
+.below_header {
+    background-color: #0D4278;
+}
+
+.quiz_code_wrapper {
+    background-color: #DAE3ED;
+    border-radius: 15px;
+    color: white;
+}
+
+.quiz_code {
+    font-size: large;
+    font-family: Roboto;
+}
+
+.quiz_code_number {
+    font-size: xx-large;
+    font-family: Roboto;
+}
+
+.timer {
+    background-color: #142036;
+}
+
+
+.timer_wrapper {
+    color: white;
+}
+
+.timer {
+    font-size: xx-large;
+    font-family: Roboto;
+}
+
+.starts_in {
+    font-size: x-large;
+    font-family: Roboto;
+}
+
+.seconds {
+    font-size: large;
+    font-family: Roboto;
+}
+
+.line_separator {
+    height: 2%;
+    background-color: white;
+}
+
+.person {
+
+    font-size: x-large;
+    color: white;
+    font-family: "Josefin Sans";
+}
+
+.participants_wrapper {}
+
+.participants_text {
+    font-size: xx-large;
+    color: white;
+    font-family: "Josefin Sans";
+}
+
+@media (max-width: 767px) {
+    .quiz_code {
+        font-size: medium;
+    }
+
+    .quiz_code_number {
+        font-size: x-large;
+    }
+
+    .starts_in {
+        font-size: large;
+    }
+
+    .timer {
+        font-size: x-large;
+    }
+
+    .seconds {
+        font-size: medium;
+    }
+}
+
+@media (min-width: 768px) {
+    .person {
+        font-size: xx-large;
+    }
+}
+
+/* @media (max-width: 1000px) and (max-height: 500px) {
+    .quiz_code_wrapper{
+        width: 25%;
+    }
+} */
