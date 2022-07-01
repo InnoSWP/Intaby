@@ -26,11 +26,23 @@ cargo run -- --mock
 
 Returns: `String` - a 4-letter code of the new game
 
-## Start game
+## Changing the game state
 
 > PUT /games/\<code>/state
 
-> data = "InProgress"
+> Headers: `Content-Type: application/json`
+
+> data = { user_id, state }
+
+Possible game states are: `"InProgress"`
+
+Example data:
+```json
+{
+  "user_id": 0,
+  "state": "InProgress"
+}
+```
 
 ## Join game
 
@@ -91,4 +103,19 @@ Or if the game is currently in progress, the returned json will look similar to:
 
 > PUT /games/\<code>
 
+> Headers: `Content-Type: application/json`
+
 > data = { player_name, question_id, answers: [String] }
+
+`question_id` is supposed to be retrieved from the state of game
+
+Example data:
+```json
+{
+  "player_name": "Jake",
+  "question_id": 0,
+  "answers": [
+    "Ron"
+  ]
+}
+```
