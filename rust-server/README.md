@@ -58,15 +58,32 @@ enum Game {
 }
 ```
 
-For example, if game was in lobby with players Jake and Olyvia, then the returned json would look like:
+The resulting json is tagged with the type field to indicate the state, and contains other fields next to the tag.
+
+For example, if the game is in lobby with players Jake and Olyvia, then the returned json will look like:
 ```json
 {
-  "Lobby": {
-    "players": [
-      "Jake",
-      "Olyvia"
-    ]
-  }
+  "type": "Lobby",
+  "players": [
+    "Jake",
+    "Olyvia"
+  ]
+}
+```
+
+Or if the game is currently in progress, the returned json will look similar to:
+```json
+{
+  "type":  "InProgress",
+  "current_question": {
+      "answers": [],
+      "question_type": "Poll",
+      "quiz_id": 0,
+      "text": "What is your favourite encoding format?",
+      "time": 60
+  },
+  "current_question_id": 0,
+  "time_left": 60
 }
 ```
 

@@ -105,7 +105,7 @@ pub struct Game {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-#[serde(crate = "rocket::serde", deny_unknown_fields)]
+#[serde(crate = "rocket::serde", tag = "type", deny_unknown_fields)]
 pub enum SerGame {
     Lobby {
         players: Vec<PlayerName>,

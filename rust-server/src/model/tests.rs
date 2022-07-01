@@ -54,6 +54,7 @@ fn test_lobby_serialization(mut players: Vec<&str>) {
         );
     }
     let mut state = game.to_serializable();
+    println!("{}", serde_json::to_string_pretty(&state).unwrap());
     assert!(
         match &mut state {
             SerGame::Lobby { players: names } => {
@@ -92,6 +93,7 @@ fn test_progress_serialization() {
         },
     };
     let mut state = game.to_serializable();
+    println!("{}", serde_json::to_string_pretty(&state).unwrap());
     assert!(
         match &mut state {
             SerGame::InProgress {
@@ -123,6 +125,7 @@ fn test_finished_serialization() {
         state: GameState::Finished,
     };
     let mut state = game.to_serializable();
+    println!("{}", serde_json::to_string_pretty(&state).unwrap());
     assert!(
         match &mut state {
             SerGame::Finished => true,
