@@ -2,41 +2,21 @@ console.log(JSON.parse(localStorage.getItem("user_data")))
 let user_token = JSON.parse(JSON.parse(localStorage.getItem("user_data")))
 console.log(user_token)
 
-data = {
-    
-        "quiz_number": 2, 
-        "quizzes": [
-          {
-            "name": "gfyhf", 
-            "user_id": 3
-          }, 
-          {
-            "name": "dvhr", 
-            "user_id": 3
-          }
-        ], 
-        "user": {
-          "email": "v.kruk@innopolis", 
-          "name": "picka", 
-          "password": "1", 
-          "surname": "hyevna"
-        }
-      
-}
  //ajax(`https://f865-188-130-155-167.ngrok.io//api/user/${user_token.user_id}/quiz`, "GET", response_reg, user_token)
 
-console.log(data.quiz_number)
-console.log(($("#username")).text())
-console.log(document.querySelectorAll("#quiz_button")[0].getElementsByClassName("title")[0].innerHTML)
+// console.log(data.quiz_number)
+// console.log(($("#username")).text())
+// console.log(document.querySelectorAll("#quiz_button")[0].getElementsByClassName("title")[0].innerHTML)
 
 function response_reg(data){
     console.log(data);
+    let dataArr= JSON.parse(data);
     
-    $("#username").text(data.user.name);
-    addQuiz(data.quiz_number-1);
-    for (let i = 0; i < data.quiz_number;i+=1){
+    $("#username").text(dataArr.user.name);
+    addQuiz(dataArr.quiz_number-1);
+    for (let i = 0; i < dataArr.quiz_number;i+=1){
         
-        document.querySelectorAll("#quiz_button")[i].getElementsByClassName("title")[0].innerHTML = data.quizzes[i].name
+        document.querySelectorAll("#quiz_button")[i].getElementsByClassName("title")[0].innerHTML = dataArr.quizzes[i].name
 
     }
         
@@ -48,4 +28,8 @@ document.querySelector("#add_quiz").onclick = function(event){
     
 
 }
+$(".edit").click(function(event){
+  event.preventDefault();
+  window.location.href="../templates/wh_teacher.html"
+})
 response_reg(data)
