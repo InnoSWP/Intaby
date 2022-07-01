@@ -9,26 +9,32 @@ body::-webkit-scrollbar-thumb {
 }
 
 body::-webkit-scrollbar {
-    width: 1em;
+    width: 10px;
 }
 
 .body_ {
     background: rgba(13, 66, 120, 1);
 
+    /* Others */
+    margin: 0;
+    padding: 0;
+}
+.main_ {
     /* Size */
-    width: 100vw;
+    /*width: 100vw;*/
     height: 100vh;
 
     /* Display */
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
 
     /* Others */
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
 }
 
 .body_lobby {
@@ -44,7 +50,7 @@ body::-webkit-scrollbar {
 .background {
     pointer-events: none;
     position: absolute;
-    width: 100vw;
+    width: -webkit-fill-available;
     height: 100vh;
 
     z-index: -1;
@@ -66,28 +72,29 @@ body::-webkit-scrollbar {
     justify-content: space-between;
     align-items: flex-start;
 }
+.background_right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    justify-content: space-between;
+    align-items: flex-end;
+}
 .background_image-1,
-.background_image-2,
 .background_image-3,
+.background_image-2,
 .background_image-4 {
-    width: 100%;
-    height: 50%;
+    max-width: 100%;
+    max-height: 50%;
 }
-/*
-.background_image-2 {
-    display: flex;
-}
-.background_image-3 {
-    display: flex;
-}
-.background_image-4 {
-    display: flex;
-}*/
+
 .header {
     background-color: #142036;
 
     /* Size */
-    width: 100vw;
+    /*width: 100vw;*/
 
     /* Display */
     display: flex;
@@ -827,19 +834,17 @@ body::-webkit-scrollbar {
 .Lobby-wrapper {
 
     /* Size */
-    width: 100%;
-    min-height: 85vh;
+    /*width: 100%;*/
+    /*min-height: 85vh;*/
 
     /* Display */
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: center;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 
-    /* Other */
-    margin-top: 1vh;
 }
 
 .Lobby {
@@ -1408,6 +1413,7 @@ td {
 @media (max-width: 576px) {
 
     /* Global variables */
+
     .header-left_logo {
         font-size: calc(20px + (32 - 20) * ((100vw - 240px) / (576 - 280)));
     }
@@ -1440,6 +1446,19 @@ td {
 
     .header-right_button-link-signup {
         font-size: calc(16px + (24 - 16) * ((100vw - 240px) / (576 - 280)));
+    }
+
+    .background_image-1 {
+        width: calc(150px + (200 - 150) * ((100vw - 240px) / (576 - 280)));
+    }
+    .background_image-2 {
+         width: calc(125px + (200 - 125) * ((100vw - 240px) / (576 - 280)));
+     }
+    .background_image-3 {
+        width: calc(125px + (200 - 125) * ((100vw - 240px) / (576 - 280)));
+    }
+    .background_image-4 {
+        width: calc(125px + (200 - 125) * ((100vw - 240px) / (576 - 280)));
     }
 
     /* Authorization Page */
@@ -1702,7 +1721,22 @@ td {
     .Lobby_fieldset {
         width: 80vw;
     }
+/*
+    .background_image-1 {
+        width: auto;
+        max-width: 100%;
+    }
+    .background_image-2 {
 
+        width: calc(125px + (200 - 125) * ((100vw - 576px) / (768 - 576)));
+    }
+    .background_image-3 {
+        width: calc(125px + (200 - 125) * ((100vw - 576px) / (768 - 576)));
+    }
+    .background_image-4 {
+        width: auto;
+        max-width: 100%;
+    }*/
     /* Leaderboard */
     /* Leaderboard */
     .Board {
@@ -1791,6 +1825,21 @@ td {
     .Lobby_fieldset {
         width: 70vw;
     }
+    /*
+
+    .background_image-1 {
+        width: auto;
+    }
+    .background_image-2 {
+        width: calc(150px + (300 - 150) * ((100vw - 768px) / (992 - 768)));
+    }
+    .background_image-3 {
+        width: calc(150px + (300 - 150) * ((100vw - 768px) / (992 - 768)));
+    }
+    .background_image-4 {
+        width: auto;
+    }
+    */
 
     /* Leaderboard */
     .Board {
@@ -1866,6 +1915,19 @@ td {
     .Lobby_fieldset {
         width: 60vw;
     }
+/*
+    .background_image-1 {
+        width: auto;
+    }
+    .background_image-2 {
+        width: calc(250px + (300 - 250) * ((100vw - 992px) / (1200 - 992)));
+    }
+    .background_image-3 {
+        width: calc(200px + (400 - 200) * ((100vw - 992px) / (1200 - 992)));
+    }
+    .background_image-4 {
+        width: auto;
+    }*/
 }
 
 @media (min-width: 1200px) and (max-width: 1400px) {
@@ -1885,6 +1947,19 @@ td {
     .Lobby_fieldset {
         width: 50vw;
     }
+/*
+    .background_image-1 {
+        width: auto;
+    }
+    .background_image-2 {
+        width: calc(250px + (300 - 250) * ((100vw - 992px) / (1200 - 992)));
+    }
+    .background_image-3 {
+        width: calc(200px + (400 - 200) * ((100vw - 992px) / (1200 - 992)));
+    }
+    .background_image-4 {
+        width: auto
+    }*/
 }
 
 @media (max-width: 1400px) {}
