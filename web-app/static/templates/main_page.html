@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="jquery-3.6.0.min.js"></script>
+    <script src="../scripts/jquery-3.6.0.min.js"></script>
 
     <!-- Styles -->
     <link rel="stylesheet" href="/web-app/static/styles/new_style.css">
@@ -48,17 +48,17 @@
                 <legend class="Lobby_fieldset-title">JOIN QUIZ!</legend>
 
                 <div class="Lobby-inner">
-                    <input class="Lobby-inner_entername" type="text" placeholder="Enter name">
+                    <input id="name" class="Lobby-inner_entername" type="text" placeholder="Enter name">
                     <div class="Lobby-inner_line"></div>
-                    <input class="Lobby-inner_entercode" type="text" placeholder="Enter code">
+                    <input id="code" class="Lobby-inner_entercode" type="text" placeholder="Enter code">
                     <div class="Lobby-inner_button">
-                        <button class="Lobby-inner_button-box" onclick="window.location.href = 'waiting_hall.html'">
+                        <button id="connect" class="Lobby-inner_button-box">
                             <span class="Lobby-inner_button-text">Connect</span>
                         </button>
                     </div>
                     <h3 class="Lobby-inner_or">OR</h3>
                     <div class="Lobby-inner_button">
-                        <button class="Lobby-inner_button-box" onclick="window.location.href = 'waiting_hall.html'">
+                        <button class="Lobby-inner_button-box" >
                             <span class="Lobby-inner_button-text">Scan QR</span>
                         </button>
                     </div>
@@ -66,8 +66,22 @@
             </fieldset>
         </div>
     </div>
-
-<script src="script.js"></script>
+    <div class="background">
+        <div class="background-left">
+            <img class="background_image-2" src="/web-app/static/images/circle_1.svg">
+            <img class="background_image-1" src="/web-app/static/images/circle_2.svg">
+        </div>
+        <div class="background-left">
+            <img class="background_image-4" src="/web-app/static/images/cubes_2.svg">
+            <img class="background_image-3" src="/web-app/static/images/cubes_1.svg">
+        </div>
+        <!--
+        <img class="background_image-3" src="/web-app/static/images/circle_1.svg">
+        <img class="background_image-4" src="/web-app/static/images/cubes_1.svg">-->
+    </div>
+    <!--<img class="background_image" src="/web-app/static/images/Desktop_background.svg"/>-->
+<script src="../scripts/ajax.js"></script>
+<script src="../scripts/script.js"></script>
 
 </body>
 
