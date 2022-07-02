@@ -27,27 +27,6 @@ api = api_initialization.api_initialization(app)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
-@app.route('/')
-def main_page():
-    return render_template("main_page.html")
-
-
-@app.route('/login')
-def login_page():
-    return render_template('authorization_page.html')
-
-
-@app.route('/register')
-def registration_page():
-    return render_template("registration_page.html")
-
-
-# [will be deleted]
-@app.route('/lobby')
-def lobby_page():
-    return render_template("waiting_hall.html")
-
-
 # For tests through docker
 @app.route('/tests/users')
 def test():

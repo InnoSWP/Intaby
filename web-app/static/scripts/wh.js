@@ -15,7 +15,7 @@ function wait_hall(){
             $("quiz_code_number").val()=localStorage.getItem("code")
         }
         else if (data.type == "InProgress"){
-            window.location.href="../templates/page_of_answer.html"
+            window.location.href="/page_of_answer.html"
         }
         
         

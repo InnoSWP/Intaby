@@ -1,6 +1,15 @@
 version: "3.8"
 
 services:
+  nginx-service:
+    build: .
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres_db
+      - rust_service
+      - python_service
+
   rust_service:
     build: rust-server/
     ports:

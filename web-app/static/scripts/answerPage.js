@@ -1,18 +1,3 @@
-
-<<<<<<< HEAD
-
-function createAnswer_(dataArr) {
-    var wrapper = document.getElementById("Button_wrapper")
-    console.log( ($(".Question_wrapper"))[0])
-    $(".Question_wrapper")[0].innerHTML = (dataArr.current_question.text); 
-    // number of questions
-    for (let index = 1; index < Number(dataArr.current_question.answer.length) + 1; index++) {
-        const element = createAnswer(index, dataArr)
-        wrapper.append(element)
-    }
-}
-
-=======
 window.onload = (() => {
     animation(15)
 })
@@ -28,7 +13,6 @@ function createAnswer_(dataArr) {
     }
 }
 
->>>>>>> c5aaf64a9ed1886eac533dbccca37b1378cdabb7
 function createAnswer(_index, dataArr_) {
     var element = document.createElement("button")
     element.classList.add("Answer_button", "col-4", "btn", "py-4", "px-2", "mb-2", "text-white",

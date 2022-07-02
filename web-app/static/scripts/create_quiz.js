@@ -71,12 +71,12 @@ document.querySelector("#btn_save").onclick = function(event){
     }
     let user_id_data = (JSON.parse(JSON.parse(localStorage.getItem("user_data")))).user_id
     // console.log(user_id_data)
-    let request_url = `https://f865-188-130-155-167.ngrok.io/api/user/${user_id_data}/quiz`
+    let request_url = `http://localhost:8888/api/user/${user_id_data}/quiz`
     // console.log(request_url)
     ajax(request_url, "POST", response_reg, JSON.stringify(data));
     function response_reg(dataArr){
       
-            window.location.href = "../templates/page_of_user.html"
+            window.location.href = "/page_of_user.html"
        
       
     }

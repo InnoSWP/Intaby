@@ -13,7 +13,7 @@ $("#start_quiz").click(function(event){
         }
         ajax(`/games/${code}/state`, "PUT", response_reg, dataArr) 
         function response_reg(data){
-            window.location.href = "../templates/page_of_answer.html";
+            window.location.href = "/page_of_answer.html";
 
         }
     }

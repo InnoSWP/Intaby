@@ -17,7 +17,7 @@ $(document).ready(function() {
         function response_fun(data_arr){
             // console.log(localStorage.getItem("code"))
             // console.log(12234)
-            window.location.href = "../templates/waiting_hall.html"
+            window.location.href = "/waiting_hall.html"
         }
 
        }
