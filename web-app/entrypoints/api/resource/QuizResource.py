@@ -124,12 +124,12 @@ class QuizListResource(Resource):
         quizzes_as_dict = []
 
         for quiz in quizzes:
-            quiz_as_dict = quiz.to_dict
+            quiz_as_dict = quiz.to_dict()
             quiz_as_dict["quiz_id"] = quiz.id
-            quizzes_as_dict.append(dicted_quiz)
+            quizzes_as_dict.append(quiz_as_dict)
 
         return make_response(
-            {"quizzes": dicted_quizzes, "quiz_number": len(quizzes), "user": user.to_dict()}, 200)
+            {"quizzes": quizzes_as_dict, "quiz_number": len(quizzes), "user": user.to_dict()}, 200)
 
     def post(self, user_id):
         args = quiz_creation_parser.parse_args()
