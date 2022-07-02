@@ -20,7 +20,9 @@ impl WebClient for ReqwestClient {
     async fn get_quiz(&self, user_id: UserId, quiz_id: QuizId) -> Result<QuizConfig> {
         let body = self
             .client
-            .get(format!("http://localhost:8888/api/user/{user_id}/quiz/{quiz_id}"))
+            .get(format!(
+                "http://localhost:8888/api/user/{user_id}/quiz/{quiz_id}"
+            ))
             .send()
             .await?
             .text()
