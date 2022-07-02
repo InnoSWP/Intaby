@@ -19,7 +19,7 @@ repository.initialize_repo(get_session())
 orm.start_mappers()
 
 # To delete all tables
-orm.delete_all(engine)
+# orm.delete_all(engine)
 
 orm.create_all(engine)
 app = Flask(__name__, template_folder='./../static/templates')

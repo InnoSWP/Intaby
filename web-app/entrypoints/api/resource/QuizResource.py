@@ -7,7 +7,6 @@ from domain.model import Quiz
 
 from service_layer import services
 
-
 quiz_creation_parser = reqparse.RequestParser()
 quiz_creation_parser.add_argument('name', required=True)
 quiz_creation_parser.add_argument('questions', type=dict, action="append", required=True)
@@ -122,8 +121,15 @@ class QuizListResource(Resource):
 
         user = repo.get_user_by_id(user_id)
 
+        quizzes_as_dict = []
+
+        for quiz in quizzes:
+            quiz_as_dict = quiz.to_dict
+            quiz_as_dict["quiz_id"] = quiz.id
+            quizzes_as_dict.append(dicted_quiz)
+
         return make_response(
-            {"quizzes": [quiz.to_dict() for quiz in quizzes], "quiz_number": len(quizzes), "user": user.to_dict()}, 200)
+            {"quizzes": dicted_quizzes, "quiz_number": len(quizzes), "user": user.to_dict()}, 200)
 
     def post(self, user_id):
         args = quiz_creation_parser.parse_args()
