@@ -38,6 +38,16 @@ header {
 
 /* Page of answer */
 
+/* .Time_scale {
+    transition: width 15s ease-in;
+    transition-property: width;
+    transition-timing-function: ease-in;
+} */
+
+/* .Time_scale:hover {
+    width: 0px;
+} */
+
 .Content_wrapper {
     width: 90%;
     height: 90%;
@@ -61,18 +71,6 @@ header {
     text-decoration: none;
 }
 
-@media (min-width: 768px) {
-    .Question_wrapper {
-        font-size: x-large;
-    }
-
-    .Answer_button {
-        font-size: large;
-    }
-
-}
-
-
 @media (min-width: 576px) {
     .Question_wrapper {
         font-size: xx-large;
@@ -80,8 +78,56 @@ header {
 
     .Answer_button {
         font-size: x-large;
+        min-height: 40%;
+    }
+
+    .Content_wrapper {
+        height: 60%;
     }
 }
+
+@media (max-width: 768px) {
+    .Question_wrapper {
+        font-size: xx-large;
+    }
+
+    .Answer_button {
+        font-size: x-large;
+        min-height: 20%;
+    }
+
+    .Content_wrapper {
+        height: 80%;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .Answer_button {
+        font-size: x-large;
+        min-height: 30%;
+    }
+
+}
+
+@media (min-width: 1280px) {
+    .Question_wrapper {
+        font-size: x-large;
+    }
+
+    .Content_wrapper {
+        height: 90%;
+    }
+
+}
+
+
+
+
+
+
+
+
 
 /* page_of_create */
 
@@ -431,6 +477,7 @@ a {
     .person {
         font-size: xx-large;
     }
+
     .user_icon {
         height: 100%;
         width: 8%;

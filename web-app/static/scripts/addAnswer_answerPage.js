@@ -6,11 +6,12 @@ window.onload = (() => {
         const element = createAnswer(index)
         wrapper.append(element)
     }
+    animation(15)
 })
 
 function createAnswer(_index) {
     var element = document.createElement("button")
-    element.classList.add("Answer_button", "col-4", "btn", "py-4", "px-2", "mb-2", "text-white",
+    element.classList.add("Answer_button", "col-4", "btn", "py-4", "px-2", "mb-4", "mb-lg-2", "text-white",
         "col-md-12", "col-lg-5", "position-relative")
     if (_index % 2 === 1) {
         element.classList.add("me-lg-2")
@@ -85,4 +86,16 @@ function addEvent(_element, type) {
             })
             break
     }
+}
+
+// animation
+
+ function animation(duration){
+    var scale = document.getElementsByClassName('Time_scale')[0]
+    var newStyles = document.createElement('style')
+    newStyles.innerHTML = ".Time_scale {" +
+        "transition: width " + Number(duration) + "s " + "ease-in;" +
+    "width :" + 0
+    "}"
+    scale.append(newStyles)
 }
