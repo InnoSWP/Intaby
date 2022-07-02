@@ -8,6 +8,16 @@ services:
     depends_on:
       - postgres_db
 
+  python_service:
+    build: web-app/
+    environment:
+      FLASK_ENV: development
+      FLASK_APP: app_start.py
+    ports:
+      - 8888:8888
+    depends_on:
+      - postgres_db
+
   postgres_db:
     image: postgres
     container_name: database
