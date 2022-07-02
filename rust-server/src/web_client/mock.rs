@@ -16,6 +16,7 @@ impl crate::web_client::WebClient for MockWebClient {
     async fn get_quiz(&self, _user_id: UserId, _quiz_id: QuizId) -> WebResult<QuizConfig> {
         Ok(QuizConfig {
             name: "Test Quiz".to_owned(),
+            user_id: 0,
             questions: vec![
                 Question {
                     answers: vec![

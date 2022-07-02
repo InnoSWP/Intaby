@@ -24,6 +24,7 @@ pub struct Games {
 pub struct QuizConfig {
     pub name: String,
     pub questions: Vec<Question>,
+    pub user_id: UserId,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
