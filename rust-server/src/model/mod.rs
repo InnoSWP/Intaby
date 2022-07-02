@@ -23,7 +23,7 @@ pub struct Games {
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
 pub struct QuizConfig {
     pub name: String,
-    pub questions: Vec<Question>,
+    pub questions: Vec<Question<Answer>>,
     pub user_id: UserId,
 }
 
@@ -37,8 +37,8 @@ pub enum QuestionType {
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
-pub struct Question {
-    pub answers: Vec<Answer>,
+pub struct Question<T> {
+    pub answers: Vec<T>,
     pub question_type: QuestionType,
     pub quiz_id: QuizId,
     pub text: String,
@@ -105,7 +105,7 @@ pub enum SerGame {
         players: Vec<PlayerName>,
     },
     InProgress {
-        current_question: Question,
+        current_question: Question<String>,
         current_question_id: QuestionId,
         /// Time left for the current question in seconds
         time_left: f64,
@@ -247,7 +247,17 @@ impl Game {
                     .clone();
                 SerGame::InProgress {
                     time_left: question.time as f64 - start_time.elapsed().as_seconds_f64(),
-                    current_question: question,
+                    current_question: Question {
+                        answers: question
+                            .answers
+                            .into_iter()
+                            .map(|answer| answer.text)
+                            .collect(),
+                        question_type: question.question_type,
+                        quiz_id: question.quiz_id,
+                        text: question.text,
+                        time: question.time,
+                    },
                     current_question_id: *current_question as QuestionId,
                 }
             }
