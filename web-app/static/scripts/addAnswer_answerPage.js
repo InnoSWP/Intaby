@@ -1,26 +1,27 @@
 
+window.onload = (() => {
+    animation(15)
+})
 
 function createAnswer_(dataArr) {
-    dataArr = JSON.parse(dataArr);
     var wrapper = document.getElementById("Button_wrapper")
     console.log( ($(".Question_wrapper"))[0])
     $(".Question_wrapper")[0].innerHTML = (dataArr.current_question.text); 
     // number of questions
-    for (let index = 1; index < Number(dataArr.current_question.answers.length) + 1; index++) {
+    for (let index = 1; index < Number(dataArr.current_question.answer.length) + 1; index++) {
         const element = createAnswer(index, dataArr)
         wrapper.append(element)
     }
 }
 
 function createAnswer(_index, dataArr_) {
-
     var element = document.createElement("button")
     element.classList.add("Answer_button", "col-4", "btn", "py-4", "px-2", "mb-2", "text-white",
         "col-md-12", "col-lg-5", "position-relative")
     if (_index % 2 === 1) {
         element.classList.add("me-lg-2")
     }
-    element.textContent = dataArr_.current_question.answers[_index-1]
+    element.textContent = data.current_question.answer[_index-1]
     switch (_index) {
         case 1:
             element.style.backgroundColor = "#F83962"
@@ -95,7 +96,6 @@ function addEvent(_element, type) {
 // animation
 
  function animation(duration){
-    console.log(duration)
     var scale = document.getElementsByClassName('Time_scale')[0]
     var newStyles = document.createElement('style')
     newStyles.innerHTML = ".Time_scale {" +
