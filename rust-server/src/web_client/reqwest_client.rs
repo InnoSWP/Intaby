@@ -21,7 +21,7 @@ impl WebClient for ReqwestClient {
         let body = self
             .client
             .get(format!(
-                "http://localhost:8888/api/user/{user_id}/quiz/{quiz_id}"
+                "https://python_service:8888/api/user/{user_id}/quiz/{quiz_id}"
             ))
             .send()
             .await?

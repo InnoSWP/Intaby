@@ -56,11 +56,12 @@ def abort_if_user_not_found(user_id: int, args: dict):
 
 class UserLoginResource(Resource):
     def post(self):
-        args = login_parser.parse_args()
-
-        user_id = check_for_credentials(args)
-
-        return {"user_id": user_id}
+        try:
+            args = login_parser.parse_args()
+            user_id = check_for_credentials(args)
+            return {"user_id": user_id}
+        except NoResultFound:
+            abort(400, message="Information corrupted")
 
 
 class UserRegistrationResource(Resource):
