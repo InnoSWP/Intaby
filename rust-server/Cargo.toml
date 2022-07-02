@@ -9,6 +9,8 @@ edition = "2021"
 rand = "0.8.5"
 rocket = { version = "=0.5.0-rc.2", features = ["json"] }
 async-trait = "0.1.56"
+reqwest = "0.11.11"
+clap = { version = "3.2.8", features = ["derive"] }
 
 [dependencies.sqlx]
 version = "0.5.13"

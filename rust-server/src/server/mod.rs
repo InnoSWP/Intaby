@@ -1,32 +1,34 @@
+use rocket::{get, post, put, serde::json::Json, State};
 use std::sync::Mutex;
 
-use rocket::{get, post, put, serde::json::Json, State};
+use crate::model::*;
 
-use crate::database::{DBAccessor, DBError};
+mod error;
 
-mod games;
+use error::*;
 
-use games::*;
-
-type Database = Box<dyn DBAccessor>;
+type WebClient = Box<dyn crate::web_client::WebClient>;
 type SResult<T> = Result<T, Error>;
 type GamesState = Mutex<Games>;
 
-#[derive(Debug)]
-enum Error {
-    Database(DBError),
-    GameNotFound(GameCode),
-    BadRequest,
-}
-
-pub async fn rocket(config: rocket::Config, db_uri: &str) -> rocket::Rocket<rocket::Build> {
-    let database = crate::database::sql::SqlAccess::new(db_uri)
-        .await
-        .expect("Failed to access the database");
+pub async fn rocket(
+    config: rocket::Config,
+    web_client: WebClient,
+) -> rocket::Rocket<rocket::Build> {
     rocket::custom(config)
-        .manage(Box::new(database) as Database)
+        .manage(web_client)
         .manage(Mutex::new(Games::new()))
-        .mount("/", rocket::routes![index, create_or_join_game, get_game])
+        .mount(
+            "/",
+            rocket::routes![
+                index,
+                create_game,
+                join_game,
+                get_game_state,
+                game_answer,
+                change_state
+            ],
+        )
 }
 
 #[get("/")]
@@ -35,106 +37,73 @@ fn index() -> &'static str {
 }
 
 /// Create a new game from the quiz id
-/// or join an existing game with the specified code
-#[post("/games/<id>", data = "<name>")]
-async fn create_or_join_game(
-    id: GameCode,
-    name: Option<PlayerName>,
-    games: &State<GamesState>,
-    database: &State<Database>,
-) -> Result<String, Error> {
-    match id.parse::<u64>() {
-        Ok(quiz_id) => create_game(quiz_id, games, database).await,
-        Err(_) => match name {
-            Some(name) => join_game(id, name, games).await.map(|()| format!("")),
-            None => Err(Error::BadRequest),
-        },
-    }
-}
-
-#[get("/games/<code>")]
-async fn get_game(code: GameCode, games: &State<GamesState>) -> SResult<GameCode> {
-    match games.lock().unwrap().get_game(&code) {
-        Some(_game) => Ok(code),
-        None => Err(Error::GameNotFound(code)),
-    }
-}
-
-#[put("/games/<code>", data = "<answer>")]
-async fn game_answer(code: GameCode, answer: Json<GameAnswer>) -> SResult<()> {
-    // TODO: register answer
-    Ok(())
-}
-
+#[post("/games/<quiz_id>", data = "<user_id>")]
 async fn create_game(
-    _quiz_id: u64,
+    quiz_id: QuizId,
+    user_id: Json<UserId>,
     games: &State<GamesState>,
-    _database: &State<Database>,
+    web_client: &State<WebClient>,
 ) -> SResult<GameCode> {
-    // TODO: query quiz information from the database
-    let code = games.lock().unwrap().create_game();
+    let user_id = user_id.0;
+    let quiz_config = web_client.get_quiz(user_id, quiz_id).await?;
+    let code = games.lock().unwrap().create_game(user_id, quiz_config);
     Ok(code)
 }
 
-async fn join_game(
-    game_code: GameCode,
-    player_name: PlayerName,
-    games: &State<GamesState>,
-) -> SResult<()> {
-    match games.lock().unwrap().get_game_mut(&game_code) {
-        None => Err(Error::GameNotFound(game_code)),
+/// Join an existing game with the specified code
+#[post("/games/<code>", data = "<name>", rank = 2)]
+async fn join_game(code: GameCode, name: PlayerName, games: &State<GamesState>) -> SResult<()> {
+    match games.lock().unwrap().get_game_mut(&code) {
+        None => Err(Error::GameNotFound(code)),
         Some(game) => {
-            game.player_join(player_name);
+            game.player_join(name);
             Ok(())
         }
     }
 }
 
-impl Error {
-    fn status(&self) -> rocket::http::Status {
-        use rocket::http::Status;
-        match self {
-            Self::Database(error) => error.status(),
-            Self::GameNotFound(_) => Status::NotFound,
-            Self::BadRequest => Status::BadRequest,
-        }
+/// Start the newly created game. Only the creator of the game can start it
+#[put("/games/<code>/state", data = "<state>")]
+async fn change_state(
+    code: GameCode,
+    state: Json<StateUpdate>,
+    games: &State<GamesState>,
+) -> SResult<()> {
+    let games = &mut games.lock().unwrap();
+    let game = get_game_mut(games, &code)?;
+    game.change_state(state.0);
+    Ok(())
+}
+
+#[get("/games/<code>")]
+async fn get_game_state(code: GameCode, games: &State<GamesState>) -> SResult<Json<SerGame>> {
+    let games = &games.lock().unwrap();
+    let game = get_game(games, &code)?;
+    Ok(Json(game.to_serializable()))
+}
+
+#[put("/games/<code>", data = "<answer>")]
+async fn game_answer(
+    code: GameCode,
+    answer: Json<GameAnswer>,
+    games: &State<GamesState>,
+) -> SResult<()> {
+    let games = &mut games.lock().unwrap();
+    let game = get_game_mut(games, &code)?;
+    game.player_answer(answer.0);
+    Ok(())
+}
+
+fn get_game<'a>(games: &'a Games, code: &GameCode) -> SResult<&'a Game> {
+    match games.get_game(&code) {
+        Some(game) => Ok(game),
+        None => Err(Error::GameNotFound(code.to_owned())),
     }
 }
 
-impl DBError {
-    fn status(&self) -> rocket::http::Status {
-        use rocket::http::Status;
-        match self {
-            Self::QuizNotFound(_) => Status::NotFound,
-            Self::DBCorrupt(_) => Status::InternalServerError,
-            Self::Other(_) => Status::InternalServerError,
-        }
-    }
-}
-
-impl std::fmt::Display for Error {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::Database(error) => error.fmt(f),
-            Self::GameNotFound(msg) => {
-                write!(f, "A game with the code \'{msg}\' could not be found")
-            }
-            Self::BadRequest => write!(f, "Bad request"),
-        }
-    }
-}
-
-impl std::error::Error for Error {}
-
-impl From<DBError> for Error {
-    fn from(error: DBError) -> Self {
-        Self::Database(error)
-    }
-}
-
-impl<'r> rocket::response::Responder<'r, 'static> for Error {
-    fn respond_to(self, _request: &'r rocket::Request<'_>) -> rocket::response::Result<'static> {
-        println!("Encountered an error: {self}");
-        Err(self.status())
+fn get_game_mut<'a>(games: &'a mut Games, code: &GameCode) -> SResult<&'a mut Game> {
+    match games.get_game_mut(&code) {
+        Some(game) => Ok(game),
+        None => Err(Error::GameNotFound(code.to_owned())),
     }
 }
