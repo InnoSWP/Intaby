@@ -1,7 +1,7 @@
 let timerId = setInterval(() => wait_hall(), 500);
 let code = localStorage.getItem("code");
 function wait_hall(){
-    ajax(`/games/${code}`, "GET", response_reg)
+    ajax(`https://61fa-188-130-155-167.ngrok.io/games/${code}`, "GET", response_reg)
     // addParticipant(2)
     // console.log(document.getElementsByClassName("person")[0].innerHTML)
     function response_reg(dataArr){

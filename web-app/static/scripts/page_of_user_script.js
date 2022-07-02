@@ -2,7 +2,7 @@ console.log(JSON.parse(localStorage.getItem("user_data")))
 let user_token = JSON.parse(JSON.parse(localStorage.getItem("user_data")))
 console.log(user_token)
 
-ajax(`https://f865-188-130-155-167.ngrok.io//api/user/${user_token.user_id}/quiz`, "GET", response_reg, user_token)
+ajax(`https://795e-188-130-155-167.ngrok.io/api/user/${user_token.user_id}/quiz`, "GET", response_reg, user_token)
 
 // console.log(data.quiz_number)
 // console.log(($("#username")).text())
@@ -17,7 +17,8 @@ function response_reg(data){
     for (let i = 0; i < dataArr.quiz_number;i+=1){
         
         document.querySelectorAll("#quiz_button")[i].getElementsByClassName("title")[0].innerHTML = dataArr.quizzes[i].name;
-       ($(".edit")).id =  dataArr.quiz_id
+       ($(".edit"))[i].id =  dataArr.quizzes[i].quiz_id;
+       
     }
         
     
@@ -35,5 +36,13 @@ $(".edit").click(function(event){
   
   localStorage.setItem("quiz_id", $(this).attr('id'));
   console.log($(this).attr('id'));
-  window.location.href="../templates/wh_teacher.html";
+  dataArr =  user_token.user_id
+
+  ajax(`https://b1f9-188-130-155-167.ngrok.io/games/${$(this).attr('id')}`, "POST", answ, dataArr)
+  function answ(data){
+    localStorage.setItem("code", data)
+    window.location.href="../templates/wh_teacher.html";
+
+  }
+
 })
