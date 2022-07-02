@@ -8,11 +8,12 @@ $(document).ready(function() {
        else{
         localStorage.setItem("name",$("#name").val())
         localStorage.setItem("code",$("#code").val())
+        let code =  $("#code").val();
         data = {
             "name": $("#name").val(),
-            "code": $("#code").val()
+          
         }
-        ajax("", "POST", response_fun, data)
+        ajax(`/games/${code}`, "POST", response_fun, data)
         function response_fun(data_arr){
             // console.log(localStorage.getItem("code"))
             // console.log(12234)
