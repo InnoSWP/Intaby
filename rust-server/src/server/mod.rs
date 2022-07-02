@@ -118,8 +118,8 @@ async fn change_state(
 
 #[get("/games/<code>")]
 async fn get_game_state(code: GameCode, games: &State<GamesState>) -> SResult<Json<SerGame>> {
-    let games = &games.lock().unwrap();
-    let game = get_game(games, &code)?;
+    let games = &mut games.lock().unwrap();
+    let game = get_game_mut(games, &code)?;
     Ok(Json(game.to_serializable()))
 }
 
@@ -133,13 +133,6 @@ async fn game_answer(
     let game = get_game_mut(games, &code)?;
     game.player_answer(answer.0);
     Ok(())
-}
-
-fn get_game<'a>(games: &'a Games, code: &GameCode) -> SResult<&'a Game> {
-    match games.get_game(&code) {
-        Some(game) => Ok(game),
-        None => Err(Error::GameNotFound(code.to_owned())),
-    }
 }
 
 fn get_game_mut<'a>(games: &'a mut Games, code: &GameCode) -> SResult<&'a mut Game> {

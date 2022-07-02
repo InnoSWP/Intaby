@@ -229,7 +229,8 @@ impl Game {
         }
     }
 
-    pub fn to_serializable(&self) -> SerGame {
+    pub fn to_serializable(&mut self) -> SerGame {
+        self.update();
         match &self.state {
             GameState::Lobby => SerGame::Lobby {
                 players: self.players.iter().cloned().collect(),
