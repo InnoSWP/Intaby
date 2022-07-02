@@ -19,10 +19,13 @@ function all(){
     // data = JSON.stringify(data)
     // game_procces(data);
 
-
-    function game_procces(dataArray){
     
-           animation(Number(JSON.parse(dataArray).time_left));
+    
+    function game_procces(dataArray){
+        window.onload = (() => {
+            animation(Number(JSON.parse(dataArray).time_left));
+                })
+           
            createAnswer_(dataArray)
             let changes = dataArray.current_question_id-100;
             let timerId = setInterval(() => ajax(`https://b1f9-188-130-155-167.ngrok.io/games/${code}`, "GET", response_reg), 500)

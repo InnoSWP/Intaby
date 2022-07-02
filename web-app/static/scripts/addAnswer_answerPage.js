@@ -1,7 +1,4 @@
 
-window.onload = (() => {
-    animation(15)
-})
 
 function createAnswer_(dataArr) {
     var wrapper = document.getElementById("Button_wrapper")
