@@ -42,35 +42,50 @@
         </div>
     </header>
 
-    <div class="Registration-wrapper">
-        <div class="Registration">
+    <main class="main_registration">
+        <div class="Registration-wrapper">
+            <div class="Registration">
 
-            <fieldset class="Registration_fieldset">
-                <legend class="Registration_fieldset-title">Registration</legend>
+                <fieldset class="Registration_fieldset">
+                    <legend class="Registration_fieldset-title">Registration</legend>
 
-                <div class="Registration-inner">
+                    <div class="Registration-inner">
 
-                    <input class="Registration-inner_email" type="email" placeholder="Email" id="signup_email">
-                    <div class="Registration-inner_namesurname">
-                        <input class="Registration-inner_namesurname-name" type="text" placeholder="Name" id="signup_name">
-                        <input class="Registration-inner_namesurname-surname" type="text" placeholder="Surname" id="signup_surname">
+                        <input class="Registration-inner_email" type="email" placeholder="Email" id="signup_email">
+                        <div class="Registration-inner_namesurname">
+                            <input class="Registration-inner_namesurname-name" type="text" placeholder="Name" id="signup_name">
+                            <input class="Registration-inner_namesurname-surname" type="text" placeholder="Surname" id="signup_surname">
+                        </div>
+                        <input class="Registration-inner_password" type="password" placeholder="Password" id="signup_pass">
+                        <input class="Registration-inner_password" type="password" placeholder="Repeat password" id="signup_pass2">
+                        <div class="Registration-inner_button">
+                            <button id="btn_reg" class="Registration-inner_button-box">
+                                <span class="Registration-inner_button-text">Register</span>
+                            </button>
+                        </div>
+                        <h3 class="Registration-inner_or"> OR </h3>
+                        <div class="Registration-inner_img">
+                            <img class="Registration-inner_img-IU" src="/web-app/static/images/inno_icon.png">
+                            <img class="Registration-inner_img-google" src="/web-app/static/images/Google_icon.png">
+                        </div>
                     </div>
-                    <input class="Registration-inner_password" type="password" placeholder="Password" id="signup_pass">
-                    <input class="Registration-inner_password" type="password" placeholder="Repeat password" id="signup_pass2">
-                    <div class="Registration-inner_button">
-                        <button id="btn_reg" class="Registration-inner_button-box">
-                            <span class="Registration-inner_button-text">Register</span>
-                        </button>
-                    </div>
-                    <h3 class="Registration-inner_or"> OR </h3>
-                    <div class="Registration-inner_img">
-                        <img class="Registration-inner_img-IU" src="/web-app/static/images/inno_icon.png">
-                        <img class="Registration-inner_img-google" src="/web-app/static/images/Google_icon.png">
-                    </div>
-                </div>
-            </fieldset>
+                </fieldset>
+            </div>
         </div>
-    </div>
+        <div class="background_registration">
+            <div class="background-left">
+                <img class="background_image-2" src="/web-app/static/images/circle_1.svg">
+                <img class="background_image-1" src="/web-app/static/images/circle_2.svg">
+            </div>
+            <div class="background_right">
+                <img class="background_image-4" src="/web-app/static/images/cubes_2.svg">
+                <img class="background_image-3" src="/web-app/static/images/cubes_1.svg">
+            </div>
+            <!--
+            <img class="background_image-3" src="/web-app/static/images/circle_1.svg">
+            <img class="background_image-4" src="/web-app/static/images/cubes_1.svg">-->
+        </div>
+    </main>
 
     <script src="../scripts/registration_script.js"></script>
     <script src="../scripts/ajax.js"></script>

@@ -1,17 +1,3 @@
-<svg width="694" height="471" viewBox="0 0 694 471" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_d_673_419)">
-<path d="M247 300C383.414 300 494 410.586 494 547C494 683.414 383.414 794 247 794C110.586 794 0 683.414 0 547C0 410.586 110.586 300 247 300Z" fill="#F83962"/>
-</g>
-<defs>
-<filter id="filter0_d_673_419" x="-300" y="0" width="994" height="994" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dx="-50" dy="-50"/>
-<feGaussianBlur stdDeviation="125"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0.520833 0 0 0 0 0.121528 0 0 0 0 0.207243 0 0 0 0.65 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_673_419"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_673_419" result="shape"/>
-</filter>
-</defs>
+<svg width="494" height="171" viewBox="0 0 494 171" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M247 3.05176e-05C383.414 3.05176e-05 494 110.586 494 247C494 383.414 383.414 494 247 494C110.586 494 0 383.414 0 247C0 110.586 110.586 3.05176e-05 247 3.05176e-05Z" fill="#F83962"/>
 </svg>
