@@ -253,3 +253,9 @@ function clearSelectedAnswers() {
         }
     }
 }
+
+var addQuestion = document.getElementById("btn_create")
+
+addQuestion.addEventListener('click', () => {
+    clearSelectedAnswers()
+})

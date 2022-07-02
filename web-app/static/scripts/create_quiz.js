@@ -38,20 +38,21 @@ let time_mode;
         this.value =""
     })
     if (question_type==1){
-        question_type = "quiz"
+        question_type = "Quiz"
     }
     else if (question_type == 2){
-        question_type = "multquiz"
+        question_type = "Multquiz"
     }
     else if (question_type == 3){
-        question_type = "poll"
+        question_type = "Poll"
     }
     question_json = {
         "question_type":question_type,
         "text":question.val(),
-        "time":time_mode.val(),
+        "time":parseInt(time_mode.val()),
         "answers": answer_array
-    }
+    } 
+    parseInt
     question.val("");
     // time_mode.querySelector('[selected]').selected = true
 
@@ -71,7 +72,7 @@ document.querySelector("#btn_save").onclick = function(event){
     }
     let user_id_data = (JSON.parse(JSON.parse(localStorage.getItem("user_data")))).user_id
     // console.log(user_id_data)
-    let request_url = `https://f865-188-130-155-167.ngrok.io/api/user/${user_id_data}/quiz`
+    let request_url = `https://795e-188-130-155-167.ngrok.io/api/user/${user_id_data}/quiz`
     // console.log(request_url)
     ajax(request_url, "POST", response_reg, JSON.stringify(data));
     function response_reg(dataArr){

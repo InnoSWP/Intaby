@@ -1,22 +1,24 @@
 
-window.onload = (() => {
+
+function createAnswer_(dataArr) {
     var wrapper = document.getElementById("Button_wrapper")
+    console.log( ($(".Question_wrapper"))[0])
+    $(".Question_wrapper")[0].innerHTML = (dataArr.current_question.text); 
     // number of questions
-    for (let index = 1; index < Number(sessionStorage.getItem('number')) + 1; index++) {
-        const element = createAnswer(index)
+    for (let index = 1; index < Number(dataArr.current_question.answer.length) + 1; index++) {
+        const element = createAnswer(index, dataArr)
         wrapper.append(element)
     }
-    animation(15)
-})
+}
 
-function createAnswer(_index) {
+function createAnswer(_index, dataArr_) {
     var element = document.createElement("button")
-    element.classList.add("Answer_button", "col-4", "btn", "py-4", "px-2", "mb-4", "mb-lg-2", "text-white",
+    element.classList.add("Answer_button", "col-4", "btn", "py-4", "px-2", "mb-2", "text-white",
         "col-md-12", "col-lg-5", "position-relative")
     if (_index % 2 === 1) {
         element.classList.add("me-lg-2")
     }
-    element.textContent = "Answer " + _index
+    element.textContent = data.current_question.answer[_index-1]
     switch (_index) {
         case 1:
             element.style.backgroundColor = "#F83962"
@@ -43,15 +45,15 @@ function createAnswer(_index) {
             break
     }
     // type of question
-    if (sessionStorage.getItem("type") != "Interview") {
-        addEvent(element, sessionStorage.getItem("type"))
+    if (dataArr_.current_question.question_type != "Poll") {
+        addEvent(element, dataArr_.current_question.question_type)
         var badge = document.createElement('button')
-        console.log(sessionStorage.getItem("type"))
-        switch (sessionStorage.getItem("type")) {
-            case "Single answer":
+        // console.log(sessionStorage.getItem("type"))
+        switch (dataArr_.current_question.question_type) {
+            case "Quiz":
                 badge.classList.add('Badge', 'position-absolute', 'top-0', 'end-0', 'translate-middle-y', 'p-2', 'mt-3', 'me-2', 'border', 'border-light', 'rounded-circle', 'border-5')
                 break
-            case "Multiple answer":
+            case "Multquiz":
                 badge.classList.add('Badge', 'position-absolute', 'top-0', 'end-0', 'translate-middle-y', 'p-2', 'mt-3', 'me-2', 'border', 'border-light', 'rounded-2', 'border-5')
                 break
         }
@@ -67,7 +69,7 @@ var selectedAnswer
 function addEvent(_element, type) {
     // type of question
     switch (type) {
-        case "Single answer":
+        case "Quiz":
             _element.addEventListener('click', () => {
                 if (ifSelected === true) {
                     selectedAnswer.lastChild.classList.toggle('bg-dark')
@@ -80,7 +82,7 @@ function addEvent(_element, type) {
                 ifSelected = true
             })
             break
-        case "Multiple answer":
+        case "Multquiz":
             _element.addEventListener('click', () => {
                 _element.lastChild.classList.toggle('bg-dark')
             })
