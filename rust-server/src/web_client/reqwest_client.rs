@@ -18,13 +18,10 @@ impl ReqwestClient {
 #[async_trait]
 impl WebClient for ReqwestClient {
     async fn get_quiz(&self, user_id: UserId, quiz_id: QuizId) -> Result<QuizConfig> {
-        let body = self
-            .client
-            .get(format!("localhost:8888/api/user/{user_id}/quiz/{quiz_id}"))
-            .send()
-            .await?
-            .text()
-            .await?;
+        let url = format!("http://python_service:8888/api/user/{user_id}/quiz/{quiz_id}");
+        println!("Sending a GET request to {url}");
+        let body = self.client.get(url).send().await?.text().await?;
+        println!("Received: {body}");
         let config = serde::json::from_str(&body)?;
         Ok(config)
     }

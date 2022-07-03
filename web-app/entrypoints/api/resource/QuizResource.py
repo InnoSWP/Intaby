@@ -2,6 +2,7 @@
 from flask import jsonify, make_response
 from flask_restful import reqparse, abort, Resource
 from adapters.repository import SqlAlchemyRepository, get_repo
+from sqlalchemy.exc import NoResultFound
 
 from domain.model import Quiz
 
@@ -58,81 +59,98 @@ def create_quiz(user_id, args):
 
 class QuizResource(Resource):
     def get(self, user_id, quiz_id):
-        abort_if_quiz_not_found(quiz_id)
+        try:
+            abort_if_quiz_not_found(quiz_id)
 
-        repo = get_repo()
-        quiz = repo.get_quiz(quiz_id)
+            repo = get_repo()
+            quiz = repo.get_quiz(quiz_id)
 
-        if quiz.user_id != user_id:
-            abort(403, message="You are not allowed to get this information")
+            if quiz.user_id != user_id:
+                abort(403, message="You are not allowed to get this information")
 
-        questions = repo.list_questions(quiz_id)
-        questions_list = []
-        # assert len(questions) != 0
-        for question in questions:
-            questions_list.append(question.to_dict())
+            questions = repo.list_questions(quiz_id)
+            questions_list = []
+            # assert len(questions) != 0
+            for question in questions:
+                questions_list.append(question.to_dict())
 
-            answers_list = []
-            answers = repo.list_answers(question.id)
-            for answer in answers:
-                answers_list.append(answer.to_dict())
-            questions_list[-1]["answers"] = answers_list
+                answers_list = []
+                answers = repo.list_answers(question.id)
+                for answer in answers:
+                    answers_list.append(answer.to_dict())
+                questions_list[-1]["answers"] = answers_list
 
-        quiz_dict = quiz.to_dict()
-        quiz_dict["questions"] = questions_list
-        return make_response(quiz_dict, 200)
+            quiz_dict = quiz.to_dict()
+            quiz_dict["questions"] = questions_list
+            return make_response(quiz_dict, 200)
+        except NoResultFound:
+            abort(400, message="Information corrupted")
 
     def put(self, user_id, quiz_id):
-        abort_if_quiz_not_found(quiz_id)
+        try:
+            abort_if_quiz_not_found(quiz_id)
 
-        args = quiz_creation_parser.parse_args()
-        repo = get_repo()
-        quiz = repo.get_quiz(quiz_id)
+            args = quiz_creation_parser.parse_args()
+            repo = get_repo()
+            quiz = repo.get_quiz(quiz_id)
 
-        if quiz.user_id != user_id:
-            abort(403, message="You are not allowed to perform this action")
+            if quiz.user_id != user_id:
+                abort(403, message="You are not allowed to perform this action")
 
-        repo.delete_quiz(quiz)
-        create_quiz(user_id, args)
+            repo.delete_quiz(quiz)
+            create_quiz(user_id, args)
 
-        return make_response("Quiz recreated", 200)
+            return make_response("Quiz recreated", 200)
+        except NoResultFound:
+            abort(400, message="Information corrupted")
 
     def delete(self, user_id, quiz_id):
-        abort_if_quiz_not_found(quiz_id)
+        try:
 
-        repo = get_repo()
+            abort_if_quiz_not_found(quiz_id)
 
-        quiz = repo.get_quiz(quiz_id)
+            repo = get_repo()
 
-        if quiz.user_id != user_id:
-            abort(403, message="You are not allowed to perform this action")
+            quiz = repo.get_quiz(quiz_id)
 
-        repo.delete_quiz(quiz)
+            if quiz.user_id != user_id:
+                abort(403, message="You are not allowed to perform this action")
 
-        return make_response("Quiz deleted", 200)
+            repo.delete_quiz(quiz)
+
+            return make_response("Quiz deleted", 200)
+        except NoResultFound:
+            abort(400, message="Information corrupted")
 
 
 class QuizListResource(Resource):
     def get(self, user_id):
-        abort_if_user_not_found(user_id)
+        try:
+            abort_if_user_not_found(user_id)
 
-        repo = get_repo()
-        quizzes = repo.list_quizzes(user_id)
+            repo = get_repo()
+            quizzes = repo.list_quizzes(user_id)
 
-        user = repo.get_user_by_id(user_id)
+            user = repo.get_user_by_id(user_id)
 
-        quizzes_as_dict = []
+            quizzes_as_dict = []
 
-        for quiz in quizzes:
-            quiz_as_dict = quiz.to_dict
-            quiz_as_dict["quiz_id"] = quiz.id
-            quizzes_as_dict.append(dicted_quiz)
+            for quiz in quizzes:
+                quiz_as_dict = quiz.to_dict()
+                quiz_as_dict["quiz_id"] = quiz.id
+                quizzes_as_dict.append(quiz_as_dict)
 
-        return make_response(
-            {"quizzes": dicted_quizzes, "quiz_number": len(quizzes), "user": user.to_dict()}, 200)
+            return make_response(
+                {"quizzes": quizzes_as_dict, "quiz_number": len(quizzes), "user": user.to_dict()}, 200)
+        except NoResultFound:
+            abort(400, message="Information corrupted")
 
     def post(self, user_id):
-        args = quiz_creation_parser.parse_args()
+        try:
+            args = quiz_creation_parser.parse_args()
 
-        create_quiz(user_id, args)
-        return make_response("Quiz created", 201)
+            create_quiz(user_id, args)
+            return make_response("Quiz created", 201)
+        except NoResultFound:
+            abort(400, message="Information corrupted")
+

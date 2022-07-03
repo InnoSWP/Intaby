@@ -18,23 +18,60 @@ pub async fn rocket(
     rocket::custom(config)
         .manage(web_client)
         .manage(Mutex::new(Games::new()))
+        .attach(Cors)
         .mount(
             "/",
             rocket::routes![
                 index,
+                index_opts,
                 create_game,
+                games_code_opts,
                 join_game,
                 get_game_state,
                 game_answer,
-                change_state
+                change_state,
+                change_state_opts,
             ],
         )
 }
+
+use rocket::fairing::{Fairing, Info, Kind};
+use rocket::http::Header;
+use rocket::{Request, Response};
+
+pub struct Cors;
+
+#[rocket::async_trait]
+impl Fairing for Cors {
+    fn info(&self) -> Info {
+        Info {
+            name: "Add CORS headers to responses",
+            kind: Kind::Response,
+        }
+    }
+
+    async fn on_response<'r>(&self, _request: &'r Request<'_>, response: &mut Response<'r>) {
+        response.set_header(Header::new("Access-Control-Allow-Origin", "*"));
+        response.set_header(Header::new(
+            "Access-Control-Allow-Methods",
+            "POST, GET, PUT, PATCH, OPTIONS",
+        ));
+        response.set_header(Header::new("Access-Control-Allow-Headers", "*"));
+        response.set_header(Header::new("Access-Control-Allow-Credentials", "true"));
+    }
+}
+
+#[rocket::options("/")]
+fn index_opts() {}
 
 #[get("/")]
 fn index() -> &'static str {
     "This server handles games\n"
 }
+
+#[rocket::options("/games/<code>")]
+#[allow(unused_variables)]
+fn games_code_opts(code: String) {}
 
 /// Create a new game from the quiz id
 #[post("/games/<quiz_id>", data = "<user_id>")]
@@ -62,6 +99,10 @@ async fn join_game(code: GameCode, name: PlayerName, games: &State<GamesState>) 
     }
 }
 
+#[rocket::options("/games/<code>/state")]
+#[allow(unused_variables)]
+fn change_state_opts(code: GameCode) {}
+
 /// Start the newly created game. Only the creator of the game can start it
 #[put("/games/<code>/state", data = "<state>")]
 async fn change_state(
@@ -77,8 +118,8 @@ async fn change_state(
 
 #[get("/games/<code>")]
 async fn get_game_state(code: GameCode, games: &State<GamesState>) -> SResult<Json<SerGame>> {
-    let games = &games.lock().unwrap();
-    let game = get_game(games, &code)?;
+    let games = &mut games.lock().unwrap();
+    let game = get_game_mut(games, &code)?;
     Ok(Json(game.to_serializable()))
 }
 
@@ -92,13 +133,6 @@ async fn game_answer(
     let game = get_game_mut(games, &code)?;
     game.player_answer(answer.0);
     Ok(())
-}
-
-fn get_game<'a>(games: &'a Games, code: &GameCode) -> SResult<&'a Game> {
-    match games.get_game(&code) {
-        Some(game) => Ok(game),
-        None => Err(Error::GameNotFound(code.to_owned())),
-    }
 }
 
 fn get_game_mut<'a>(games: &'a mut Games, code: &GameCode) -> SResult<&'a mut Game> {

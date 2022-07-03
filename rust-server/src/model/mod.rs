@@ -23,7 +23,8 @@ pub struct Games {
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
 pub struct QuizConfig {
     pub name: String,
-    pub questions: Vec<Question>,
+    pub questions: Vec<Question<Answer>>,
+    pub user_id: UserId,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -36,8 +37,8 @@ pub enum QuestionType {
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
-pub struct Question {
-    pub answers: Vec<Answer>,
+pub struct Question<T> {
+    pub answers: Vec<T>,
     pub question_type: QuestionType,
     pub quiz_id: QuizId,
     pub text: String,
@@ -59,10 +60,11 @@ pub enum GameState {
     Lobby,
     InProgress {
         current_question: usize,
-        current_answers: HashMap<PlayerName, GameAnswer>,
         start_time: Instant,
     },
-    Finished,
+    Finished {
+        stats: Option<(Vec<LeaderboardEntry>, HashMap<PlayerName, PlayerStats>)>,
+    },
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -81,7 +83,7 @@ pub struct StateUpdate {
 pub type GameCode = String;
 pub type PlayerName = String;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
 pub struct GameAnswer {
     player_name: PlayerName,
@@ -95,6 +97,29 @@ pub struct Game {
     players: HashSet<PlayerName>,
     quiz_config: QuizConfig,
     state: GameState,
+    answers: HashMap<PlayerName, Vec<GameAnswer>>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[serde(crate = "rocket::serde", deny_unknown_fields)]
+pub struct QuestionStats {
+    pub question_id: QuestionId,
+    pub player_answers: Vec<String>,
+    pub is_fully_correct: bool,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[serde(crate = "rocket::serde", deny_unknown_fields)]
+pub struct PlayerStats {
+    pub all_answers: Vec<GameAnswer>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[serde(crate = "rocket::serde", deny_unknown_fields)]
+pub struct LeaderboardEntry {
+    player: PlayerName,
+    score: f64,
+    max_score: usize,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -104,12 +129,16 @@ pub enum SerGame {
         players: Vec<PlayerName>,
     },
     InProgress {
-        current_question: Question,
+        current_question: Question<String>,
         current_question_id: QuestionId,
         /// Time left for the current question in seconds
         time_left: f64,
     },
-    Finished, // TODO: statistics
+    Finished {
+        quiz: QuizConfig,
+        leaderboard: Vec<LeaderboardEntry>,
+        statistics: HashMap<PlayerName, PlayerStats>,
+    },
 }
 
 impl Games {
@@ -146,6 +175,7 @@ impl Game {
         Self {
             players: Default::default(),
             state: GameState::Lobby,
+            answers: Default::default(),
             quiz_config,
             creator_id,
         }
@@ -158,6 +188,7 @@ impl Game {
         }
 
         // TODO: check collisions
+        println!("New player: {:?}", name);
         self.players.insert(name);
     }
 
@@ -177,7 +208,6 @@ impl Game {
             GameState::Lobby => {
                 self.state = GameState::InProgress {
                     current_question: 0,
-                    current_answers: HashMap::new(),
                     start_time: Instant::now(), // TODO: delay start
                 };
             }
@@ -187,18 +217,27 @@ impl Game {
 
     pub fn player_answer(&mut self, answer: GameAnswer) {
         self.update();
-        match &mut self.state {
-            GameState::InProgress {
-                current_answers,
-                current_question,
-                ..
-            } if answer.question_id == *current_question as QuestionId
-                && self.players.contains(&answer.player_name) =>
-            {
-                current_answers.insert(answer.player_name.clone(), answer);
-            }
-            _ => {}
+        if !self.players.contains(&answer.player_name) {
+        println!("Unknonw player: {:?}", answer.player_name);
+            return;
         }
+
+        let accepted = match &mut self.state {
+            GameState::InProgress { .. } => true,
+            GameState::Finished { stats } => {
+                *stats = None;
+                true
+            }
+            _ => false,
+        };
+        if accepted {
+        println!("Registering answer");
+            self.answers
+                .entry(answer.player_name.clone())
+                .or_default()
+                .push(answer);
+        }
+        println!("Escaping answer fn")
     }
 
     fn update(&mut self) {
@@ -206,7 +245,6 @@ impl Game {
             GameState::Lobby => {}
             GameState::InProgress {
                 current_question,
-                current_answers,
                 start_time,
             } => {
                 let elapsed = start_time.elapsed().as_seconds_f64().floor() as Time;
@@ -218,18 +256,23 @@ impl Game {
                     .time;
                 if elapsed >= time_limit {
                     if *current_question + 1 >= self.quiz_config.questions.len() {
-                        self.state = GameState::Finished;
+                        self.state = GameState::Finished { stats: None };
                     } else {
+                        // Next question
+                        *start_time = Instant::now();
                         *current_question += 1;
                     }
                 }
             }
-            GameState::Finished => {}
+            GameState::Finished { .. } => {
+                // TODO: drop the game after some time
+            }
         }
     }
 
-    pub fn to_serializable(&self) -> SerGame {
-        match &self.state {
+    pub fn to_serializable(&mut self) -> SerGame {
+        self.update();
+        match &mut self.state {
             GameState::Lobby => SerGame::Lobby {
                 players: self.players.iter().cloned().collect(),
             },
@@ -246,13 +289,110 @@ impl Game {
                     .clone();
                 SerGame::InProgress {
                     time_left: question.time as f64 - start_time.elapsed().as_seconds_f64(),
-                    current_question: question,
+                    current_question: Question {
+                        answers: question
+                            .answers
+                            .into_iter()
+                            .map(|answer| answer.text)
+                            .collect(),
+                        question_type: question.question_type,
+                        quiz_id: question.quiz_id,
+                        text: question.text,
+                        time: question.time,
+                    },
                     current_question_id: *current_question as QuestionId,
                 }
             }
-            GameState::Finished => SerGame::Finished,
+            GameState::Finished { stats } => {
+                if stats.is_none() {
+                    *stats = Some(gen_statistics(&self.answers, &self.quiz_config));
+                }
+                let (leaderboard, statistics) = stats.as_ref().unwrap().clone();
+                SerGame::Finished {
+                    quiz: self.quiz_config.clone(),
+                    statistics,
+                    leaderboard,
+                }
+            }
         }
     }
+}
+
+pub fn gen_statistics(
+    answers: &HashMap<PlayerName, Vec<GameAnswer>>,
+    quiz_config: &QuizConfig,
+) -> (Vec<LeaderboardEntry>, HashMap<PlayerName, PlayerStats>) {
+    println!("Generating stats from {answers:?}\n\t and {quiz_config:?}");
+
+    let mut statistics: HashMap<PlayerName, PlayerStats> = HashMap::new();
+    for (player, answers) in answers {
+        let player = player.clone();
+        let stats = statistics.entry(player).or_default();
+        for answer in answers {
+            let mut answer = answer.clone();
+            answer.answers.sort();
+            answer.answers.dedup();
+            stats.all_answers.push(answer);
+        }
+    }
+    let mut board = statistics
+        .iter()
+        .map(|(player, stats)| {
+            let score = stats
+                .all_answers
+                .iter()
+                .map(|stats| {
+                    let question = quiz_config
+                        .questions
+                        .get(stats.question_id as usize)
+                        .expect("Invalid question id in stats");
+                    match question.question_type {
+                        QuestionType::Poll => 1.0,
+                        QuestionType::Quiz => {
+                            if stats
+                                .answers
+                                .last()
+                                .filter(|answer| question.is_answer_correct(answer))
+                                .is_some()
+                            {
+                                1.0
+                            } else {
+                                0.0
+                            }
+                        }
+                        QuestionType::Multiquiz => {
+                            let correct_size = question
+                                .answers
+                                .iter()
+                                .filter(|answer| answer.correct_answer)
+                                .count();
+
+                            let mut correct_answers = 0;
+                            let mut incorrect_answers = 0;
+                            for answer in &stats.answers {
+                                if question.is_answer_correct(answer) {
+                                    correct_answers += 1;
+                                } else {
+                                    incorrect_answers += 1;
+                                }
+                            }
+
+                            1.0 - (correct_size - correct_answers + incorrect_answers) as f64
+                                / question.answers.len() as f64
+                        }
+                    }
+                })
+                .sum();
+            LeaderboardEntry {
+                player: player.to_string(),
+                score,
+                max_score: quiz_config.questions.len(),
+            }
+        })
+        .collect::<Vec<_>>();
+    board.sort_by(|b, a| a.score.partial_cmp(&b.score).unwrap());
+
+    (board, statistics)
 }
 
 pub fn game_code_generator() -> GameCode {
@@ -266,4 +406,13 @@ pub fn game_code_generator() -> GameCode {
         code.push(symbol);
     }
     code
+}
+
+impl Question<Answer> {
+    fn is_answer_correct(&self, player_answer: &str) -> bool {
+        self.answers
+            .iter()
+            .filter(|answer| answer.correct_answer)
+            .any(|correct| correct.text.eq(player_answer))
+    }
 }
