@@ -70,11 +70,22 @@ def test_user_creation():
 
 
 @app.route('/tests/quizzes')
-def test_quizzes_list():
+def test_questions_list():
     repo = repository.get_repo()
 
     new_items = list()
     for item in repo.get_quizzes():
+        new_items.append(item.to_dict())
+
+    return json.dumps({"items": new_items})
+
+
+@app.route('/tests/questions')
+def test_quizzes_list():
+    repo = repository.get_repo()
+
+    new_items = list()
+    for item in repo.get_questions():
         new_items.append(item.to_dict())
 
     return json.dumps({"items": new_items})

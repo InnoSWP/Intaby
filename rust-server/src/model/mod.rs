@@ -221,7 +221,7 @@ impl Game {
                 current_answers,
                 current_question,
                 ..
-            } if answer.question_id == *current_question as QuestionId
+            } if answer.question_id <= *current_question as QuestionId
                 && self.players.contains(&answer.player_name) =>
             {
                 current_answers.insert(answer.player_name.clone(), answer);
@@ -392,7 +392,7 @@ impl Game {
                             }
                         })
                         .collect::<Vec<_>>();
-                    board.sort_by(|b, a| a.score.total_cmp(&b.score));
+                    board.sort_by(|b, a| a.score.partial_cmp(&b.score).unwrap());
                     board
                 },
             },
