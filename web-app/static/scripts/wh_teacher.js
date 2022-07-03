@@ -20,12 +20,13 @@ function wait_hall_t(){
 
         console.log($("#people_in_lobby"));
         ($("#people_in_lobby"))[0].innerHTML = "People in lobby: " + (JSON.parse(dataArr3).players.length);
+        document.getElementsByClassName("management_quiz-code-number")[0].innerHTML = code;
     }
 
     $("#start_quiz").click(function(event){
         ajax(`https://bfd5-188-130-155-167.ngrok.io/games/${code}/state`, "PUT", response_reg, JSON.stringify(dataArr2));
            function response_reg(data){
-               document.getElementsByClassName("quiz_code_number")[0].innerHTML = code;
+               
                 // window.location.href = "../templates/page_of_answer.html";
            }
 
