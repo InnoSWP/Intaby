@@ -78,7 +78,7 @@ header {
 
     .Answer_button {
         font-size: x-large;
-        min-height: 40%;
+        min-height: 70%;
     }
 
     .Content_wrapper {
@@ -116,7 +116,7 @@ header {
     }
 
     .Content_wrapper {
-        height: 90%;
+        height: 80%;
     }
 
 }
