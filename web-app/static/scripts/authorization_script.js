@@ -17,11 +17,11 @@ document.querySelector("#btn_log").onclick = function(event){
 
         }
       
-            ajax("http://localhost:8888/api/user/login", "POST", response_reg, JSON.stringify(data));
+            ajax("https://90b4-188-130-155-167.ngrok.io/api/user/login", "POST", response_reg, JSON.stringify(data));
             function response_reg(dataArr){
                
                     localStorage.setItem("user_data",JSON.stringify(dataArr));
-                    window.location.href="/page_of_user.html"
+                    window.location.href="../templates/page_of_user.html"
                
                 // console.log(dataArr);
             // dataArr = response;

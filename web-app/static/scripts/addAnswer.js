@@ -59,7 +59,7 @@ addButton.addEventListener('click', function addAnswer() {
         sessionStorage.setItem('number', clicks)
     }
     addEventSelect()
-    addEventDelete()
+    // addEventDelete()
 })
 
 
@@ -185,31 +185,31 @@ function addEventSelect() {
 
 var answers
 
-function addEventDelete() {
-    answers = document.getElementsByClassName('answer_wrapper')
-    for (let item of answers) {
-        if (item.getAttribute('listener') !== 'true') {
-            item.setAttribute('listener', 'true')
-            let deleteButton = item.getElementsByClassName('Delete_button')
-            deleteButton[0].addEventListener('click', () => {
-                if (clicks === 6) {
-                    wrapper[0].append(addButton)
-                    deleteButton[0].parentNode.remove()
-                    clicks -= 1
-                    sessionStorage.setItem('number', clicks)
-                    update()
-                }
-                else if (clicks > 2) {
-                    deletedN = Number((deleteButton[0].parentNode.firstChild.placeholder)[7])
-                    deleteButton[0].parentNode.remove()
-                    clicks -= 1
-                    sessionStorage.setItem('number', clicks)
-                    update()
-                }
-            })
-        }
-    }
-}
+// function addEventDelete() {
+//     answers = document.getElementsByClassName('answer_wrapper')
+//     for (let item of answers) {
+//         if (item.getAttribute('listener') !== 'true') {
+//             item.setAttribute('listener', 'true')
+//             let deleteButton = item.getElementsByClassName('Delete_button')
+//             deleteButton[0].addEventListener('click', () => {
+//                 if (clicks === 6) {
+//                     wrapper[0].append(addButton)
+//                     deleteButton[0].parentNode.remove()
+//                     clicks -= 1
+//                     sessionStorage.setItem('number', clicks)
+//                     update()
+//                 }
+//                 else if (clicks > 2) {
+//                     deletedN = Number((deleteButton[0].parentNode.firstChild.placeholder)[7])
+//                     deleteButton[0].parentNode.remove()
+//                     clicks -= 1
+//                     sessionStorage.setItem('number', clicks)
+//                     update()
+//                 }
+//             })
+//         }
+//     }
+// }
 
 function update() {
     answers = document.getElementsByClassName('answer_wrapper')
@@ -253,3 +253,9 @@ function clearSelectedAnswers() {
         }
     }
 }
+
+var addQuestion = document.getElementById("btn_create")
+
+addQuestion.addEventListener('click', () => {
+    // clearSelectedAnswers()
+})

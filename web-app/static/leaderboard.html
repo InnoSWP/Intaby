@@ -16,10 +16,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="jquery-3.6.0.min.js"></script>
+    <script src="../scripts/jquery-3.6.0.min.js"></script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="./styles/new_style.css">
+    <link rel="stylesheet" href="/web-app/static/styles/new_style.css">
 
     <!-- Meta -->
     <meta charset="UTF-8">
@@ -38,14 +38,14 @@
             <!--Блок текста-->
             <div class="user-result">
                 <!--nickname - имя пользователя-->
-                <h3 class="user-result_title">Congratulations, nickname!</h3>
-                <h3 class="user-result_title">Your score is:</h3>
+                <h3 class="user-result_title congr">Congratulations, nickname!</h3>
+                <h3 class="user-result_title score">Your score is:</h3>
                 <!--#### - сколько очков получил пользователь-->
                 <h1 class="user-result_points">#### points!</h1>
             </div>
             <div class="ellipse">
                 <button class="button-scroll" type="button" onClick="document.getElementById('table').scrollIntoView();">
-                <img class="button-image" src="./images/leaderboard_scroll-down.svg"/>
+                <img class="button-image" src="/web-app/static/images/leaderboard_scroll-down.svg"/>
                 </button>
             </div>
         </div>
@@ -69,8 +69,9 @@
         </div>
 
     </div>
-
-    <script src="./scripts/addLeaderboardUser.js"></script>
+<script src="../scripts/ajax.js"></script>"
+    <script src="../scripts/addLeaderboardUser.js"></script>
+    
 
 </body>
 
