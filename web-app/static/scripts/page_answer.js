@@ -28,7 +28,7 @@ let changes = -100;
         
     
     // function game_procces(){
-    let timerId = setInterval(() => ajax(`http://localhost:8080/games/${code}`, "GET", response_reg), 500);
+    let timerId = setInterval(() => ajax(`http://51.250.99.184:8080/games/${code}`, "GET", response_reg), 500);
     // ($('.Answer_button')).prop("disabled", false)
     
     // console.log(changes)
@@ -53,7 +53,7 @@ let changes = -100;
 
                 }
                 
-                ajax(`http://localhost:8080/games/${code}`, "PUT", response_reg, JSON.stringify(data_json));
+                ajax(`http://51.250.99.184:8080/games/${code}`, "PUT", response_reg, JSON.stringify(data_json));
                 function response_reg(data){
                     answers_arr = []
                     console.log(data_json)

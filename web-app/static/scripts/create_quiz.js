@@ -70,7 +70,7 @@ document.querySelector("#btn_save").onclick = function(event){
     }
     let user_id_data = (JSON.parse(JSON.parse(localStorage.getItem("user_data")))).user_id
     // console.log(user_id_data)
-    let request_url = `http://localhost:8888/api/user/${user_id_data}/quiz`
+    let request_url = `http://51.250.99.184:8888/api/user/${user_id_data}/quiz`
     console.log(data)
     // console.log(request_url)
      ajax(request_url, "POST", response_reg, JSON.stringify(data));
