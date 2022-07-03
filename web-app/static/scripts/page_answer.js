@@ -28,7 +28,7 @@ let changes = -100;
         
     
     // function game_procces(){
-    let timerId = setInterval(() => ajax(`https://003b-188-130-155-167.ngrok.io/games/${code}`, "GET", response_reg), 500);
+    let timerId = setInterval(() => ajax(`https://bfd5-188-130-155-167.ngrok.io/games/${code}`, "GET", response_reg), 500);
     // ($('.Answer_button')).prop("disabled", false)
     
     // console.log(changes)
@@ -45,16 +45,18 @@ let changes = -100;
             createAnswer_(dataArray);
             // console.log(changes)
             if (changes2 != 0){
-                console.log("пиздец")
+                // console.log("пиздец")
                 data_json = {
                     "player_name": localStorage.getItem("name"),
                     "question_id": changes2,
                     "answers": answers_arr, 
 
                 }
-                ajax(`https://003b-188-130-155-167.ngrok.io/games/${code}`, "PUT", response_reg, JSON.stringify(data_json));
+                
+                ajax(`https://bfd5-188-130-155-167.ngrok.io/games/${code}`, "PUT", response_reg, JSON.stringify(data_json));
                 function response_reg(data){
                     answers_arr = []
+                    console.log(data_json)
                     // $('.Answer_button').remove()
                     // all();
                 }
@@ -65,9 +67,9 @@ let changes = -100;
                 console.log("Зашли в прогресс")
                 // data_ = JSON.parse(dataArray)
                 if (JSON.parse(dataArray).current_question.question_type == "Poll" || JSON.parse(dataArray).current_question.question_type == "Quiz" ){
-                        console.log("зашли в полл")
-                        console.log($('.Answer_button'))
-                        console.log(JSON.parse(dataArray))
+                        // console.log("зашли в полл")
+                        // console.log($('.Answer_button'))
+                        // console.log(JSON.parse(dataArray))
                         $('.Answer_button').click(function() {
                             const el = $(this);
                         //   console.log(el)
@@ -91,7 +93,8 @@ let changes = -100;
             // }
         }
         else if (JSON.parse(dataArray).type == "Finished"){
-            alert("Квиз завершен");
+
+              window.location.href = "../templates/leaderboard.html";
             flag = false   
         }
         changes = changes2;

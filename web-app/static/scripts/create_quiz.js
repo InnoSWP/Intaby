@@ -14,7 +14,8 @@ let time_mode;
     time_mode = $("#select_time");
     // console.log( $('#answerType').val())
     // console.log( $('#select_time').val())
-    var answerButtons = document.getElementsByClassName('answer_wrapper')
+    var answerButtons = document.getElementsByClassName('answer_wrapper');
+    console.log(answerButtons)
 
 
 
@@ -23,7 +24,7 @@ let time_mode;
     let i = 0;
     $(".Answer_type").each(function(){
         // console.log(this)
-        // console.log(answerButtons[i].classList.contains("selected"))
+        console.log(answerButtons[i].classList.contains("selected"))
        
         // console.log(i)
         // let cor_answ = answerButtons[i].classList.contains("selected")
@@ -69,13 +70,13 @@ document.querySelector("#btn_save").onclick = function(event){
     }
     let user_id_data = (JSON.parse(JSON.parse(localStorage.getItem("user_data")))).user_id
     // console.log(user_id_data)
-    let request_url = `https://ae4a-188-130-155-167.ngrok.io/api/user/${user_id_data}/quiz`
+    let request_url = `https://912a-188-130-155-167.ngrok.io/api/user/${user_id_data}/quiz`
     console.log(data)
     // console.log(request_url)
-    ajax(request_url, "POST", response_reg, JSON.stringify(data));
+     ajax(request_url, "POST", response_reg, JSON.stringify(data));
     function response_reg(dataArr){
       
-            window.location.href = "../templates/page_of_user.html"
+             window.location.href = "../templates/page_of_user.html"
        
       
     }
