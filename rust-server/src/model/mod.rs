@@ -111,7 +111,7 @@ pub struct QuestionStats {
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
 pub struct PlayerStats {
-    pub all_answers: Vec<QuestionStats>,
+    pub all_answers: Vec<GameAnswer>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
@@ -320,36 +320,13 @@ pub fn gen_statistics(
 ) -> (Vec<LeaderboardEntry>, HashMap<PlayerName, PlayerStats>) {
     let mut statistics: HashMap<PlayerName, PlayerStats> = HashMap::new();
     for (player, answers) in answers {
+        let player = player.clone();
+        let stats = statistics.entry(player).or_default();
         for answer in answers {
-            let player = player.clone();
             let mut answer = answer.clone();
-            let question = quiz_config
-                .questions
-                .get(answer.question_id as usize)
-                .expect("Answer got an invalid question index");
-            let stats = statistics.entry(player).or_default();
-            let mut correct_answers = 0;
-            let mut incorrect_answers = 0;
             answer.answers.sort();
             answer.answers.dedup();
-            for answer in &answer.answers {
-                if question.is_answer_correct(answer) {
-                    correct_answers += 1;
-                } else {
-                    incorrect_answers += 1;
-                }
-            }
-            let expected_correct_answers = question
-                .answers
-                .iter()
-                .filter(|answer| answer.correct_answer)
-                .count();
-            stats.all_answers.push(QuestionStats {
-                question_id: answer.question_id,
-                is_fully_correct: incorrect_answers == 0
-                    && correct_answers == expected_correct_answers,
-                player_answers: answer.answers,
-            });
+            stats.all_answers.push(answer);
         }
     }
     let mut board = statistics
@@ -359,9 +336,6 @@ pub fn gen_statistics(
                 .all_answers
                 .iter()
                 .map(|stats| {
-                    if stats.is_fully_correct {
-                        return 1.0;
-                    }
                     let question = quiz_config
                         .questions
                         .get(stats.question_id as usize)
@@ -370,7 +344,7 @@ pub fn gen_statistics(
                         QuestionType::Poll => 1.0,
                         QuestionType::Quiz => {
                             if stats
-                                .player_answers
+                                .answers
                                 .last()
                                 .filter(|answer| question.is_answer_correct(answer))
                                 .is_some()
@@ -389,7 +363,7 @@ pub fn gen_statistics(
 
                             let mut correct_answers = 0;
                             let mut incorrect_answers = 0;
-                            for answer in &stats.player_answers {
+                            for answer in &stats.answers {
                                 if question.is_answer_correct(answer) {
                                     correct_answers += 1;
                                 } else {
