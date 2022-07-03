@@ -113,6 +113,14 @@ pub struct PlayerStats {
     pub all_answers: Vec<QuestionStats>,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[serde(crate = "rocket::serde", deny_unknown_fields)]
+pub struct LeaderboardEntry {
+    player: PlayerName,
+    score: f64,
+    max_score: usize,
+}
+
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(crate = "rocket::serde", tag = "type", deny_unknown_fields)]
 pub enum SerGame {
@@ -127,6 +135,7 @@ pub enum SerGame {
     },
     Finished {
         quiz: QuizConfig,
+        leaderboard: Vec<LeaderboardEntry>,
         statistics: HashMap<PlayerName, PlayerStats>,
     },
 }
@@ -320,6 +329,72 @@ impl Game {
             GameState::Finished => SerGame::Finished {
                 quiz: self.quiz_config.clone(),
                 statistics: self.statistics.clone(),
+                leaderboard: {
+                    let mut board = self
+                        .statistics
+                        .iter()
+                        .map(|(player, stats)| {
+                            let score = stats
+                                .all_answers
+                                .iter()
+                                .map(|stats| {
+                                    if stats.is_fully_correct {
+                                        return 1.0;
+                                    }
+                                    let question = self
+                                        .quiz_config
+                                        .questions
+                                        .get(stats.question_id as usize)
+                                        .expect("Invalid question id in stats");
+                                    match question.question_type {
+                                        QuestionType::Poll => 1.0,
+                                        QuestionType::Quiz => {
+                                            if stats
+                                                .player_answers
+                                                .last()
+                                                .filter(|answer| question.is_answer_correct(answer))
+                                                .is_some()
+                                            {
+                                                1.0
+                                            } else {
+                                                0.0
+                                            }
+                                        }
+                                        QuestionType::Multiquiz => {
+                                            let correct_size = question
+                                                .answers
+                                                .iter()
+                                                .filter(|answer| answer.correct_answer)
+                                                .count();
+
+                                            let mut correct_answers = 0;
+                                            let mut incorrect_answers = 0;
+                                            for answer in &stats.player_answers {
+                                                if question.is_answer_correct(answer) {
+                                                    correct_answers += 1;
+                                                } else {
+                                                    incorrect_answers += 1;
+                                                }
+                                            }
+
+                                            1.0 - (correct_size - correct_answers
+                                                + incorrect_answers)
+                                                as f64
+                                                / question.answers.len() as f64
+                                        }
+                                    }
+                                })
+                                .sum();
+                            LeaderboardEntry {
+                                player: player.to_string(),
+                                score,
+                                max_score: self.quiz_config.questions.len(),
+                            }
+                        })
+                        .collect::<Vec<_>>();
+                    board.sort_by(|b, a| a.score.total_cmp(&b.score));
+                    board
+                },
             },
         }
     }
