@@ -221,6 +221,7 @@ impl Game {
                     if *current_question + 1 >= self.quiz_config.questions.len() {
                         self.state = GameState::Finished;
                     } else {
+                        *start_time = Instant::now();
                         *current_question += 1;
                     }
                 }
