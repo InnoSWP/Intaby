@@ -96,6 +96,13 @@ pub struct Game {
     players: HashSet<PlayerName>,
     quiz_config: QuizConfig,
     state: GameState,
+    statistics: HashMap<PlayerName, PlayerStats>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[serde(crate = "rocket::serde", deny_unknown_fields)]
+pub struct PlayerStats {
+    pub all_answers: Vec<Vec<Answer>>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -110,7 +117,9 @@ pub enum SerGame {
         /// Time left for the current question in seconds
         time_left: f64,
     },
-    Finished, // TODO: statistics
+    Finished {
+        statistics: HashMap<PlayerName, PlayerStats>,
+    },
 }
 
 impl Games {
@@ -147,6 +156,7 @@ impl Game {
         Self {
             players: Default::default(),
             state: GameState::Lobby,
+            statistics: Default::default(),
             quiz_config,
             creator_id,
         }
@@ -221,12 +231,37 @@ impl Game {
                     if *current_question + 1 >= self.quiz_config.questions.len() {
                         self.state = GameState::Finished;
                     } else {
+                        // Collect statistics
+                        let answers = std::mem::take(current_answers);
+                        for (player, answer) in answers {
+                            let question = self
+                                .quiz_config
+                                .questions
+                                .get(answer.question_id as usize)
+                                .expect("Answer got an invalid question index");
+                            let stats = self.statistics.entry(player).or_default();
+                            stats.all_answers.push(
+                                answer
+                                    .answers
+                                    .into_iter()
+                                    .map(|player_answer| Answer {
+                                        correct_answer: question.is_answer_correct(&player_answer),
+                                        question_id: answer.question_id,
+                                        text: player_answer,
+                                    })
+                                    .collect(),
+                            );
+                        }
+
+                        // Next question
                         *start_time = Instant::now();
                         *current_question += 1;
                     }
                 }
             }
-            GameState::Finished => {}
+            GameState::Finished => {
+                // TODO: drop the game after some time
+            }
         }
     }
 
@@ -263,7 +298,9 @@ impl Game {
                     current_question_id: *current_question as QuestionId,
                 }
             }
-            GameState::Finished => SerGame::Finished,
+            GameState::Finished => SerGame::Finished {
+                statistics: self.statistics.clone(),
+            },
         }
     }
 }
@@ -279,4 +316,13 @@ pub fn game_code_generator() -> GameCode {
         code.push(symbol);
     }
     code
+}
+
+impl Question<Answer> {
+    fn is_answer_correct(&self, player_answer: &str) -> bool {
+        self.answers
+            .iter()
+            .filter(|answer| answer.correct_answer)
+            .any(|correct| correct.text.eq(player_answer))
+    }
 }
