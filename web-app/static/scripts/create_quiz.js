@@ -41,7 +41,7 @@ let time_mode;
         question_type = "Quiz"
     }
     else if (question_type == 2){
-        question_type = "Multquiz"
+        question_type = "Multiquiz"
     }
     else if (question_type == 3){
         question_type = "Poll"
@@ -52,18 +52,15 @@ let time_mode;
         "time":parseInt(time_mode.val()),
         "answers": answer_array
     } 
-    parseInt
+    questions_array.push(question_json)
+    
     question.val("");
     // time_mode.querySelector('[selected]').selected = true
-
-
-   
- 
 
 document.querySelector("#btn_save").onclick = function(event){
     
     
-    questions_array.push(question_json)
+  
     //data to request
     data = {
 
@@ -72,7 +69,8 @@ document.querySelector("#btn_save").onclick = function(event){
     }
     let user_id_data = (JSON.parse(JSON.parse(localStorage.getItem("user_data")))).user_id
     // console.log(user_id_data)
-    let request_url = `https://795e-188-130-155-167.ngrok.io/api/user/${user_id_data}/quiz`
+    let request_url = `https://ae4a-188-130-155-167.ngrok.io/api/user/${user_id_data}/quiz`
+    console.log(data)
     // console.log(request_url)
     ajax(request_url, "POST", response_reg, JSON.stringify(data));
     function response_reg(dataArr){

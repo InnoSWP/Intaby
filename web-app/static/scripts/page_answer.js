@@ -1,6 +1,11 @@
 
+   
+let flag = true
+let changes = -100;
+// function all(){
+
+    console.log("123")
     
-function all(){
     let code = localStorage.getItem("code")
     answers_arr = []
     // data = {
@@ -15,100 +20,90 @@ function all(){
     //     "current_question_id": 0,
     //     "time_left": 30
     //   }
-   ajax(`https://b1f9-188-130-155-167.ngrok.io/games/${code}`, "GET", game_procces)
+//    ajax(`https://23aa-188-130-155-167.ngrok.io/games/${code}`, "GET", game_procces)
     // data = JSON.stringify(data)
     // game_procces(data);
+    // game_procces();
+   
+        
+    
+    // function game_procces(){
+    let timerId = setInterval(() => ajax(`https://003b-188-130-155-167.ngrok.io/games/${code}`, "GET", response_reg), 500);
+    // ($('.Answer_button')).prop("disabled", false)
+    
+    // console.log(changes)
 
-    
-    
-    function game_procces(dataArray){
-        window.onload = (() => {
-            animation(Number(JSON.parse(dataArray).time_left));
-                })
-           
-           createAnswer_(dataArray)
-            let changes = dataArray.current_question_id-100;
-            let timerId = setInterval(() => ajax(`https://b1f9-188-130-155-167.ngrok.io/games/${code}`, "GET", response_reg), 500)
-            response_reg(data)
-            function response_reg(dataArray){
-                let changes2 = dataArray.current_question_id;
-                if (changes != changes2){
-                    if (JSON.parse(dataArray).type == "InProgress"){
-                        console.log(11)
-                        // data_ = JSON.parse(dataArray)
-                       
-                        if (JSON.parse(dataArray).current_question.question_type == "Poll" ||JSON.parse(dataArray).current_question.question_type == "Quiz" ){
-                           
-                                $('.Answer_button').click(function() {
-                                  const el = $(this);
-                                  console.log(el)
-                                  console.log(el.text());
-                                  answers_arr.push(el.text());
-                                  ($('.Answer_button')).prop("disabled", true)
-                                  el.css("opacity", "1")
-                                });
-            
-            
-                             if (JSON.parse(dataArray).current_question.time - JSON.parse(dataArray).time_left == 0){
-                                data_json = {
-                                    "player_name": localStorage.getItem("name"),
-                                    "question_id": dataArray.current_question_id,
-                                    "answers": answers_arr, 
-            
-                                }
-                                ajax(`/games/${code}`, "PUT", response_reg, data_json);
-                                function response_reg(data){
-                                    all();
-                             }
-                           
-                            }
-                        else if (JSON.parse(dataArray).current_question.question_type == "Multquiz"){
-                            $('.Answer_button').click(function() {
-                                const el = $(this);
-                                console.log(el)
-                                
-                                console.log(answers_arr)
-            
-                                console.log(answers_arr.includes(el.text()))
-                                if (answers_arr.includes(el.text())){
-                                    answers_arr.splice(answers_arr.indexOf(el.text()), 1)
-                                }
-                                answers_arr.push(el.text());
-                            })
-                            if (JSON.parse(dataArray).current_question.time - JSON.parse(dataArray).time_left == 0){
-                                data_json = {
-                                    "player_name": localStorage.getItem("name"),
-                                    "question_id": JSON.parse(dataArray).current_question_id,
-                                    "answers": answers_arr, 
-            
-                                }
-                                ajax(`https://b1f9-188-130-155-167.ngrok.io/games/${code}`, "PUT", response_reg, data_json)
-                                function response_reg(data){
-                                    all();
-                                }
-                             }
-                            // console.log(answers_arr)
-                        }
-                     
-                               
-                                
-                        
-                            // console.log(document.getElementsByClassName("Answer_button"))
-        
-                        }
-                        else if (JSON.parse(dataArray).current_question.question_type == "Finished"){
-            
-                            
-                        }
-    
+    function response_reg(dataArray){
+        let changes2 = JSON.parse(dataArray).current_question_id;
+        // console.log(changes2)
+        //  console.log(JSON.parse(dataArray))
+        // console.log(localStorage.getItem("name"))
+        if (changes != changes2 && JSON.parse(dataArray).type != "Finished"){
+
+            animation(Number(JSON.parse(dataArray).current_question.time));
+            $('.Answer_button').remove();
+            createAnswer_(dataArray);
+            // console.log(changes)
+            if (changes2 != 0){
+                console.log("пиздец")
+                data_json = {
+                    "player_name": localStorage.getItem("name"),
+                    "question_id": changes2,
+                    "answers": answers_arr, 
+
                 }
-                changes = changes2;
-        
+                ajax(`https://003b-188-130-155-167.ngrok.io/games/${code}`, "PUT", response_reg, JSON.stringify(data_json));
+                function response_reg(data){
+                    answers_arr = []
+                    // $('.Answer_button').remove()
+                    // all();
                 }
-        
             }
+
+
+            // else{
+                console.log("Зашли в прогресс")
+                // data_ = JSON.parse(dataArray)
+                if (JSON.parse(dataArray).current_question.question_type == "Poll" || JSON.parse(dataArray).current_question.question_type == "Quiz" ){
+                        console.log("зашли в полл")
+                        console.log($('.Answer_button'))
+                        console.log(JSON.parse(dataArray))
+                        $('.Answer_button').click(function() {
+                            const el = $(this);
+                        //   console.log(el)
+                        //   console.log(el.text());
+                            answers_arr.push(el.text());
+                            ($('.Answer_button')).prop("disabled", true)
+                            el.css("opacity", "1")
+                        });
+                }
+                else{
+                    $('.Answer_button').click(function() {
+                        const el = $(this);
+                    
+                        // if (answers_arr.includes(el.text())){
+                        //     answers_arr.splice(answers_arr.indexOf(el.text()), 1)
+                        // }
+                        answers_arr.push(el.text());
+                    })
+                }
+                        // console.log(document.getElementsByClassName("Answer_button"))
+            // }
         }
+        else if (JSON.parse(dataArray).type == "Finished"){
+            alert("Квиз завершен");
+            flag = false   
+        }
+        changes = changes2;
+ // }
     }
-       
-    all()
+    
+// if (flag){
+//     $('.Answer_button').remove()
+//     all();   
+// }
+  
+
+      
+  
 

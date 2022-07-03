@@ -1,22 +1,32 @@
-let timerId = setInterval(() => wait_hall(), 500);
+let timerId_ = setInterval(() => wait_hall(), 500);
 let code = localStorage.getItem("code");
+let count_players = 0;
 function wait_hall(){
-    ajax(`https://61fa-188-130-155-167.ngrok.io/games/${code}`, "GET", response_reg)
+    ajax(`https://003b-188-130-155-167.ngrok.io/games/${code}`, "GET", response_reg)
     // addParticipant(2)
     // console.log(document.getElementsByClassName("person")[0].innerHTML)
     function response_reg(dataArr){
         let data = JSON.parse(dataArr);
+        console.log()
+       
+
         if (data.type == "Lobby"){
-            addParticipant(dataArr.players.length);
-            for (let i = 0; i < dataArr.length; i+=1){
-                document.getElementsByClassName("person")[i].innerHTML = dataArr[i];
+            addParticipant(data.players.length - count_players);
+            for (let i = count_players; i < data.players.length; i+=1){
+                document.getElementsByClassName("person")[i].innerHTML = JSON.parse(data.players[i]).name;
             }
-            $("#amount").val() = dataArr.length
-            $("quiz_code_number").val()=localStorage.getItem("code")
+             $("#amount")[0].innerHTML = (data.players.length);
+             console.log(data.players.length)
+             console.log( $("#amount"))
+            document.getElementsByClassName("quiz_code_number")[0].innerHTML = code;
+            console.log(document.getElementsByClassName("quiz_code_number")[0]);
+            console.log(code)
         }
         else if (data.type == "InProgress"){
             window.location.href="../templates/page_of_answer.html"
         }
+        count_players = data.players.length;
+        console.log(count_players)
         
         
        

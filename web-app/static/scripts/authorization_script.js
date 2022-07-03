@@ -17,7 +17,7 @@ document.querySelector("#btn_log").onclick = function(event){
 
         }
       
-            ajax("https://795e-188-130-155-167.ngrok.io/api/user/login", "POST", response_reg, JSON.stringify(data));
+            ajax("https://e28b-188-130-155-167.ngrok.io/api/user/login", "POST", response_reg, JSON.stringify(data));
             function response_reg(dataArr){
                
                     localStorage.setItem("user_data",JSON.stringify(dataArr));

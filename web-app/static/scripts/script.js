@@ -12,7 +12,7 @@ $(document).ready(function() {
         data = {
             "name": $("#name").val(),
         }
-        ajax(`https://61fa-188-130-155-167.ngrok.io/games/${code}`, "POST", response_fun, data)
+        ajax(`https://003b-188-130-155-167.ngrok.io/games/${code}`, "POST", response_fun, JSON.stringify(data))
         function response_fun(data_arr){
             // console.log(localStorage.getItem("code"))
             // console.log(12234)
