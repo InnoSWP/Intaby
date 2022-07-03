@@ -22,10 +22,10 @@ document.querySelector("#btn_reg").onclick = function(event){
 
         }
         if (name&&surname&&pass&&email&&pass2){
-            ajax("https://90b4-188-130-155-167.ngrok.io/api/user/register", "POST", response_reg, JSON.stringify(data));
+            ajax("http://localhost:8888/api/user/register", "POST", response_reg, JSON.stringify(data));
             function response_reg(dataArr){
                 
-                    window.location.href="../templates/authorization_page.html"
+                    window.location.href="/authorization_page.html"
                 
                
                 

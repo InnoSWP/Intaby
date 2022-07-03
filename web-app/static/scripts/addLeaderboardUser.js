@@ -1,7 +1,7 @@
 code = localStorage.getItem("code");
 name = localStorage.getItem("name");
 let score = 0;
-ajax(`https://bfd5-188-130-155-167.ngrok.io/games/${code}`, "GET", response_reg)
+ajax(`http://localhost:8080/games/${code}`, "GET", response_reg)
 function response_reg(data){
     data = JSON.parse(data)
 
@@ -57,19 +57,19 @@ function createUser(index, data) {
     switch (index) {
         case 0:
             image.classList.add("leaderboard_1st-place-icon")
-            image.src = "/web-app/static/images/leaderboard_1st-place.svg"
+            image.src = "./images/leaderboard_1st-place.svg"
             break
         case 1:
             image.classList.add("leaderboard_2nd-place-icon")
-            image.src = "/web-app/static/images/leaderboard_2nd-place.svg"
+            image.src = "./images/leaderboard_2nd-place.svg"
             break
         case 2:
             image.classList.add("leaderboard_3rd-place-icon")
-            image.src = "/web-app/static/images/leaderboard_3rd-place.svg"
+            image.src = "./images/leaderboard_3rd-place.svg"
             break
         default:
             image.classList.add("leaderboard_student-icon")
-            image.src = "/web-app/static/images/leaderboard_student.svg"
+            image.src = "./images/leaderboard_student.svg"
             break
     }
 

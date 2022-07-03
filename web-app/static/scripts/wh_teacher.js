@@ -13,7 +13,7 @@ dataArr2 = {
  let timerId = setInterval(() => wait_hall_t(), 500);
 wait_hall_t()
 function wait_hall_t(){
-    ajax(`https://bfd5-188-130-155-167.ngrok.io/games/${code}`, "GET", response_reg, dataArr)
+    ajax(`http://localhost:8080/games/${code}`, "GET", response_reg, dataArr)
     function response_reg(dataArr3){
         
         console.log(JSON.parse(dataArr3).players.length);
@@ -24,10 +24,10 @@ function wait_hall_t(){
     }
 
     $("#start_quiz").click(function(event){
-        ajax(`https://bfd5-188-130-155-167.ngrok.io/games/${code}/state`, "PUT", response_reg, JSON.stringify(dataArr2));
+        ajax(`http://localhost:8080/games/${code}/state`, "PUT", response_reg, JSON.stringify(dataArr2));
            function response_reg(data){
                
-                // window.location.href = "../templates/page_of_answer.html";
+                // window.location.href = "/page_of_answer.html";
            }
 
       

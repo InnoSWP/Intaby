@@ -2,7 +2,7 @@ let timerId_ = setInterval(() => wait_hall(), 500);
 let code = localStorage.getItem("code");
 let count_players = 0;
 function wait_hall(){
-    ajax(`https://bfd5-188-130-155-167.ngrok.io/games/${code}`, "GET", response_reg)
+    ajax(`http://localhost:8080/games/${code}`, "GET", response_reg)
     // addParticipant(2)
     // console.log(document.getElementsByClassName("person")[0].innerHTML)
     function response_reg(dataArr){

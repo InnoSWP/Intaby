@@ -20,7 +20,7 @@ let changes = -100;
     //     "current_question_id": 0,
     //     "time_left": 30
     //   }
-//    ajax(`https://23aa-188-130-155-167.ngrok.io/games/${code}`, "GET", game_procces)
+//    ajax(`https://23aa-188-130-155-167.ngrok.io:8080/games/${code}`, "GET", game_procces)
     // data = JSON.stringify(data)
     // game_procces(data);
     // game_procces();
@@ -28,7 +28,7 @@ let changes = -100;
         
     
     // function game_procces(){
-    let timerId = setInterval(() => ajax(`https://bfd5-188-130-155-167.ngrok.io/games/${code}`, "GET", response_reg), 500);
+    let timerId = setInterval(() => ajax(`http://localhost:8080/games/${code}`, "GET", response_reg), 500);
     // ($('.Answer_button')).prop("disabled", false)
     
     // console.log(changes)
@@ -53,7 +53,7 @@ let changes = -100;
 
                 }
                 
-                ajax(`https://bfd5-188-130-155-167.ngrok.io/games/${code}`, "PUT", response_reg, JSON.stringify(data_json));
+                ajax(`http://localhost:8080/games/${code}`, "PUT", response_reg, JSON.stringify(data_json));
                 function response_reg(data){
                     answers_arr = []
                     console.log(data_json)
@@ -94,7 +94,7 @@ let changes = -100;
         }
         else if (JSON.parse(dataArray).type == "Finished"){
 
-              window.location.href = "../templates/leaderboard.html";
+              window.location.href = "/leaderboard.html";
             flag = false   
         }
         changes = changes2;

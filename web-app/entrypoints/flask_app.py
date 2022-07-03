@@ -16,13 +16,14 @@ from tests import test_orm
 engine = create_engine(config.get_postgres_uri())
 get_session = sessionmaker(bind=engine)
 repository.initialize_repo(get_session())
+
+orm.create_all(engine)
 orm.start_mappers()
 
 # To delete all tables
 # orm.delete_all(engine)
 
-orm.create_all(engine)
-app = Flask(__name__, template_folder='./../static/templates')
+app = Flask(__name__, template_folder='./../static')
 api = api_initialization.api_initialization(app)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
