@@ -1,7 +1,23 @@
-FROM rust:1.61
+# Leveraging the pre-built Docker images with 
+# cargo-chef and the Rust toolchain
+# Version specifies first the cargo-chef version (latest) and then rust version (1.61.0)
+FROM lukemathwalker/cargo-chef:latest-rust-1.61.0 AS chef
+WORKDIR app
 
-COPY ./ ./
-COPY Cargo.toml Cargo.toml
+FROM chef AS planner
+COPY . .
+RUN cargo chef prepare --recipe-path recipe.json
 
+FROM chef AS builder 
+COPY --from=planner /app/recipe.json recipe.json
+# Build dependencies - this is the caching Docker layer!
+RUN cargo chef cook --release --recipe-path recipe.json
+# Build application
+COPY . .
 RUN cargo build --release
-CMD ["./target/release/rust-server"]
+
+# We do not need the Rust toolchain to run the binary!
+FROM debian:bullseye-slim AS runtime
+WORKDIR app
+COPY --from=builder /app/target/release/rust-server /usr/local/bin
+ENTRYPOINT ["/usr/local/bin/rust-server"]
