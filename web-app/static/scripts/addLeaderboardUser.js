@@ -1,7 +1,7 @@
 code = localStorage.getItem("code");
 name = localStorage.getItem("name");
 let score = 0;
-ajax(`http://51.250.99.184:8080/games/${code}`, "GET", response_reg)
+ajax(`http://51.250.19.225:8080/games/${code}`, "GET", response_reg)
 function response_reg(data){
     data = JSON.parse(data)
 
