@@ -188,6 +188,7 @@ impl Game {
         }
 
         // TODO: check collisions
+        println!("New player: {:?}", name);
         self.players.insert(name);
     }
 
@@ -217,6 +218,7 @@ impl Game {
     pub fn player_answer(&mut self, answer: GameAnswer) {
         self.update();
         if !self.players.contains(&answer.player_name) {
+        println!("Unknonw player: {:?}", answer.player_name);
             return;
         }
 
@@ -229,11 +231,13 @@ impl Game {
             _ => false,
         };
         if accepted {
+        println!("Registering answer");
             self.answers
                 .entry(answer.player_name.clone())
                 .or_default()
                 .push(answer);
         }
+        println!("Escaping answer fn")
     }
 
     fn update(&mut self) {
@@ -318,6 +322,8 @@ pub fn gen_statistics(
     answers: &HashMap<PlayerName, Vec<GameAnswer>>,
     quiz_config: &QuizConfig,
 ) -> (Vec<LeaderboardEntry>, HashMap<PlayerName, PlayerStats>) {
+    println!("Generating stats from {answers:?}\n\t and {quiz_config:?}");
+
     let mut statistics: HashMap<PlayerName, PlayerStats> = HashMap::new();
     for (player, answers) in answers {
         let player = player.clone();
