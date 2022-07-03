@@ -19,12 +19,21 @@ repository.initialize_repo(get_session())
 orm.start_mappers()
 
 # To delete all tables
-# orm.delete_all(engine)
+orm.delete_all(engine)
 
 orm.create_all(engine)
 app = Flask(__name__, template_folder='./../static/templates')
 api = api_initialization.api_initialization(app)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+repository.get_repo().add_user(
+    model.User(
+        name="admin",
+        surname="admin",
+        email="emailOfAdmin",
+        password="adminadmin"
+    )
+)
 
 
 @app.route('/')
