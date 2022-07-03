@@ -101,8 +101,16 @@ pub struct Game {
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 #[serde(crate = "rocket::serde", deny_unknown_fields)]
+pub struct QuestionStats {
+    pub question_id: QuestionId,
+    pub player_answers: Vec<String>,
+    pub is_fully_correct: bool,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[serde(crate = "rocket::serde", deny_unknown_fields)]
 pub struct PlayerStats {
-    pub all_answers: Vec<Vec<Answer>>,
+    pub all_answers: Vec<QuestionStats>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -118,6 +126,7 @@ pub enum SerGame {
         time_left: f64,
     },
     Finished {
+        quiz: QuizConfig,
         statistics: HashMap<PlayerName, PlayerStats>,
     },
 }
@@ -233,24 +242,35 @@ impl Game {
                     } else {
                         // Collect statistics
                         let answers = std::mem::take(current_answers);
-                        for (player, answer) in answers {
+                        for (player, mut answer) in answers {
                             let question = self
                                 .quiz_config
                                 .questions
                                 .get(answer.question_id as usize)
                                 .expect("Answer got an invalid question index");
                             let stats = self.statistics.entry(player).or_default();
-                            stats.all_answers.push(
-                                answer
-                                    .answers
-                                    .into_iter()
-                                    .map(|player_answer| Answer {
-                                        correct_answer: question.is_answer_correct(&player_answer),
-                                        question_id: answer.question_id,
-                                        text: player_answer,
-                                    })
-                                    .collect(),
-                            );
+                            let mut correct_answers = 0;
+                            let mut incorrect_answers = 0;
+                            answer.answers.sort();
+                            answer.answers.dedup();
+                            for answer in &answer.answers {
+                                if question.is_answer_correct(answer) {
+                                    correct_answers += 1;
+                                } else {
+                                    incorrect_answers += 1;
+                                }
+                            }
+                            let expected_correct_answers = question
+                                .answers
+                                .iter()
+                                .filter(|answer| answer.correct_answer)
+                                .count();
+                            stats.all_answers.push(QuestionStats {
+                                question_id: answer.question_id,
+                                is_fully_correct: incorrect_answers == 0
+                                    && correct_answers == expected_correct_answers,
+                                player_answers: answer.answers,
+                            });
                         }
 
                         // Next question
@@ -299,6 +319,7 @@ impl Game {
                 }
             }
             GameState::Finished => SerGame::Finished {
+                quiz: self.quiz_config.clone(),
                 statistics: self.statistics.clone(),
             },
         }
