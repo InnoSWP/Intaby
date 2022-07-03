@@ -40,7 +40,7 @@ let changes = -100;
         // console.log(localStorage.getItem("name"))
         if (changes != changes2 && JSON.parse(dataArray).type != "Finished"){
 
-            animation(Number(JSON.parse(dataArray).current_question.time));
+            // animation(Number(JSON.parse(dataArray).current_question.time));
             $('.Answer_button').remove();
             createAnswer_(dataArray);
             // console.log(changes)
