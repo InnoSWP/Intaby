@@ -1441,6 +1441,35 @@ td {
     justify-content: center;
     align-items: center;
 }
+.management_quiz-code {
+    background-color: #99B0C8;
+    border-radius: 15px;
+    color: white;
+
+    min-width: 50%;
+    /* Display */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 1rem;
+}
+.management_quiz-code-title {
+    font-size: 32px;
+    font-family: Staatliches, serif;
+    text-align: center;
+    margin: 5%;
+    letter-spacing: 1px;
+}
+.management_quiz-code-number {
+    font-size: 64px;
+    font-family: Roboto, serif;
+    text-align: center;
+    margin: 5%;
+}
 .management_title {
     color: #FFFFFF;
 
@@ -1452,6 +1481,7 @@ td {
     letter-spacing: 1px;
     text-align: center;
 }
+
 
 .button-start_box {
     background-color: #142036;
@@ -1793,6 +1823,13 @@ td {
     }
 
     /* Waiting Hall [teacher] */
+
+    .management_quiz-code-title {
+        font-size: calc(16px + (32 - 16) * ((100vw - 280px) / (576 - 280)));
+    }
+    .management_quiz-code-number {
+        font-size: calc(32px + (64 - 32) * ((100vw - 280px) / (576 - 280)));
+    }
 
     .management_title {
         font-size: calc(32px + (64 - 32) * ((100vw - 280px) / (576 - 280)));    }
