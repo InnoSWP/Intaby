@@ -237,42 +237,41 @@ impl Game {
                     .expect("Current question index is illegal")
                     .time;
                 if elapsed >= time_limit {
+                    // Collect statistics
+                    let answers = std::mem::take(current_answers);
+                    for (player, mut answer) in answers {
+                        let question = self
+                            .quiz_config
+                            .questions
+                            .get(answer.question_id as usize)
+                            .expect("Answer got an invalid question index");
+                        let stats = self.statistics.entry(player).or_default();
+                        let mut correct_answers = 0;
+                        let mut incorrect_answers = 0;
+                        answer.answers.sort();
+                        answer.answers.dedup();
+                        for answer in &answer.answers {
+                            if question.is_answer_correct(answer) {
+                                correct_answers += 1;
+                            } else {
+                                incorrect_answers += 1;
+                            }
+                        }
+                        let expected_correct_answers = question
+                            .answers
+                            .iter()
+                            .filter(|answer| answer.correct_answer)
+                            .count();
+                        stats.all_answers.push(QuestionStats {
+                            question_id: answer.question_id,
+                            is_fully_correct: incorrect_answers == 0
+                                && correct_answers == expected_correct_answers,
+                            player_answers: answer.answers,
+                        });
+                    }
                     if *current_question + 1 >= self.quiz_config.questions.len() {
                         self.state = GameState::Finished;
                     } else {
-                        // Collect statistics
-                        let answers = std::mem::take(current_answers);
-                        for (player, mut answer) in answers {
-                            let question = self
-                                .quiz_config
-                                .questions
-                                .get(answer.question_id as usize)
-                                .expect("Answer got an invalid question index");
-                            let stats = self.statistics.entry(player).or_default();
-                            let mut correct_answers = 0;
-                            let mut incorrect_answers = 0;
-                            answer.answers.sort();
-                            answer.answers.dedup();
-                            for answer in &answer.answers {
-                                if question.is_answer_correct(answer) {
-                                    correct_answers += 1;
-                                } else {
-                                    incorrect_answers += 1;
-                                }
-                            }
-                            let expected_correct_answers = question
-                                .answers
-                                .iter()
-                                .filter(|answer| answer.correct_answer)
-                                .count();
-                            stats.all_answers.push(QuestionStats {
-                                question_id: answer.question_id,
-                                is_fully_correct: incorrect_answers == 0
-                                    && correct_answers == expected_correct_answers,
-                                player_answers: answer.answers,
-                            });
-                        }
-
                         // Next question
                         *start_time = Instant::now();
                         *current_question += 1;
