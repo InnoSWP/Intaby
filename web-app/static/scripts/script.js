@@ -9,7 +9,7 @@ $(document).ready(function() {
         localStorage.setItem("name", $("#name").val())
         
         let code =  $("#code").val();
-        localStorage.setItem("code", code)
+        localStorage.setItem("code_user", code);
 
         data =  ($("#name").val()).toString();
         

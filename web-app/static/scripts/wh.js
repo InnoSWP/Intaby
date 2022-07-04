@@ -1,5 +1,5 @@
 let timerId_ = setInterval(() => wait_hall(), 500);
-let code = localStorage.getItem("code");
+let code = localStorage.getItem("code_user");
 let count_players = 0;
 function wait_hall(){
     ajax(`http://51.250.19.225:8080/games/${code}`, "GET", response_reg)
