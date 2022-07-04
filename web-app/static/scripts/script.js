@@ -9,6 +9,8 @@ $(document).ready(function() {
         localStorage.setItem("name", $("#name").val())
         
         let code =  $("#code").val();
+        localStorage.setItem("code", code)
+
         data =  ($("#name").val()).toString();
         
         ajax(`https://bfd5-188-130-155-167.ngrok.io/games/${code}`, "POST", response_fun,data);
