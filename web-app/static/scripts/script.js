@@ -9,6 +9,8 @@ $(document).ready(function() {
         localStorage.setItem("name", $("#name").val())
         
         let code =  $("#code").val();
+        localStorage.setItem("code", code)
+
         data =  ($("#name").val()).toString();
         
         ajax(`http://51.250.19.225:8080/games/${code}`, "POST", response_fun,data);
