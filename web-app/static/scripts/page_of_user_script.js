@@ -2,7 +2,7 @@ console.log(JSON.parse(localStorage.getItem("user_data")))
 let user_token = JSON.parse(JSON.parse(localStorage.getItem("user_data")))
 console.log(user_token)
 
-ajax(`http://51.250.19.225:8888/api/user/${user_token.user_id}/quiz`, "GET", response_reg, user_token)
+ajax(`http://51.250.100.243:8888/api/user/${user_token.user_id}/quiz`, "GET", response_reg, user_token)
 
 // console.log(data.quiz_number)
 // console.log(($("#username")).text())
@@ -46,7 +46,7 @@ function user(){
       dataArr =  user_token.user_id
       console.log(butttons[i])
       console.log(butttons[i].id)
-      ajax(`http://51.250.19.225:8080/games/${$(this).attr('id')}`, "POST", answ, dataArr)
+      ajax(`http://51.250.100.243:8080/games/${$(this).attr('id')}`, "POST", answ, dataArr)
       function answ(data){
         localStorage.setItem("code", data)
         window.location.href="/wh_teacher.html";

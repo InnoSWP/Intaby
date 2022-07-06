@@ -15,7 +15,7 @@ $(document).ready(function() {
 
         if (code && data){
   
-            ajax(`http://51.250.19.225:8080/games/${code}`, "POST", response_fun, data);
+            ajax(`http://51.250.100.243:8080/games/${code}`, "POST", response_fun, data);
             function response_fun(data_arr){
                 // console.log(localStorage.getItem("code"))
                 // console.log(12234)

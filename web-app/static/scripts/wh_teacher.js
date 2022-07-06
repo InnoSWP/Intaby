@@ -13,7 +13,7 @@ dataArr2 = {
  let timerId = setInterval(() => wait_hall_t(), 500);
 wait_hall_t()
 function wait_hall_t(){
-    ajax(`http://51.250.19.225:8080/games/${code}`, "GET", response_reg, dataArr)
+    ajax(`http://51.250.100.243:8080/games/${code}`, "GET", response_reg, dataArr)
     function response_reg(dataArr3){
         
         console.log(JSON.parse(dataArr3).players.length);
@@ -24,7 +24,7 @@ function wait_hall_t(){
     }
 
     $("#start_quiz").click(function(event){
-        ajax(`http://51.250.19.225:8080/games/${code}/state`, "PUT", response_reg, JSON.stringify(dataArr2));
+        ajax(`http://51.250.100.243:8080/games/${code}/state`, "PUT", response_reg, JSON.stringify(dataArr2));
            function response_reg(data){
                
                 // window.location.href = "/page_of_answer.html";

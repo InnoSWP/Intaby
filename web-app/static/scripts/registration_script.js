@@ -22,7 +22,7 @@ document.querySelector("#btn_reg").onclick = function(event){
 
         }
         if (name&&surname&&pass&&email&&pass2){
-            ajax("http://51.250.19.225:8888/api/user/register", "POST", response_reg, JSON.stringify(data));
+            ajax("http://51.250.100.243:8888/api/user/register", "POST", response_reg, JSON.stringify(data));
             function response_reg(dataArr){
                 
                     window.location.href="/authorization_page.html"
